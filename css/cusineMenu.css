@@ -1,0 +1,205 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25 Sep 2019, 14:03:10
+    Author     : kohboonkiat
+*/
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+div{
+    display: block;
+}
+
+body{
+    background-image: url("../images/foodMain.jpg");
+    background-size: 100%;
+    padding: 0px;
+}
+
+
+.whatsonmenu{
+    text-align: center;
+    padding: 80px;
+}
+
+.whatsonmenu h1{
+    font-size: 60px;
+    font-weight: 700;
+}
+
+
+
+.menu-theme{
+    width: 100%;
+}
+
+.container{
+    width: 100%;
+}
+
+.row {
+    width: 100%;
+}
+
+
+.ChineseMenu, .IMMenu{
+    background-color: #e6f9ff;
+    padding: 10px 50px 50px 50px;
+    box-shadow: 0 15px 15px rgba(0,0,0,.5);
+}
+
+.image-box   {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+}
+
+.image-box img{
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    transition: all 0.3s;
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: scale(1);
+}
+
+.image-box:hover img {
+    transform: scale(1.1);
+}
+
+.ChineseMenu h3, .IMMenu h3{
+    text-align: center;
+    font-size: 30px;;
+    font-weight: bold;
+    
+}
+
+@media only screen and (max-width:767px){
+    .IMMenu{
+        margin-top: 20px;
+    }
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.menu-left{
+    text-align: center;
+}
+
+.menu-left h3 {
+    font-size: 3em;
+    color: #005238;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}
+
+
+.menu-right p {
+    font-size: 1.15em;
+    color: #777;
+    line-height: 2em;
+}
+
+    
+#chinesefood .container{
+    background-color: #e6f9ff;
+    margin-top: 150px;
+    width: 100%;
+}
+
+
+
+.menu-top{
+    width: 100%; 
+    margin-top: 50px;
+}
+
+
+.main-menu{
+    width: 100%;
+}
+
+
+.menu-bottom1{
+        padding: 2%;
+}
+
+.menu-bottom1 p{
+    color: #adadad;
+}
+
+.menu-bottom1 h4{
+    font-size: 1.5em;
+    color: #adadad;
+}
+
+
+.img-responsive{
+    box-shadow: 0 3px 3px rgba(0,0,0,.5);
+    max-width: 100%;
+}
+
+.menu-bottom1 h4:hover, .menu-bottom1 h4:active {
+    font-size: 200%;
+}
+
+#IMfood, #chinesefood{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+
+#IMfood .container{
+    background-color: #e6f9ff;
+    margin-top: 150px;
+    width: 100%;
+}
+
+.main-menu h3{
+    padding-left: 2%; 
+    padding-bottom: 1%;
+    padding-top: 1%;
+    border-bottom: solid 1px;
+    font-weight: bold;
+}
+
+
+.containbody img{
+    max-width: 100%;
+    padding: 20px;
+    border: none;
+}
+
+.containbody p{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.modal-body h2 {
+    border-bottom: none;
+    text-align: center;
+}
+
+.container-fluid, .modal-content {
+    background-color: #e6f9ff;
+}
+
