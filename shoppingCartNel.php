@@ -1,9 +1,35 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+
+$productDisplay = "";
+
+if(isset($_POST["pid"]))
+{
+    $pid = $_POST["pid"];
+    $productName = $_POST["pname"];
+    $productDesc = $_POST["pdesc"];
+    $price = $_POST["price"];
+    
+    $productDisplay .= '<div class="product">';
+    $productDisplay .= '    <div class="product-image">';
+    $productDisplay .= '        <img src="images/'. $pid . '.JPG" alt="'. $productName .'" class = "img-responsive">';
+    $productDisplay .= '    </div>';
+    $productDisplay .= '    <div class="product-details">';
+    $productDisplay .= '        <div class="product-title">' . $productName . '</div>';
+    $productDisplay .= '        <p class="product-description">' . $productDesc . '</p>';
+    $productDisplay .= '    </div>';
+    $productDisplay .= '    <div class="product-price">'. $price .'</div>';
+    $productDisplay .= '    <div class="product-quantity">';
+    $productDisplay .= '        <input type="number" value="2" min="1">';
+    $productDisplay .= '    </div>';
+    $productDisplay .= '    <div class="product-removal">';
+    $productDisplay .= '        <button class="remove-product">Remove</button>';
+    $productDisplay .= '    </div>';
+    $productDisplay .= '    <div class="product-line-price">40.00</div>';
+    $productDisplay .= '</div>';
+                    
+}
+
+?>
 <html>
     <head>
         <title>Welcome To Guilty Pleasures!</title>
@@ -22,10 +48,6 @@ and open the template in the editor.
 
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
-
         <div id="mySidepanel" class="sidepanel">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <!--<a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Home</a>-->
@@ -57,44 +79,7 @@ and open the template in the editor.
                 <label class="product-removal">Remove</label>
                 <label class="product-line-price">Total</label>
             </div>
-            <div class="product">
-                <div class="product-image">
-                    <img src="images/1.JPG" alt="Yangzhou Fried Rice" class = "img-responsive">
-                </div>
-                <div class="product-details">
-                    <div class="product-title">Yangzhou Fried Rice</div>
-                    <p class="product-description">Fried rice dish that features egg along with leftover bits of ham, shrimp and meat..</p>
-                </div>
-                <div class="product-price">20.00</div>
-                <div class="product-quantity">
-                    <input type="number" value="2" min="1">
-                </div>
-                <div class="product-removal">
-                    <button class="remove-product">
-                        Remove
-                    </button>
-                </div>
-                <div class="product-line-price">40.00</div>
-            </div>
-            <div class="product">
-                <div class="product-image">
-                    <img src="images/4.JPG" alt="" >
-                </div>
-                <div class="product-details">
-                    <div class="product-title">Braised Beef Noodles</div>
-                    <p class="product-description">Flavorful, clear broth, shaved beef, tender Chinese radish slices, lots of cilantro and scallion, deep red chili oil, and chewy handmade noodles</p>
-                </div>
-                <div class="product-price">20.00</div>
-                <div class="product-quantity">
-                    <input type="number" value="1" min="1">
-                </div>
-                <div class="product-removal">
-                    <button class="remove-product">
-                        Remove
-                    </button>
-                </div>
-                <div class="product-line-price">20.00</div>
-            </div>
+            <?php echo $productDisplay;?>
             <div class="totals">
                 <div class="totals-item">
                     <label>Subtotal</label>

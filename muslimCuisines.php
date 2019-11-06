@@ -59,7 +59,13 @@ else
             $dynamicTable .= '              </section>';
             $dynamicTable .= '          </div>';
             $dynamicTable .= '          <div class="modal-footer">';
-            $dynamicTable .= '              <button type="button" class="btn btn-info btn-default" data-toggle="modal" data-target="#myModal' . $id .'" id="modalButton'. $id .'">Add to shopping cart</button>';
+            $dynamicTable .= '                  <form id = "addToCart" name = "addToCart" method="post" action="shoppingCartNel.php">';
+            $dynamicTable .= '                    <input type="hidden" name="pid" id="pid" value="' . $id . '"/>';
+            $dynamicTable .= '                    <input type="hidden" name="pname" id="pname" value="' . $productName . '"/>'; 
+            $dynamicTable .= '                    <input type="hidden" name="pdesc" id="pdesc" value="' . $productDesc . '"/>';
+            $dynamicTable .= '                    <input type="hidden" name="price" id="price" value="' . $price . '"/>';             
+            $dynamicTable .= '                    <input type="submit" class="btn btn-info btn-default" name="button" id="modalbutton" value="Add to Shopping Cart"/>';
+            $dynamicTable .= '                  </form>';             
             $dynamicTable .= '              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
             $dynamicTable .= '          </div>';
             $dynamicTable .= '      </div>';
