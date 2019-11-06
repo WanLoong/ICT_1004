@@ -1,3 +1,38 @@
+<?php
+session_start();
+if(isset($_POST["pid"]))
+{
+    $pid = $_POST["pid"];
+    $productName = $_POST["pname"];
+    $productDesc = $_POST["pdesc"];
+    $price = $_POST["price"];
+
+    $found = false;
+    if(!isset($_SESSION["cart_array"])||count($_SESSION["cart_array"])<1)
+    {
+        $_SESSION["cart_array"]= array(0=>array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price));
+    }
+    else
+    {
+        foreach($_SESSION["cart_array"] as $eachitem)
+        {
+            while(list($key,$value)=each($eachitem))
+            {
+                if($key == "product_id" && $value == $pid)
+                {
+                    $found = true;
+                }
+            }
+        }
+        if($found == false)
+        {
+            array_push($_SESSION["cart_array"],array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price));
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.

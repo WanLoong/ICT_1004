@@ -20,7 +20,7 @@
         </form>
         
         <a id="loginButton" href="#" style="padding-right: 10px; color: gray;" data-toggle="modal" data-target="#myModal"><i class="fas fa-user"></i> Login</a>
-        
+        <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
             <!-- Log In Modal -->
         <div id="myModal" class="modal fade" role="dialog">  
             <div class="modal-dialog">

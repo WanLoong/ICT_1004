@@ -1,34 +1,69 @@
 <?php
-
+session_start();
 $productDisplay = "";
 
-if(isset($_POST["pid"]))
+$i=0;
+
+if(isset($_SESSION["cart_array"]))
 {
-    $pid = $_POST["pid"];
-    $productName = $_POST["pname"];
-    $productDesc = $_POST["pdesc"];
-    $price = $_POST["price"];
-    
-    $productDisplay .= '<div class="product">';
-    $productDisplay .= '    <div class="product-image">';
-    $productDisplay .= '        <img src="images/'. $pid . '.JPG" alt="'. $productName .'" class = "img-responsive">';
-    $productDisplay .= '    </div>';
-    $productDisplay .= '    <div class="product-details">';
-    $productDisplay .= '        <div class="product-title">' . $productName . '</div>';
-    $productDisplay .= '        <p class="product-description">' . $productDesc . '</p>';
-    $productDisplay .= '    </div>';
-    $productDisplay .= '    <div class="product-price">'. $price .'</div>';
-    $productDisplay .= '    <div class="product-quantity">';
-    $productDisplay .= '        <input type="number" value="2" min="1">';
-    $productDisplay .= '    </div>';
-    $productDisplay .= '    <div class="product-removal">';
-    $productDisplay .= '        <button class="remove-product">Remove</button>';
-    $productDisplay .= '    </div>';
-    $productDisplay .= '    <div class="product-line-price">40.00</div>';
-    $productDisplay .= '</div>';
-                    
+    foreach($_SESSION["cart_array"] as $eachitem)
+    {
+        $pid = $eachitem['product_id'];
+        $productName = $eachitem['productName'];
+        $productDesc = $eachitem['productDesc'];
+        $price = $eachitem['price'];
+        
+        $productDisplay .= '<div class="product">';
+        $productDisplay .= '    <div class="product-image">';
+        $productDisplay .= '        <img src="images/'. $pid . '.JPG" alt="'. $productName .'" class = "img-responsive">';
+        $productDisplay .= '    </div>';
+        $productDisplay .= '    <div class="product-details">';
+        $productDisplay .= '        <div class="product-title">' . $productName . '</div>';
+        $productDisplay .= '        <p class="product-description">' . $productDesc . '</p>';
+        $productDisplay .= '    </div>';
+        $productDisplay .= '    <div class="product-price">'. $price .'</div>';
+        $productDisplay .= '    <div class="product-quantity">';
+        $productDisplay .= '        <input type="number" value="2" min="1">';
+        $productDisplay .= '    </div>';
+        $productDisplay .= '    <div class="product-removal">';            
+        $productDisplay .= '                  <form method="post" action="shoppingCartNel.php">';
+        $productDisplay .= '                    <input type="submit" class="remove-product" name="dltBtn' . $pid . '" id="dltBtn" value="Remove"/>';
+        $productDisplay .= '                    <input type="hidden" name="index" value="'. $pid . '" id="index"/>';
+        $productDisplay .= '                  </form>'; 
+        $productDisplay .= '    </div>';
+        $productDisplay .= '    <div class="product-line-price">40.00</div>';
+        $productDisplay .= '</div>';  
+        $i++;
+    }                
 }
 
+?>
+
+<?php
+if(isset($_POST["index"]))
+{
+    if(isset($_SESSION["cart_array"]))
+    {
+        foreach($_SESSION["cart_array"] as $eachitem => $subeachitem)
+        {
+            $pid1 = $subeachitem['product_id'];
+            if($pid1 == $_POST['index'] )
+            {
+                unset($_SESSION['cart_array'][$eachitem]);
+                $i--;
+                header("location:shoppingCartNel.php");
+            }
+        }
+    }
+}
+
+?>
+
+<?php
+if($i<=0)
+{
+    $productDisplay .= '<h1 style="margin-left:50px;">Your Shopping Cart is Empty.</h1>';
+}
 ?>
 <html>
     <head>
@@ -52,7 +87,7 @@ if(isset($_POST["pid"]))
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <!--<a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Home</a>-->
             <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
-            <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
+            <a href="cuisinesKQ.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
             <!--<a href="#" style="font-family: Times, Times New Roman, serif">Locations</a>-->
             <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
         </div>
