@@ -20,10 +20,6 @@ and open the template in the editor.
         <script src="js/sideMenu.js"></script>
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
-
         <div id="mySidepanel" class="sidepanel">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
