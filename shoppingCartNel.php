@@ -59,7 +59,7 @@ and open the template in the editor.
             </div>
             <div class="product">
                 <div class="product-image">
-                    <img src="images/YZFriedRice.JPG" alt="Yangzhou Fried Rice" class = "img-responsive">
+                    <img src="images/1.JPG" alt="Yangzhou Fried Rice" class = "img-responsive">
                 </div>
                 <div class="product-details">
                     <div class="product-title">Yangzhou Fried Rice</div>
@@ -78,7 +78,7 @@ and open the template in the editor.
             </div>
             <div class="product">
                 <div class="product-image">
-                    <img src="images/BraisedBeefNoodle.JPG" alt="" >
+                    <img src="images/4.JPG" alt="" >
                 </div>
                 <div class="product-details">
                     <div class="product-title">Braised Beef Noodles</div>
