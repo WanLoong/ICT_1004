@@ -21,64 +21,6 @@
         
         <a id="loginButton" href="#" style="padding-right: 10px; color: gray;" data-toggle="modal" data-target="#myModal"><i class="fas fa-user"></i> Login</a>
         
-        <!-- Bootstrap Modal -->
-        <div id="myModal" class="modal fade" role="dialog">  
-            <div class="modal-dialog">
-                <div class="modal-content">      
-                    <div class="modal-header" style="display:inline;">        
-                        <button type="button" class="close" data-dismiss="modal">×</button>        
-                        <h4 class="modal-title">Log in with your Username</h4>      
-                    </div>
-
-                    <div class="modal-body">        
-                        <table>          
-                            <tbody>            
-                                <tr>              
-                                    <td>                
-                                        <input type="text" id="userNameTextBox" placeholder="Username" />              
-                                    </td>            
-                                </tr>            
-                                <tr>              
-                                    <td>                
-                                        <span id="userNamSpan"></span>              
-                                    </td>            
-                                </tr>            
-                                <tr>              
-                                    <td>                
-                                        <input type="text" id="passwordTextBox" placeholder="Password" />              
-                                    </td>            
-                                </tr>            
-                                <tr>              
-                                    <td>                
-                                        <span id="passwordSpan"></span>              
-                                    </td>            
-                                </tr>            
-                                <tr>              
-                                    <td>                
-                                        <input type="button" id="submitButton" value="Login" />              
-                                    </td>            
-                                </tr>            
-                                <tr>              
-                                    <td>                
-                                        <span id="messageSpan"></span>              
-                                    </td>            
-                                </tr>            
-                                <tr>              
-                                    <td>                
-                                        <img id="loadingImg" src="loading.gif" />              
-                                    </td>           
-                                </tr>          
-                            </tbody>        
-                        </table>      
-                    </div>
-                    <div class="modal-footer">      
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>    
-                    </div> 
-
-
-                </div>
-            </div>
-        </div>
 
         
     </div>
