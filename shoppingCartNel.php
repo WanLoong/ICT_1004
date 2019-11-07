@@ -139,7 +139,7 @@ if($i<=0)
         </div>
         <script>
             document.getElementById("checkoutButton").onclick = function () {
-                location.href = "mainPage.php";
+                location.href = "payment.php";
             };
         </script>
 
