@@ -8,9 +8,17 @@ and open the template in the editor.
     Author     : Dell
 */
 
-body {
+#adminPageBody {
     background-color: #cccccc;
     font-family: Snell Roundhand;
+}
+
+#inventbody{
+    background-image: url("../images/foodMain.jpg");
+    background-size: 100%;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h3{
@@ -47,4 +55,70 @@ h3{
 
 #manageInventory h1{
     text-align: center;
+}
+
+#inventtable{
+    padding: 30px;
+    display: inline-block;
+    margin: auto;
+    width: 40%;
+    vertical-align: top;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    background-color: white;
+    box-shadow: 0 3px 3px rgba(0,0,0,.5);
+}
+
+#inventtable h1{
+    text-align: center;
+    
+}
+
+table{
+    background-color: white;
+    margin: auto;
+}
+
+table tr{
+    text-align: center;
+}
+
+#tablehead th{
+    font-size: medium;      
+}
+
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table input, table textarea{
+    border-style: none;
+    text-align: center;
+}
+
+#addProducts{
+    display: inline-block;
+    margin: auto;
+    margin-bottom: 50px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 3px 3px rgba(0,0,0,.5);
+    margin-left: 30px;
+    width: 50%;
+    padding: 2%;
+}
+
+#addProducts h2{
+    margin: 20px;
+}
+
+#addProducts p{
+    text-align: right;
+    margin: 20px;
+}
+
+#addProducts label, #addProducts textarea{
+    margin-top: 20px;
+    width: 100%;
 }

@@ -28,7 +28,7 @@
 
     </head>
     
-    <body>
+    <body id="adminPageBody">
         <?php include_once 'admin_header.php';
         include_once "header.php";?>
         
@@ -38,7 +38,7 @@
                 <section class = "col-lg-3 col-md-3 col-xs-3 clearfix" id="category">
                     <h4 style="text-align: center;">Manage Store</h4>
                     <ul>
-                        <li><a href="#">+ Inventory</a></li>
+                        <li><a href="manageInventory.php">+ Inventory</a></li>
                         <li><a href="#">+ Orders</a></li>
                     </ul>
 

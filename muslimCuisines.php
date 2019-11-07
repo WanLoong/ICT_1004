@@ -15,6 +15,7 @@ if ($conn->connect_error)
     echo '<script type="text/javascript">';
     echo '  alert("Database Connection Error.")';
     echo '</script>';
+    header("location: mainPage.php");
 }
 else
 {
