@@ -1,6 +1,6 @@
 <?php
 #check for admin session cookie
-#session_start();
+session_start();
 #
 #if(!isset($_SESSION["admin"]))
 #{
@@ -9,7 +9,6 @@
 ?>
 
 <?php
-$productTable = "";
 define("DBHOST", "localhost");
 define("DBNAME", "ict_1004");
 define("DBUSER", "root");
@@ -19,47 +18,52 @@ $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 
 if ($conn->connect_error)
 {
-    $productTable = $conn->connect_error;
+    $_SESSION['dberror']=$conn->connect_error;
+    header('Location:dbError.php');
+
 }
-else
-{
-    $sql = "SELECT * FROM product_table";
-    $result = $conn->query($sql);
-    if($result->num_rows > 0)
-    {
-        $productTable .= '<table>';
-        $productTable .= '  <tr id="tablehead">';
-        $productTable .= '  <th>Identifier</th> ';
-        $productTable .= '  <th>Product Name</th>';
-        $productTable .= '  <th>Quantity</th> ';
-        $productTable .= '  <th>Actions</th> ';
-        $productTable .= '</tr>';
-        $i =1;
-                    
-        while($row = $result -> fetch_assoc())
-        {
-            $productName = $row["product_name"];
-            $quantity = $row["product_quantity"];
-            
-            $productTable .= "<tr>";
-            $productTable .= '  <th>'. $i .'</th>';
-            $productTable .= '  <th>'. $productName .'</th>';
-            $productTable .= '  <th>'. $quantity . '</th>';
-            $productTable .= '  <th><a href="#">Edit</a></th>';
-            $productTable .= "</tr>";  
-            $i++;
-        }
-         $productTable .= '</table>';
-    }
-}
-$conn->close();
+
 ?>
 
 <?php
+$productTable = "";
 
+$sql = "SELECT * FROM product_table";
+$result = $conn->query($sql);
+if($result->num_rows > 0)
+{
+    $productTable .= '<table>';
+    $productTable .= '  <tr id="tablehead">';
+    $productTable .= '  <th>Identifier</th> ';
+    $productTable .= '  <th>Product Name</th>';
+    $productTable .= '  <th>Quantity</th> ';
+    $productTable .= '  <th>Actions</th> ';
+    $productTable .= '</tr>';
+    $i =1;
+
+    while($row = $result -> fetch_assoc())
+    {
+        $productName = $row["product_name"];
+        $quantity = $row["product_quantity"];
+
+        $productTable .= "<tr>";
+        $productTable .= '  <th>'. $i .'</th>';
+        $productTable .= '  <th>'. $productName .'</th>';
+        $productTable .= '  <th>'. $quantity . '</th>';
+        $productTable .= '  <th><a href="#">Edit</a>/<a href="manageInventory.php?remove='. $productName .'">Remove</a></th>';
+        $productTable .= "</tr>";  
+        $i++;
+    }
+     $productTable .= '</table>';
+}
+
+?>
+
+<?php
+#add item to db
 if(isset($_GET['add']))
 {
-    if(isset($_POST['addpname'])&&isset($_POST['addprice'])&&isset($_POST['addptype'])&&isset($_POST['addquantity'])&&isset($_POST['addpdesc']))
+    if(isset($_POST['addpname'])&&isset($_POST['addprice'])&&isset($_POST['addptype'])&&isset($_POST['addquantity'])&&isset($_POST['addpdesc'])&& is_numeric($_POST['addprice']))
     {
         $addpname = $_POST['addpname'];
         $addprice = $_POST['addprice'];
@@ -67,35 +71,38 @@ if(isset($_GET['add']))
         $addquantity = $_POST['addquantity'];
         $addpdesc = $_POST['addpdesc'];
 
-        define("DBHOST2", "localhost");
-        define("DBNAME2", "ict_1004");
-        define("DBUSER2", "root");
-        define("DBPASS2", "");
-
-        $conn = new mysqli(DBHOST2, DBUSER2, DBPASS2, DBNAME2);
-
-        if ($conn->connect_error)
+        
+        $sql = "INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_type)"
+                . " VALUES ('$addpname', '$addpdesc',' $addprice', '$addquantity', '$addptype')";
+        $result = $conn->query($sql);
+        if($result == TRUE)
         {
-            $productTable = $conn->connect_error;
+            header("location:manageInventory.php");
         }
         else
         {
-            $sql = "INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_type)"
-                    . " VALUES ('$addpname', '$addpdesc',' $addprice', '$addquantity', '$addptype')";
-            $result = $conn->query($sql);
-            if($result == TRUE)
-            {
-                header("location:manageInventory.php");
-            }
-            else
-            {
-                echo '<script type="text/javascript">';
-                echo '  alert("Error adding record or Required fields are empty.")';
-                echo '</script>';
-            }
+            echo '<script type="text/javascript">';
+            echo '  alert("Error adding record or Required fields are empty.")';
+            echo '</script>';
+            header("location:manageInventory.php");
         }
-        $conn->close();
     }
+    else
+    {
+        header("location:manageInventory.php");
+    }
+}
+
+?>
+
+<?php
+#remove item from db
+if(isset($_GET['remove']))
+{
+    $identifier = $_GET['remove'];
+    $sql = "DELETE FROM product_table WHERE product_name='$identifier'";
+    $result = $conn->query($sql);
+    header("location:manageInventory.php"); 
 }
 
 ?>

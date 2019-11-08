@@ -1,5 +1,20 @@
 <?php
+
+define("DBHOST", "localhost");
+define("DBNAME", "ict_1004");
+define("DBUSER", "root");
+define("DBPASS", "");
+
+$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 session_start();
+
+if ($conn->connect_error)
+{
+    $_SESSION['dberror']=$conn->connect_error;
+    header('Location:dbError.php');
+
+}
+
 if(isset($_POST["pid"]))
 {
     $pid = $_POST["pid"];
@@ -106,9 +121,10 @@ and open the template in the editor.
             </div>
             <br>
         </section>
-        <?php include "chineseCuisines.php";?>
-        <?php include "muslimCuisines.php";?>
-        
+        <?php 
+        include "chineseCuisines.php";
+        include "muslimCuisines.php";
+        ?>
         <?php       
             include "footer.php";
         ?>
