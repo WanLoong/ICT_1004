@@ -2,20 +2,20 @@
 $dynamicTable = "";
 $chinese = 'chinese';
 $i = 0;
+$success=true;
 
 define("DBHOST", "localhost");
 define("DBNAME", "ict_1004");
 define("DBUSER", "root");
 define("DBPASS", "");
 
+
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 
 if ($conn->connect_error)
 {
-    echo '<script type="text/javascript">';
-    echo '  alert("Database Connection Error.")';
-    echo '</script>';
-    header("location: mainPage.php");
+    $success = false;
+    $dynamicTable = '<h1 style="text-align:center;">Database connection failed. '. $conn->connect_error .'</h1>';
 }
 else
 {
@@ -89,6 +89,7 @@ else
 }
 $conn->close();
 
+
 ?>
 
 <html>
@@ -102,7 +103,16 @@ $conn->close();
                 <!-- Bootstrap class fixing overflow-->
                 <div class="clearfix"></div>
             </div>
-            <?php echo $dynamicTable;?>
+            <?php 
+            if($success==true)
+            {
+                echo $dynamicTable;
+            }
+            else
+            {
+                echo $dynamicTable;
+            }
+            ?>
             
             
         </div>

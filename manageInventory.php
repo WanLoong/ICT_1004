@@ -19,10 +19,7 @@ $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 
 if ($conn->connect_error)
 {
-    echo '<script type="text/javascript">';
-    echo '  alert("Database Connection Error.")';
-    echo '</script>';
-    header("location: mainPage.php");
+    $productTable = $conn->connect_error;
 }
 else
 {
@@ -37,23 +34,70 @@ else
         $productTable .= '  <th>Quantity</th> ';
         $productTable .= '  <th>Actions</th> ';
         $productTable .= '</tr>';
+        $i =1;
                     
         while($row = $result -> fetch_assoc())
         {
-            $id = $row["product_id"];
             $productName = $row["product_name"];
             $quantity = $row["product_quantity"];
             
             $productTable .= "<tr>";
-            $productTable .= '  <th>'. $id .'</th>';
+            $productTable .= '  <th>'. $i .'</th>';
             $productTable .= '  <th>'. $productName .'</th>';
             $productTable .= '  <th>'. $quantity . '</th>';
             $productTable .= '  <th><a href="#">Edit</a></th>';
-            $productTable .= "</tr>";            
+            $productTable .= "</tr>";  
+            $i++;
         }
          $productTable .= '</table>';
     }
 }
+$conn->close();
+?>
+
+<?php
+
+if(isset($_GET['add']))
+{
+    if(isset($_POST['addpname'])&&isset($_POST['addprice'])&&isset($_POST['addptype'])&&isset($_POST['addquantity'])&&isset($_POST['addpdesc']))
+    {
+        $addpname = $_POST['addpname'];
+        $addprice = $_POST['addprice'];
+        $addptype = $_POST['addptype'];
+        $addquantity = $_POST['addquantity'];
+        $addpdesc = $_POST['addpdesc'];
+
+        define("DBHOST2", "localhost");
+        define("DBNAME2", "ict_1004");
+        define("DBUSER2", "root");
+        define("DBPASS2", "");
+
+        $conn = new mysqli(DBHOST2, DBUSER2, DBPASS2, DBNAME2);
+
+        if ($conn->connect_error)
+        {
+            $productTable = $conn->connect_error;
+        }
+        else
+        {
+            $sql = "INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_type)"
+                    . " VALUES ('$addpname', '$addpdesc',' $addprice', '$addquantity', '$addptype')";
+            $result = $conn->query($sql);
+            if($result == TRUE)
+            {
+                header("location:manageInventory.php");
+            }
+            else
+            {
+                echo '<script type="text/javascript">';
+                echo '  alert("Error adding record or Required fields are empty.")';
+                echo '</script>';
+            }
+        }
+        $conn->close();
+    }
+}
+
 ?>
 
 <html>
@@ -88,20 +132,20 @@ else
         </section>
         <section id="addProducts">
             <h2 style="text-align: center;">Add New Products</h2>
-            <form method="post" action = "#">
+            <form method="post" action = "manageInventory.php?add=1">
                 <label for="productName">Product Name:</label>
-                <input class="form-control" required="required" type="text" name="pname" placeholder="Product Name...">
+                <input class="form-control" required="required" type="text" name="addpname" placeholder="Product Name...">
                 <label for="price">Price:</label>
-                <input class="form-control" required="required" type="text" name="price" placeholder="Price...">
+                <input class="form-control" required="required" type="text" name="addprice" placeholder="Price...">
                 <label for="ptype">Product Type:</label>
-                <select name="ptype">
+                <select name="addptype" required="required">
                     <option value="chinese">Chinese</option>
                     <option value="muslim">Muslim</option>
                 </select>
                 <br>
                 <label for="quantity">Quantity:</label>
-                <input class="form-control" required="required" type="number" name="quantity" placeholder="Select Quantity...">
-                <textarea rows="5" cols="107" placeholder="Product Descriptions..."></textarea>
+                <input class="form-control" required="required" type="number" name="addquantity" placeholder="Select Quantity...">
+                <textarea rows="5" cols="107" required="required" name="addpdesc" placeholder="Product Descriptions..."></textarea>
                 <p><input class="btn btn-lg btn-primary" type="submit"></p> 
             </form>
         </section>
