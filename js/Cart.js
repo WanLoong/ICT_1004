@@ -9,7 +9,7 @@ $('.product-quantity input').change( function() {
   updateQuantity(this);
 });
 
-$('.product-removal button').click( function() {
+$('.product-removal input').click( function() {
   removeItem(this);
 });
 
