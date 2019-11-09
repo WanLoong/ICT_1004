@@ -4,6 +4,10 @@ $productDisplay = "";
 $cartOutput = "0";
 $carttotal ="0";
 $i=0;
+$tax = "0";
+$carttotal = "0";
+$delivery = "0";
+
 
 if(isset($_SESSION["cart_array"])){
 
