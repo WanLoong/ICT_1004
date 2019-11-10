@@ -7,16 +7,14 @@ $i=0;
 $tax = "0";
 $carttotal = "0";
 $delivery = "0";
-
+$checkoutbtn='';
+$productQuantity="0";
 
 if(isset($_SESSION["cart_array"])){
 
     foreach($_SESSION["cart_array"] as $eachitem)
     {   
-
         $i++;
-
-        
         $pid = $eachitem['product_id'];
         $productName = $eachitem['productName'];
         $productDesc = $eachitem['productDesc'];
@@ -37,7 +35,7 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-price">'. $price .'</div>';
         $productDisplay .= '    <div class="product-quantity">';
-        $productDisplay .= '        <input type="number" value="1" min="1">';
+        $productDisplay .= '        <input type="number" name="pquantity" value="1" min="1" max ="10">';
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-removal">';
         $productDisplay .= '    <form method="post" action="shoppingCartNel.php">';
@@ -46,17 +44,22 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '                  </form>'; 
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-line-price">'.$price.'</div>';
-        $productDisplay .= '</div>';
+        $productDisplay .= '</div>';  
+        
+        $x=$i+1;
+        $checkoutbtn.=' <div class="check-out">';
+        $checkoutbtn.='<form method="post" action="payment.php">';
+        $checkoutbtn.=' <input type="hidden" name="item_name_'.$x.'"value="'.$productName .'"> 
+                        <input type="hidden" name="amount_'.$x.'"value="'.$price .'">  
+                        <input type="hidden" name="product-quantity'.$x.'"value="'.$eachitem['pquantity'] .'">';
+        $checkoutbtn.= '<input type="submit" class="checkout" name="button" value="Checkout"/>';
+        
     }
-   
-    
+
 }
-
 ?>
 
-<?php
-   
-?>
+
 <?php
 if(isset($_POST["index"]))
 {
@@ -154,15 +157,7 @@ if($i<=0)
                     <div class="totals-value" id="cart-total"><b><?php echo$carttotal?></b></div>
                 </div>
             </div>
-
-            <button class="checkout" id="checkoutButton">Checkout</button>
-
         </div>
-        <script>
-            document.getElementById("checkoutButton").onclick = function () {
-                location.href = "payment.php";
-            };
-        </script>
- ?>
+<?php echo $checkoutBtn ?>
     </body>
 </html>

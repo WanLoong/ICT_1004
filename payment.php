@@ -1,3 +1,70 @@
+<?php
+session_start();
+$productDisplay = "";
+$cartOutput = "0";
+$carttotal ="0";
+$i=0;
+$tax = "0";
+$carttotal = "0";
+$delivery = "0";
+
+
+if(isset($_SESSION["cart_array"])){
+
+    foreach($_SESSION["cart_array"] as $eachitem)
+    {   
+
+        $i++;
+
+        
+        $pid = $eachitem['product_id'];
+        $productName = $eachitem['productName'];
+        $productDesc = $eachitem['productDesc'];
+        $price = $eachitem['price'];
+        $cartOutput = $price + $cartOutput;
+        $tax = 0.05*$cartOutput;
+        $tax = number_format($tax, 2);
+        $carttotal = $cartOutput+5+$tax;
+        $delivery = 5.00;
+        
+        $productDisplay .= '<p><a href="#">'. $productName .'</a> <span class="product-price">$'.$price.'</span></p>';
+
+    }
+   
+    
+}
+
+?>
+
+<?php
+   
+?>
+<?php
+if(isset($_POST["index"]))
+{
+    if(isset($_SESSION["cart_array"]))
+    {
+        foreach($_SESSION["cart_array"] as $eachitem => $subeachitem)
+        {
+            $pid1 = $subeachitem['product_id'];
+            if($pid1 == $_POST['index'] )
+            {
+                unset($_SESSION['cart_array'][$eachitem]);
+                $i--;
+                header("location:shoppingCartNel.php");
+            }
+        }
+    }
+}
+
+?>
+
+<?php
+if($i<=0)
+{
+    $productDisplay .= '<h1 style="margin-left:50px;">Your Shopping Cart is Empty.</h1>';
+}
+?>
 <head>
         <title>Welcome To Guilty Pleasures!</title>
         <meta charset="UTF-8">
@@ -100,25 +167,25 @@
                         <i class="fa fa-shopping-cart"></i>
                     </span>
                 </h4>
-                <p><a href="#">Yangzhou Fried Rice</a> <span class="product-price">20.00</span></p>
-                <p><a href="#">Braised Beef Noodles</a> <span class="product-price">20.00</span></p>
+                <?php echo $productDisplay ?>
+                
                 <hr>
                 <div class="totals">
                     <div class="totals-item">
                         <label>Subtotal</label>
-                        <div class="totals-value" id="cart-subtotal">71.97</div>
+                        <div class="totals-value" id="cart-subtotal"><?php echo$cartOutput?></div>
                     </div>
                     <div class="totals-item">
                         <label>Tax (5%)</label>
-                        <div class="totals-value" id="cart-tax">3.60</div>
+                        <div class="totals-value" id="cart-tax"><?php echo$tax?></div>
                     </div>
                     <div class="totals-item">
                         <label>Delivery</label>
-                        <div class="totals-value" id="cart-delivery">15.00</div>
+                        <div class="totals-value" id="cart-delivery"><?php echo$delivery?></div>
                     </div>
                     <div class="totals-item totals-item-total">
                         <label>Grand Total</label>
-                        <div class="totals-value" id="cart-total">90.57</div>
+                        <div class="totals-value" id="cart-total"><?php echo$carttotal?></div>
                     </div>
                 </div>
                       <hr>
