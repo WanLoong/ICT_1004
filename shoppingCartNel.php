@@ -12,6 +12,7 @@ if(isset($_SESSION["cart_array"]))
         $productName = $eachitem['productName'];
         $productDesc = $eachitem['productDesc'];
         $price = $eachitem['price'];
+        $quantity = $eachitem['quantity'];
         
         $productDisplay .= '<div class="product">';
         $productDisplay .= '    <div class="product-image">';
@@ -23,7 +24,7 @@ if(isset($_SESSION["cart_array"]))
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-price">'. $price .'</div>';
         $productDisplay .= '    <div class="product-quantity">';
-        $productDisplay .= '        <input type="number" value="2" min="1">';
+        $productDisplay .= '        <input type="number" value="'. $quantity . '" min="1">';
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-removal">';            
         $productDisplay .= '                  <form method="post" action="shoppingCartNel.php">';

@@ -16,7 +16,8 @@ if($result->num_rows > 0)
         $productName = $row["product_name"];
         $productDesc = $row["product_description"];
         $price = $row["product_price"];
-
+        $quantity = 1;
+        
         if($i % 3 == 0){
             $dynamicTable .= '<div class="main-menu">';
             $dynamicTable .= '<div class="col-md-4 menu-bottom1">';
@@ -49,7 +50,8 @@ if($result->num_rows > 0)
         $dynamicTable .= '                    <input type="hidden" name="pid" id="pid" value="' . $id . '"/>';
         $dynamicTable .= '                    <input type="hidden" name="pname" id="pname" value="' . $productName . '"/>'; 
         $dynamicTable .= '                    <input type="hidden" name="pdesc" id="pdesc" value="' . $productDesc . '"/>';
-        $dynamicTable .= '                    <input type="hidden" name="price" id="price" value="' . $price . '"/>';                      
+        $dynamicTable .= '                    <input type="hidden" name="price" id="price" value="' . $price . '"/>';      
+        $dynamicTable .= '                    <input type="hidden" name="quantity" id="quantity" value="' . $quantity . '"/>'; 
         $dynamicTable .= '                    <input type="submit" class="btn btn-info btn-default" name="button" value="Add to Shopping Cart"/>';
         $dynamicTable .= '                  </form>';
         $dynamicTable .= '              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';

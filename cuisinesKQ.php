@@ -21,11 +21,12 @@ if(isset($_POST["pid"]))
     $productName = $_POST["pname"];
     $productDesc = $_POST["pdesc"];
     $price = $_POST["price"];
+    $quantity = $_POST["quantity"];
 
     $found = false;
     if(!isset($_SESSION["cart_array"])||count($_SESSION["cart_array"])<1)
     {
-        $_SESSION["cart_array"]= array(0=>array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price));
+        $_SESSION["cart_array"]= array(0=>array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price, "quantity"=>$quantity));
     }
     else
     {
@@ -41,7 +42,7 @@ if(isset($_POST["pid"]))
         }
         if($found == false)
         {
-            array_push($_SESSION["cart_array"],array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price));
+            array_push($_SESSION["cart_array"],array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price,"quantity"=>$quantity));
         }
     }
 }
