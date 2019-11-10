@@ -35,6 +35,7 @@ if($result->num_rows > 0)
     $productTable .= '<table>';
     $productTable .= '  <tr id="tablehead">';
     $productTable .= '  <th>Identifier</th> ';
+    $productTable .= '  <th>Image path</th> ';
     $productTable .= '  <th>Product Name</th>';
     $productTable .= '  <th>Quantity</th> ';
     $productTable .= '  <th>Actions</th> ';
@@ -43,11 +44,13 @@ if($result->num_rows > 0)
 
     while($row = $result -> fetch_assoc())
     {
+        $id = $row["product_id"];
         $productName = $row["product_name"];
         $quantity = $row["product_quantity"];
 
         $productTable .= "<tr>";
         $productTable .= '  <th>'. $i .'</th>';
+        $productTable .= '  <th>images/' . $id .'.JPG</th>';
         $productTable .= '  <th>'. $productName .'</th>';
         $productTable .= '  <th>'. $quantity . '</th>';
         $productTable .= '  <th><a href="#">Edit</a>/<a href="manageInventory.php?remove='. $productName .'">Remove</a></th>';
