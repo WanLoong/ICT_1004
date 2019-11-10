@@ -13,6 +13,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
         <script src="js/modal.js"></script>
+        <script src="js/locateUs.js"></script>
 
         <style>
 
@@ -214,6 +215,15 @@
             include "header.php";
         ?>
         
+        <div class="jumbotron">
+            <button type="button" onclick="display_page();">test</button>
+        </div>
+        
+        <div id = "googleMaps" style="width: 1000px; height: 500px;"></div>
+        
+        <!--<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>-->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script>
+        <script>myMap();</script>
         
         <?php
             include "footer.php";
