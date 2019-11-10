@@ -1,4 +1,9 @@
 <?php ?>
+<style>
+    .nav-tabs .nav-link.active{
+        background-color: #f9f9f9;
+    }
+</style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#" onclick="openNav()" style="font-family: Snell Roundhand; font-size: 29px;"><i class="fa fa-bars bars" id="navMenuButton"></i>Guilty Pleasures</a>
@@ -18,10 +23,10 @@
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 
         </form>
-        
-        <a id="loginButton" href="#" style="padding-right: 10px; color: gray;" data-toggle="modal" data-target="#myModal"><i class="fas fa-user"></i> Login</a>
-        <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
-            <!-- Log In Modal -->
+
+        <a id="loginButton" href="#" style="padding-right: 10px; color: gray;" data-toggle="modal" data-target="#myModal"><i class="fas fa-user"></i> <span id="testOutput">Login</span></a>
+        <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>
+        <!-- Log In Modal -->
         <div id="myModal" class="modal fade" role="dialog">  
             <div class="modal-dialog">
                 <div class="modal-content">      
@@ -92,9 +97,18 @@
                         </button>
                     </div>
                     <div class="modal-body mx-3">
-                        <p class="statusMsg"></p>
+
                         <form role="form">
-                            <div class="md-form">
+                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist" style="margin-top:2px;">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="user-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">User</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="admin-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Admin</a>
+                                </li>
+                            </ul>
+                            <p class="statusMsg" style="margin-top:12px;"></p>
+                            <div class="md-form" style="margin-top:-8px;">
                                 <i class="fas fa-user prefix grey-text"></i>
                                 <input type="text" id="inputUsername" class="form-control" >
                                 <label for="inputUsername">Your Username</label>
@@ -117,7 +131,7 @@
                         </form>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button class="btn submitBtn" id="signUpButton" style="background: lightgray;margin-bottom: 4px;" onclick="submitContactForm()">Sign up!</button>
+                        <button class="btn submitBtn" id="signUpButton" style="background: lightgray;margin-bottom: 4px;">Sign up!</button>
                     </div>
                 </div>
             </div>
@@ -150,6 +164,37 @@
             <!--<a href="#" style="font-family: Times, Times New Roman, serif">Locations</a>-->
             <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
         </div>
-        
+
     </div>
 </nav>
+<script>
+    
+
+    var type = 'user';
+
+    $("#admin-tab").click(function () {
+        $(this).data('clicked', true);
+        //alert('hi');
+        type = 'admin';
+        //alert(type);
+
+    });
+
+    $("#user-tab").click(function () {
+        $(this).data('clicked', true);
+        //alert('hi');
+        type = 'user';
+        //alert(type);
+
+    });
+
+    $("#signUpButton").click(function () {
+        $(this).data('clicked', true);
+        //alert('hi');
+        submitContactForm(type);
+        //type = 'admin';
+        //alert(type);
+
+    });
+</script>
+

@@ -4,6 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
 <html>
      <head>
         <title>Welcome To Guilty Pleasures!</title>
@@ -230,7 +231,8 @@ and open the template in the editor.
         </div>
         
         <?php 
-            include "header.php";
+            //include "header.php";
+            include 'headerLogin.php';
         ?>
         <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
