@@ -29,7 +29,7 @@ if(isset($_GET["logcount"]))
         <script src="js/modal.js"></script>
 
         <style>
-
+            
             .center{
                 position: absolute;
                 top: 55%;
@@ -226,6 +226,8 @@ if(isset($_GET["logcount"]))
             .mb-5 {
                 margin-bottom: 1.5rem;
             }
+            
+           
 
         </style>
 
@@ -239,7 +241,9 @@ if(isset($_GET["logcount"]))
     <body>
 
         <?php
-        include "header.php";
+        //include "header.php";
+        include 'headerLogin.php';
+        
         ?>
 
 
@@ -258,7 +262,7 @@ if(isset($_GET["logcount"]))
         <script>
             $('#loginButton').click(function (e) {
                 e.preventDefault();
-                $('body').css('overflow-y', 'hidden');
+                //$('body').css('overflow-y', 'hidden');
 
             });
 
@@ -291,13 +295,17 @@ if(isset($_GET["logcount"]))
 
         </script>
 
-        <script>
-            function submitContactForm() {
+        <!--<script>
+            
+            
+            function submitContactForm(type) {
                 var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
                 var name = $('#inputUsername').val();
                 var email = $('#inputEmail').val();
                 var password = $('#inputPassword').val();
                 var confPassword = $('#inputConfPassword').val();
+                var userType = type;
+                //alert(userType);
 
                 if (name.trim() == '') {
                     alert('Please Enter Your Username.');
@@ -328,7 +336,7 @@ if(isset($_GET["logcount"]))
                         type: 'POST',
                         url: 'submit_form.php',
                         //data: 'contactFrmSubmit=1&name='+name+'&email='+email+'&password='+password+'$confPassword='+confPassword,
-                        data:'contactFrmSubmit=1&name='+name+'&email='+email+'&password='+password+'&confPassword='+confPassword,
+                        data:'contactFrmSubmit=1&name='+name+'&email='+email+'&password='+password+'&confPassword='+confPassword+'&userType='+userType,
                         beforeSend: function () {
                             $('.submitBtn').attr("disabled", "disabled");
                             $('.modal-body').css('opacity', '.5');
@@ -349,7 +357,7 @@ if(isset($_GET["logcount"]))
                     });
                 }
             }
-        </script>
+        </script>-->
 
 
 
