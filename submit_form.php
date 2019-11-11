@@ -11,10 +11,14 @@ if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST
     $type  = $_POST['userType'];
     $success = true;
     //$status = 'ok';
-    define("DBHOST", "localhost");
-    define("DBNAME", "guilty_pleasures");
-    define("DBUSER", "root");
-    define("DBPASS", "");
+    //define("DBHOST", "161.117.122.252");
+    //define("DBNAME", "p5_6");
+    //define("DBUSER", "p5_6");
+    //define("DBPASS", "BKDEzs6TDN");
+    
+    $serverName = "161.117.122.252";
+    $usernameDB = "p5_6";
+    $passwordDB = "BKDEzs6TDN";
     
     //$message= $_POST['message'];
 
@@ -51,15 +55,18 @@ if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST
     
     //global $name, $email, $password, $success, $status;
     // Create connection
-    $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+    //$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+    //$conn = new mysqli(DBHOST, DBNAME, DBPASS);
+    $conn = new mysqli($serverName, $usernameDB, $passwordDB);
     // Check connection
     if ($conn->connect_error) {
         echo '<p>connection failed</p>';
+        //console.log("connection failed");
         //$errorMsg = "Connection failed: " . $conn->connect_error;
         $success = false;
     } else {
-        $sql = "INSERT INTO user (username, email, password, type)";
-        $sql .= " VALUES ('$name', '$email', '$password', '$type')";
+        $sql = "INSERT INTO p5_6.user_gp (username, password, email, type)";
+        $sql .= " VALUES ('$name', '$password', '$email', '$type')";
         $status = 'ok';
         //echo '<p>connection passed</p>';
         // Execute the query
