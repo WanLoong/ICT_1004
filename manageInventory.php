@@ -1,12 +1,10 @@
 
 <?php
-#check for admin session cookie
 session_start();
-#
-#if(!isset($_SESSION["admin"]))
-#{
-#    header("location: mainPage.php?logcount");
-#}
+if($_SESSION["user"] != 'kq')
+{
+    header("location: mainPage.php");
+}
 ?>
 
 <?php

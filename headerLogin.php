@@ -1,4 +1,4 @@
-<?php ?>   
+  
 <style>
     .nav-tabs .nav-link.active{
         background-color: #f9f9f9;
@@ -38,11 +38,15 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdownMenu">
                     <a class="dropdown-item" href="#">View Profile</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
-
+                    <a class="dropdown-item" href="#" id="logoutButton">    Logout</a>
                 </div>
             </div>
-            <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>
+            
+            <?php if(isset($_SESSION['user']))
+            {
+                echo '<a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>';
+            }
+            ?>
             <!-- Log In Modal -->
             <div id="myModal" class="modal fade" role="dialog">  
                 <div class="modal-dialog">
@@ -226,7 +230,7 @@
             // console.log('menuopen');
 
         });
-
+        
         $("#logoutButton").click(function () {
             checkTypeUser = sessionStorage.getItem("admin_type");
             if (checkTypeUser == 'admin') {
@@ -242,7 +246,8 @@
                 window.location.assign('mainPage.php');
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
-                
+                <?php unset($_SESSION['user']);?>
+                <?php session_destroy();?>            
                 
             } else if (checkTypeUser != 'admin') {
                 $(this).data('clicked', true);
