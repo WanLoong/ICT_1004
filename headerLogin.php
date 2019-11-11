@@ -42,7 +42,7 @@
 
                 </div>
             </div>
-            <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
+            <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>
             <!-- Log In Modal -->
             <div id="myModal" class="modal fade" role="dialog">  
                 <div class="modal-dialog">
@@ -196,6 +196,7 @@
         var state = 'false';
         var typeUser = '';
         var adminDisplay = '';
+        var checkTypeUser = '';
         //var menuState;
 
 
@@ -227,17 +228,37 @@
         });
 
         $("#logoutButton").click(function () {
-            $(this).data('clicked', true);
-            document.getElementById('testOutput').innerHTML = "Login";
-            var menuState = document.getElementById('dropdownMenu');
-            menuState.style.visibility = 'hidden';
-            sessionStorage.clear();
-            //$('.dropdown-menu').toggleClass('hide');
-            $('body').css('overflow-y', 'auto');
-            $('body').css('overflow-x', 'hidden');
-            alert("logged out successfully!");
-            document.getElementById('loginStatusMsg').style.display = 'none';
-            state = 'false';
+            checkTypeUser = sessionStorage.getItem("admin_type");
+            if (checkTypeUser == 'admin') {
+                $(this).data('clicked', true);
+                document.getElementById('testOutput').innerHTML = "Login";
+                var menuState = document.getElementById('dropdownMenu');
+                menuState.style.visibility = 'hidden';
+                sessionStorage.clear();
+                //$('.dropdown-menu').toggleClass('hide');
+                $('body').css('overflow-y', 'auto');
+                $('body').css('overflow-x', 'hidden');
+                alert("logged out successfully!");
+                window.location.assign('mainPage.php');
+                document.getElementById('loginStatusMsg').style.display = 'none';
+                state = 'false';
+                
+                
+            } else if (checkTypeUser != 'admin') {
+                $(this).data('clicked', true);
+                document.getElementById('testOutput').innerHTML = "Login";
+                var menuState = document.getElementById('dropdownMenu');
+                menuState.style.visibility = 'hidden';
+                sessionStorage.clear();
+                //$('.dropdown-menu').toggleClass('hide');
+                $('body').css('overflow-y', 'auto');
+                $('body').css('overflow-x', 'hidden');
+                alert("logged out successfully!");
+                document.getElementById('loginStatusMsg').style.display = 'none';
+                state = 'false';
+            }
+
+
 
             //alert('hi');
             //submitContactForm(type);
@@ -350,7 +371,7 @@
         }
 
         function processLogin() {
-        
+
             //var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
             var name = $('#usernameTextBox').val();
             console.log(name);
@@ -391,9 +412,9 @@
                             //userDisplay = "Welcome, " + user_name;
                             //document.getElementById('testOutput').innerHTML = userDisplay;
                             sessionStorage.setItem("admin_display", user_name);
+                            sessionStorage.setItem("admin_type", typeUser);
                             window.location.assign('manageInventory.php');
-                        } 
-                        else if (typeUser != 'admin') {              
+                        } else if (typeUser != 'admin') {
                             user_name = msgLogin.substring(6, msgLogin.length);
                             console.log(user_name);
                             userDisplay = "Welcome, " + user_name;
@@ -509,7 +530,7 @@
             setAdminDisplay();
 
         }
-        
+
         function setAdminDisplay() {
             //alert('hi');
             //console.log("loaded");
