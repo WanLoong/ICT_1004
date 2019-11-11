@@ -9,10 +9,12 @@ session_start();
 ?>
 
 <?php
-define("DBHOST", "localhost");
-define("DBNAME", "ict_1004");
-define("DBUSER", "root");
-define("DBPASS", "");
+
+define("DBHOST", "161.117.122.252");
+define("DBNAME", "p5_6");
+define("DBUSER", "p5_6");
+define("DBPASS", "BKDEzs6TDN");
+
 
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 
@@ -35,6 +37,7 @@ if($result->num_rows > 0)
     $productTable .= '<table>';
     $productTable .= '  <tr id="tablehead">';
     $productTable .= '  <th>Identifier</th> ';
+    $productTable .= '  <th>Image path</th> ';
     $productTable .= '  <th>Product Name</th>';
     $productTable .= '  <th>Quantity</th> ';
     $productTable .= '  <th>Actions</th> ';
@@ -43,14 +46,16 @@ if($result->num_rows > 0)
 
     while($row = $result -> fetch_assoc())
     {
+        $id = $row["product_id"];
         $productName = $row["product_name"];
         $quantity = $row["product_quantity"];
 
         $productTable .= "<tr>";
         $productTable .= '  <th>'. $i .'</th>';
+        $productTable .= '  <th>images/' . $id .'.JPG</th>';
         $productTable .= '  <th>'. $productName .'</th>';
         $productTable .= '  <th>'. $quantity . '</th>';
-        $productTable .= '  <th><a href="#">Edit</a>/<a href="manageInventory.php?remove='. $productName .'">Remove</a></th>';
+        $productTable .= '  <th><a href="manageInventory.php?remove='. $productName .'">Remove</a></th>';
         $productTable .= "</tr>";  
         $i++;
     }
@@ -65,11 +70,11 @@ if(isset($_GET['add']))
 {
     if(isset($_POST['addpname'])&&isset($_POST['addprice'])&&isset($_POST['addptype'])&&isset($_POST['addquantity'])&&isset($_POST['addpdesc'])&& is_numeric($_POST['addprice']))
     {
-        $addpname = $_POST['addpname'];
-        $addprice = $_POST['addprice'];
-        $addptype = $_POST['addptype'];
-        $addquantity = $_POST['addquantity'];
-        $addpdesc = $_POST['addpdesc'];
+        $addpname = sanitize_input($_POST['addpname']);
+        $addprice = sanitize_input($_POST['addprice']);
+        $addptype = sanitize_input($_POST['addptype']);
+        $addquantity = sanitize_input($_POST['addquantity']);
+        $addpdesc = sanitize_input($_POST['addpdesc']);
 
         
         $sql = "INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_type)"
@@ -93,6 +98,13 @@ if(isset($_GET['add']))
     }
 }
 
+function sanitize_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>
 
 <?php
@@ -158,6 +170,9 @@ if(isset($_GET['remove']))
         </section>
         
         <?php include "footer.php";?>
+        
+        
+        
     </body>
     
     

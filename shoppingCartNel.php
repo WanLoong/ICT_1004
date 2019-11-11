@@ -1,17 +1,32 @@
 <?php
 session_start();
+
 $productDisplay = "";
-
+$cartOutput = "0";
+$carttotal ="0";
 $i=0;
+$tax = "0";
+$carttotal = "0";
+$delivery = "0";
+$checkoutbtn='';
+$productQuantity="0";
 
-if(isset($_SESSION["cart_array"]))
-{
+if(isset($_SESSION["cart_array"])){
+
     foreach($_SESSION["cart_array"] as $eachitem)
-    {
+    {   
+        $i++;
         $pid = $eachitem['product_id'];
         $productName = $eachitem['productName'];
         $productDesc = $eachitem['productDesc'];
         $price = $eachitem['price'];
+
+        $cartOutput = $price + $cartOutput;
+        $tax = 0.05*$cartOutput;
+        $tax = number_format($tax, 2);
+        $carttotal = $cartOutput+5+$tax;
+        $delivery = 5.00;
+
         
         $productDisplay .= '<div class="product">';
         $productDisplay .= '    <div class="product-image">';
@@ -23,21 +38,35 @@ if(isset($_SESSION["cart_array"]))
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-price">'. $price .'</div>';
         $productDisplay .= '    <div class="product-quantity">';
-        $productDisplay .= '        <input type="number" value="2" min="1">';
+        $productDisplay .= '        <input type="number" value="1" min="1">';
         $productDisplay .= '    </div>';
-        $productDisplay .= '    <div class="product-removal">';            
-        $productDisplay .= '                  <form method="post" action="shoppingCartNel.php">';
+        $productDisplay .= '    <div class="product-removal">';
+        $productDisplay .= '    <form method="post" action="shoppingCartNel.php">';
         $productDisplay .= '                    <input type="submit" class="remove-product" name="dltBtn' . $pid . '" id="dltBtn" value="Remove"/>';
         $productDisplay .= '                    <input type="hidden" name="index" value="'. $pid . '" id="index"/>';
         $productDisplay .= '                  </form>'; 
         $productDisplay .= '    </div>';
-        $productDisplay .= '    <div class="product-line-price">40.00</div>';
+        $productDisplay .= '    <div class="product-line-price">'.$price.'</div>';
         $productDisplay .= '</div>';  
-        $i++;
-    }                
+
+        
+   
+    }
+        $x=$i+1;
+        $checkoutbtn.=' <div class="check-out">';
+        $checkoutbtn.='<form method="post" action="payment.php">';
+        $checkoutbtn.='<input type="hidden" name="item_name_'.$x.'" value="'.$productName .'">';
+        $checkoutbtn.='<input type="hidden" name="amount_'.$x.'" value="'.$price .'">';
+        //$checkoutbtn.='<input type="hidden" name="product-quantity'.$x.'" value="'.$eachitem['pquantity'] .'">';
+        $checkoutbtn.='<input type="submit" class="checkout" name="button" value="Checkout"/>';
+        $checkoutbtn.='                  </form>';    
 }
 
+
+
 ?>
+
+
 
 <?php
 if(isset($_POST["index"]))
@@ -63,6 +92,7 @@ if(isset($_POST["index"]))
 if($i<=0)
 {
     $productDisplay .= '<h1 style="margin-left:50px;">Your Shopping Cart is Empty.</h1>';
+    $checkoutbtn = '';
 }
 ?>
 <html>
@@ -80,6 +110,7 @@ if($i<=0)
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
+        <script src="js/Cart.js" async></script>
 
     </head>
     <body>
@@ -114,34 +145,28 @@ if($i<=0)
                 <label class="product-removal">Remove</label>
                 <label class="product-line-price">Total</label>
             </div>
-            <?php echo $productDisplay;?>
+            <?php echo $productDisplay;
+
+            ?>
             <div class="totals">
                 <div class="totals-item">
                     <label>Subtotal</label>
-                    <div class="totals-value" id="cart-subtotal">71.97</div>
+                    <div class="totals-value" id="cart-subtotal"> <?php echo $cartOutput?></div>
                 </div>
                 <div class="totals-item">
                     <label>Tax (5%)</label>
-                    <div class="totals-value" id="cart-tax">3.60</div>
+                    <div class="totals-value" id="cart-tax"><?php echo $tax?></div>
                 </div>
                 <div class="totals-item">
-                    <label>Shipping</label>
-                    <div class="totals-value" id="cart-shipping">15.00</div>
+                    <label>Delivery</label>
+                    <div class="totals-value" id="cart-shipping"><?php echo $delivery?></div>
                 </div>
                 <div class="totals-item totals-item-total">
                     <label>Grand Total</label>
-                    <div class="totals-value" id="cart-total">90.57</div>
+                    <div class="totals-value" id="cart-total"><b><?php echo $carttotal?></b></div>
                 </div>
+                <?php echo $checkoutbtn ?>
             </div>
-
-            <button class="checkout" id="checkoutButton">Checkout</button>
-
         </div>
-        <script>
-            document.getElementById("checkoutButton").onclick = function () {
-                location.href = "payment.php";
-            };
-        </script>
-
     </body>
 </html>
