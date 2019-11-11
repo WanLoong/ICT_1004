@@ -26,7 +26,6 @@ if(isset($_SESSION["cart_array"])){
         $tax = number_format($tax, 2);
         $carttotal = $cartOutput+5+$tax;
         $delivery = 5.00;
-        $quantity = $eachitem['quantity'];
 
         
         $productDisplay .= '<div class="product">';
@@ -39,7 +38,7 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-price">'. $price .'</div>';
         $productDisplay .= '    <div class="product-quantity">';
-        $productDisplay .= '        <input type="number" value="'. $quantity . '" min="1">';
+        $productDisplay .= '        <input type="number" value="1" min="1">';
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-removal">';
         $productDisplay .= '    <form method="post" action="shoppingCartNel.php">';
