@@ -440,6 +440,7 @@
                             user_name = msgLogin.substring(6, msgLogin.length);
                             console.log(user_name);
                             userDisplay = "Welcome, " + user_name;
+                            window.location.assign('cuisinesKQ.php');
                             //console.log(user_name);
                             if (statusMsg == 'ok') {
                                 $('#usernameTextBox').val('');
