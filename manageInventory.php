@@ -137,8 +137,9 @@ if(isset($_GET['remove']))
     </head>
     
     <body id="inventbody">
-        <?php include_once 'admin_header.php';
-        include_once "header.php";?>
+      
+        <?php include 'headerLogin.php';?>
+        <?php include 'admin_header.php';?>
         
         <section class="container" id="manageInventory">
             <div class="jumbotron">
