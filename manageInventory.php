@@ -3,10 +3,10 @@
 #check for admin session cookie
 session_start();
 #
-#if(!isset($_SESSION["admin"]))
-#{
-#    header("location: mainPage.php?logcount");
-#}
+if($_SESSION["user"]!='kq')
+{
+    header("location: mainPage.php");
+}
 ?>
 
 <?php
@@ -18,7 +18,7 @@ define("DBPASS", "BKDEzs6TDN");
 
 
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
-
+echo $_SESSION['user'];
 if ($conn->connect_error)
 {
     $_SESSION['dberror']=$conn->connect_error;
