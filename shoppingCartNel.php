@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $productDisplay = "";
 $cartOutput = "0";
 $carttotal ="0";
@@ -48,6 +49,7 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-line-price">'.$price.'</div>';
         $productDisplay .= '</div>';  
+
         
    
     }
@@ -59,8 +61,16 @@ if(isset($_SESSION["cart_array"])){
         //$checkoutbtn.='<input type="hidden" name="product-quantity'.$x.'" value="'.$eachitem['pquantity'] .'">';
         $checkoutbtn.='<input type="submit" class="checkout" name="button" value="Checkout"/>';
         $checkoutbtn.='                  </form>';    
+
+    }
+    $x=$i+1;   
+    $checkoutbtn.=' <div class="check-out">';
+    $checkoutbtn.='<a href="payment.php"><input type="submit" class="checkout" name="button" value="Checkout"/></a>';
+    $checkoutbtn.='</div>';  
+
 }
 ?>
+
 
 
 <?php
@@ -87,6 +97,7 @@ if(isset($_POST["index"]))
 if($i<=0)
 {
     $productDisplay .= '<h1 style="margin-left:50px;">Your Shopping Cart is Empty.</h1>';
+    $checkoutbtn = '';
 }
 ?>
 <html>

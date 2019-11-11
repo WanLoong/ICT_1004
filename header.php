@@ -161,7 +161,7 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
             <a href="cuisinesKQ.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
-            <!--<a href="#" style="font-family: Times, Times New Roman, serif">Locations</a>-->
+            <a href="locateUs.php" style="font-family: Times, Times New Roman, serif">Locations</a>
             <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
         </div>
 
