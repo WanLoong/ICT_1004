@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $productDisplay = "";
 $cartOutput = "0";
 $carttotal ="0";
@@ -48,16 +49,13 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-line-price">'.$price.'</div>';
         $productDisplay .= '</div>';  
-        
    
     }
-}
-?>
-<?php
     $x=$i+1;   
     $checkoutbtn.=' <div class="check-out">';
     $checkoutbtn.='<a href="payment.php"><input type="submit" class="checkout" name="button" value="Checkout"/></a>';
-    $checkoutbtn.='</div>';    
+    $checkoutbtn.='</div>';  
+}
 ?>
 
 
@@ -70,7 +68,6 @@ if(isset($_POST["index"]))
         foreach($_SESSION["cart_array"] as $eachitem => $subeachitem)
         {
             $pid1 = $subeachitem['product_id'];
-            echo $eachitem;
             if($pid1 == $_POST['index'] )
             {
                 unset($_SESSION['cart_array'][$eachitem]);
@@ -87,6 +84,7 @@ if(isset($_POST["index"]))
 if($i<=0)
 {
     $productDisplay .= '<h1 style="margin-left:50px;">Your Shopping Cart is Empty.</h1>';
+    $checkoutbtn = '';
 }
 ?>
 <html>
