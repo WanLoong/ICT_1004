@@ -1,3 +1,4 @@
+
 <?php
 #check for admin session cookie
 session_start();
