@@ -9,7 +9,7 @@ $tax = "0";
 $carttotal = "0";
 $delivery = "0";
 $checkoutbtn='';
-$productQuantity="0";
+$productQuantity="1";
 
 if(isset($_SESSION["cart_array"])){
 
@@ -48,7 +48,7 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-line-price">'.$price.'</div>';
         $productDisplay .= '</div>';  
-
+  
         
    
     }
