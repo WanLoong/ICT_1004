@@ -77,16 +77,8 @@ and open the template in the editor.
         <script src="js/sideMenu.js"></script>
     </head>
     <body>
-        <div id="mySidepanel" class="sidepanel">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-            <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
-            <a href="cuisinesKQ.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
-            <!--<a href="#" style="font-family: Times, Times New Roman, serif">Locations</a>-->
-            <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
-        </div>
-
         <?php
-        include "headerlogin.php";
+        include "headerLogin.php";
         ?>
     
         <!-- Header -->
