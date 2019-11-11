@@ -9,10 +9,12 @@ session_start();
 ?>
 
 <?php
-define("DBHOST", "localhost");
-define("DBNAME", "ict_1004");
-define("DBUSER", "root");
-define("DBPASS", "");
+
+define("DBHOST", "161.117.122.252");
+define("DBNAME", "p5_6");
+define("DBUSER", "p5_6");
+define("DBPASS", "BKDEzs6TDN");
+
 
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 
@@ -68,11 +70,11 @@ if(isset($_GET['add']))
 {
     if(isset($_POST['addpname'])&&isset($_POST['addprice'])&&isset($_POST['addptype'])&&isset($_POST['addquantity'])&&isset($_POST['addpdesc'])&& is_numeric($_POST['addprice']))
     {
-        $addpname = $_POST['addpname'];
-        $addprice = $_POST['addprice'];
-        $addptype = $_POST['addptype'];
-        $addquantity = $_POST['addquantity'];
-        $addpdesc = $_POST['addpdesc'];
+        $addpname = sanitize_input($_POST['addpname']);
+        $addprice = sanitize_input($_POST['addprice']);
+        $addptype = sanitize_input($_POST['addptype']);
+        $addquantity = sanitize_input($_POST['addquantity']);
+        $addpdesc = sanitize_input($_POST['addpdesc']);
 
         
         $sql = "INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_type)"
@@ -96,6 +98,13 @@ if(isset($_GET['add']))
     }
 }
 
+function sanitize_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>
 
 <?php
@@ -129,7 +138,7 @@ if(isset($_GET['remove']))
     
     <body id="inventbody">
         <?php include_once 'admin_header.php';
-        include_once "header.php";?>
+        include_once "headerlogin.php";?>
         
         <section class="container" id="manageInventory">
             <div class="jumbotron">

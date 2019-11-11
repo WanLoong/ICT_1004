@@ -1,9 +1,9 @@
 <?php
 
-define("DBHOST", "localhost");
-define("DBNAME", "ict_1004");
-define("DBUSER", "root");
-define("DBPASS", "");
+define("DBHOST", "161.117.122.252");
+define("DBNAME", "p5_6");
+define("DBUSER", "p5_6");
+define("DBPASS", "BKDEzs6TDN");
 
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 session_start();
@@ -17,16 +17,15 @@ if ($conn->connect_error)
 
 if(isset($_POST["pid"]))
 {
-    $pid = $_POST["pid"];
-    $productName = $_POST["pname"];
-    $productDesc = $_POST["pdesc"];
-    $price = $_POST["price"];
-    $quantity = $_POST["quantity"];
+    $pid = sanitize_input($_POST["pid"]);
+    $productName = sanitize_input($_POST["pname"]);
+    $productDesc = sanitize_input($_POST["pdesc"]);
+    $price = sanitize_input($_POST["price"]);
 
     $found = false;
     if(!isset($_SESSION["cart_array"])||count($_SESSION["cart_array"])<1)
     {
-        $_SESSION["cart_array"]= array(0=>array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price, "quantity"=>$quantity));
+        $_SESSION["cart_array"]= array(0=>array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price));
     }
     else
     {
@@ -42,11 +41,18 @@ if(isset($_POST["pid"]))
         }
         if($found == false)
         {
-            array_push($_SESSION["cart_array"],array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price,"quantity"=>$quantity));
+            array_push($_SESSION["cart_array"],array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price));
         }
     }
 }
 
+function sanitize_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +86,7 @@ and open the template in the editor.
         </div>
 
         <?php
-        include "header.php";
+        include "headerlogin.php";
         ?>
     
         <!-- Header -->
