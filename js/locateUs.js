@@ -1,23 +1,27 @@
+var mapProp;
+var map;
+
 function myMap() {
-    var mapProp= {
+    mapProp= {
         center:new google.maps.LatLng(1.3521,103.8198),
         zoom:10,
         mapTypeId: google.maps.MapTypeId.HYBRID
     };
-    var map = new google.maps.Map(document.getElementById("googleMaps"),mapProp);
-    var marker = new google.maps.Marker({position: mapProp.center});
+    map = new google.maps.Map(document.getElementById("googleMaps"),mapProp);
 
-    marker.setMap(map);
     google.maps.event.addDomListener(window, 'load', myMap);
 }
 
-function display_page()
+function display_page(lat, lng)
 {
-    var mapProp= {
-        center:new google.maps.LatLng(33.8688,151.2093),
-        zoom:10,
-        mapTypeId: google.maps.MapTypeId.HYBRID
-    };
-    var map = new google.maps.Map(document.getElementById("googleMaps"),mapProp);
+    var latLng = new google.maps.LatLng(lat, lng);
+    map.panTo(latLng);
+}
+
+function add_marker(lat, lng)
+{
+    var marker = new google.maps.Marker(lat, lng);
+    marker.setMap(map);
+    
 }
 
