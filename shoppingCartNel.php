@@ -49,18 +49,17 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '    <div class="product-line-price">'.$price.'</div>';
         $productDisplay .= '</div>';  
         
-        $x=$i+1;
-        $checkoutbtn.=' <div class="check-out">';
-        $checkoutbtn.='<form method="post" action="payment.php">';
-        $checkoutbtn.='<input type="hidden" name="item_name_'.$x.'" value="'.$productName .'">';
-        $checkoutbtn.='<input type="hidden" name="amount_'.$x.'" value="'.$price .'">';
-        $checkoutbtn.='<input type="hidden" name="product-quantity'.$x.'" value="'.$eachitem['pquantity'] .'">';
-        $checkoutbtn.='<input type="submit" class="checkout" name="button" value="Checkout"/>';
-        $checkoutbtn.='                  </form>';       
+   
     }
-
 }
 ?>
+<?php
+    $x=$i+1;   
+    $checkoutbtn.=' <div class="check-out">';
+    $checkoutbtn.='<a href="payment.php"><input type="submit" class="checkout" name="button" value="Checkout"/></a>';
+    $checkoutbtn.='</div>';    
+?>
+
 
 
 <?php
@@ -71,6 +70,7 @@ if(isset($_POST["index"]))
         foreach($_SESSION["cart_array"] as $eachitem => $subeachitem)
         {
             $pid1 = $subeachitem['product_id'];
+            echo $eachitem;
             if($pid1 == $_POST['index'] )
             {
                 unset($_SESSION['cart_array'][$eachitem]);
