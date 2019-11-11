@@ -216,57 +216,17 @@
         ?>
         
         <div class="jumbotron">
-            <?php
-                $servername = "161.117.122.252";
-                $username = "p5_6";
-                $password = "BKDEzs6TDN";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password);
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("<h1>Connection failed: " . $conn->connect_error . "</h1>");
-                }
-            ?>
             <button type="button" onclick="display_page();">test</button>
         </div>
         
-        <div id = "googleMaps" style="width: 100%; height: 500px;"></div>
+        <div id = "googleMaps" style="width: 1000px; height: 500px;"></div>
         
+        <!--<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>-->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script>
         <script>myMap();</script>
-        <?php
-            $sql = "SELECT * FROM p5_6.location";
-            $result = $conn->query($sql);
-            while($row = $result->fetch_assoc())
-            {
-                echo "<script>add_marker(" . $row['latitude'] . "," . $row['longitude'] . ")</script>";
-            }
-        ?>
-        <br>
-        <div class='container-fluid' style="height: 100%;">
-            <h1 style='text-align:center;'><b>Our Locations</b></h1><hr><br>
-            <?php
-                $region_array = array("North", "South", "East", "West");
-                foreach($region_array as &$region) {
-                    echo "<div class='col-md-3'><h2 style='color: green;'>" . $region . "</h2><hr><ul>";
-
-                    $sql = "SELECT * FROM p5_6.location WHERE region='" . $region . "'; ";
-                    $result = $conn->query($sql);
-
-                    while($row = $result->fetch_assoc()) {
-                        echo "<li><th><h4 style='color: brown;'>" . $row["location_name"] . "</h4></th></li>";
-                        echo "<p>" . $row["address"] . "</p>";
-                    }
-                    echo "</div>";
-                }
-            ?>
-        </div>
-        <div style="position: relative; bottom: 0; width: 100%;">
+        
         <?php
             include "footer.php";
         ?>
-        </div>
     </body>
 </html>

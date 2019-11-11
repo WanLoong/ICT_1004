@@ -1,4 +1,3 @@
-<?php ?>   
 <style>
     .nav-tabs .nav-link.active{
         background-color: #f9f9f9;
@@ -42,7 +41,12 @@
 
                 </div>
             </div>
-            <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>
+            <?php
+            if(isset($_SESSION["user"]))
+            {
+             echo ' <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>';      
+            }
+            ?>
             <!-- Log In Modal -->
             <div id="myModal" class="modal fade" role="dialog">  
                 <div class="modal-dialog">
@@ -179,10 +183,25 @@
             <!--MainPage SideMenu-->
             <div id="mySidepanel" class="sidepanel">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                <?php
+                if(isset($_SESSION["user"]))
+                {
+                    if($_SESSION["user"]=='kq')
+                    {
+                        echo'<a href="manageInventory.php" style="font-family: Times, Times New Roman, serif">Inventory</a>';
+                        echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
+                    }
+                    else
+                    {
+                        echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
+                    }
+                }
+                ?>
                 <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
                 <a href="cuisinesKQ.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
                 <a href="locateUs.php" style="font-family: Times, Times New Roman, serif">Locations</a>
                 <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
+ 
             </div>
 
         </div>
@@ -238,10 +257,13 @@
                 //$('.dropdown-menu').toggleClass('hide');
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
-                window.location.assign('mainPage.php');
+                alert("logged out successfully!");  
+                window.location.assign('mainPage.php?reset=1');
                 //alert("logged out successfully!");         
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
+
+                
                 
             } else if (checkTypeUser != 'admin') {
                 $(this).data('clicked', true);
@@ -253,6 +275,7 @@
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
                 alert("logged out successfully!");
+                window.location.assign('mainPage.php?reset=1');
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
             }

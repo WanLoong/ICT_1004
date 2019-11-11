@@ -3,10 +3,11 @@
 #check for admin session cookie
 session_start();
 #
-if($_SESSION["user"]!='kq')
+if(!isset($_SESSION['user']) || $_SESSION["user"]!='kq')
 {
     header("location: mainPage.php");
 }
+
 ?>
 
 <?php
@@ -18,7 +19,7 @@ define("DBPASS", "BKDEzs6TDN");
 
 
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
-echo $_SESSION['user'];
+
 if ($conn->connect_error)
 {
     $_SESSION['dberror']=$conn->connect_error;
@@ -137,10 +138,9 @@ if(isset($_GET['remove']))
 
     </head>
     
-    <body id="inventbody">
-      
+    <body id="inventbody">     
         <?php include 'headerLogin.php';?>
-        <?php include 'admin_header.php';?>
+
         
         <section class="container" id="manageInventory">
             <div class="jumbotron">

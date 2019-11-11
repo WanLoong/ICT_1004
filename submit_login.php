@@ -41,7 +41,6 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
                 //console_log($user_name);
         
                 $statusLogin = 'ok';
-             
                 
                 //$lname = $row["lname"];
                 //$successMsg = "Login Successful";

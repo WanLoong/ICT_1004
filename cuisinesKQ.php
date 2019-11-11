@@ -77,6 +77,7 @@ and open the template in the editor.
         <script src="js/sideMenu.js"></script>
     </head>
     <body>
+
         <?php
         include "headerLogin.php";
         ?>
