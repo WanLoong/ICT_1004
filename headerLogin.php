@@ -243,7 +243,7 @@
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
                 window.location.assign('mainPage.php');
-                //alert("logged out successfully!");         
+                alert("logged out successfully!");         
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
                 <?php unset($_SESSION['user']);?>
