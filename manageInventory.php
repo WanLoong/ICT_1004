@@ -53,7 +53,7 @@ if($result->num_rows > 0)
         $productTable .= '  <th>images/' . $id .'.JPG</th>';
         $productTable .= '  <th>'. $productName .'</th>';
         $productTable .= '  <th>'. $quantity . '</th>';
-        $productTable .= '  <th><a href="#">Edit</a>/<a href="manageInventory.php?remove='. $productName .'">Remove</a></th>';
+        $productTable .= '  <th><a href="manageInventory.php?remove='. $productName .'">Remove</a></th>';
         $productTable .= "</tr>";  
         $i++;
     }
@@ -161,6 +161,9 @@ if(isset($_GET['remove']))
         </section>
         
         <?php include "footer.php";?>
+        
+        
+        
     </body>
     
     
