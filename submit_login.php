@@ -10,19 +10,19 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
     //$type  = $_POST['userType'];
     $success = true;
     //$status = 'ok';
-    define("DBHOST", "localhost");
-    define("DBNAME", "guilty_pleasures");
-    define("DBUSER", "root");
-    define("DBPASS", "");
+    $serverName = "161.117.122.252";
+    $usernameDB = "p5_6";
+    $passwordDB = "BKDEzs6TDN";
  
     
-        $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+        //$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+        $conn = new mysqli($serverName, $usernameDB, $passwordDB);
         // Check connection
         if ($conn->connect_error) {
             $errorMsg = "Connection failed: " . $conn->connect_error;
             //$success = false;
         } else {
-            $sql = "SELECT * FROM user WHERE ";
+            $sql = "SELECT * FROM p5_6.user_gp WHERE ";
             $sql .= "username='$name' AND password='$password'";
             
             // Execute the query

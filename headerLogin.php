@@ -50,7 +50,7 @@
 
                         <div class="modal-body">
                             <form role="form">
-                                <p class="loginStatusMsg" style="margin-top:12px;margin-left: 15px;"></p>
+                                <p class="loginStatusMsg" style="margin-top:12px;margin-left: 15px;" id="loginStatusMsg"></p>
                                 <table>          
                                     <tbody>            
                                         <tr>              
@@ -229,6 +229,10 @@
             menuState.style.visibility = 'hidden';
             sessionStorage.clear();
             //$('.dropdown-menu').toggleClass('hide');
+            $('body').css('overflow-y', 'auto');
+            $('body').css('overflow-x', 'hidden');
+            alert("logged out successfully!");
+            document.getElementById('loginStatusMsg').style.display = 'none';
             state = 'false';
             
             //alert('hi');
