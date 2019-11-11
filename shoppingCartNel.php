@@ -145,22 +145,22 @@ if($i<=0)
             <div class="totals">
                 <div class="totals-item">
                     <label>Subtotal</label>
-                    <div class="totals-value" id="cart-subtotal"> <?php echo$cartOutput?></div>
+                    <div class="totals-value" id="cart-subtotal"> <?php echo $cartOutput?></div>
                 </div>
                 <div class="totals-item">
                     <label>Tax (5%)</label>
-                    <div class="totals-value" id="cart-tax"><?php echo$tax?></div>
+                    <div class="totals-value" id="cart-tax"><?php echo $tax?></div>
                 </div>
                 <div class="totals-item">
                     <label>Delivery</label>
-                    <div class="totals-value" id="cart-shipping"><?php echo$delivery?></div>
+                    <div class="totals-value" id="cart-shipping"><?php echo $delivery?></div>
                 </div>
                 <div class="totals-item totals-item-total">
                     <label>Grand Total</label>
-                    <div class="totals-value" id="cart-total"><b><?php echo$carttotal?></b></div>
+                    <div class="totals-value" id="cart-total"><b><?php echo $carttotal?></b></div>
                 </div>
+                <?php echo $checkoutbtn ?>
             </div>
         </div>
-<?php echo $checkoutBtn ?>
     </body>
 </html>
