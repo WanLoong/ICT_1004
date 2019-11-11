@@ -39,7 +39,6 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '    <div class="product-price">'. $price .'</div>';
         $productDisplay .= '    <div class="product-quantity">';
         $productDisplay .= '        <input type="number" value="1" min="1" max="10">';
-        $productDisplay .= '        <input type="number" value="1" min="1">';
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-removal">';
         $productDisplay .= '    <form method="post" action="shoppingCartNel.php">';
