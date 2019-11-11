@@ -243,7 +243,6 @@
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
                 
-                
             } else if (checkTypeUser != 'admin') {
                 $(this).data('clicked', true);
                 document.getElementById('testOutput').innerHTML = "Login";

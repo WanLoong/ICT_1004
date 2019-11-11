@@ -86,7 +86,7 @@ and open the template in the editor.
         </div>
 
         <?php
-        include "headerlogin.php";
+        include "headerLogin.php";
         ?>
     
         <!-- Header -->
