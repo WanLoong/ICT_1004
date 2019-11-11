@@ -1,5 +1,4 @@
 <?php
-session_start();
 //submit_form.php
 if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['password'])) {
 
@@ -37,7 +36,7 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
                 
                 $user_name = $row["username"];
                 $user_type = $row["type"];
-                $_SESSION["user"] = $user_name;
+                //$_SESSION["user"] = $user_name;
                 //console_log($user_name);
         
                 $statusLogin = 'ok';
