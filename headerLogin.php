@@ -238,8 +238,8 @@
                 //$('.dropdown-menu').toggleClass('hide');
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
-                alert("logged out successfully!");
                 window.location.assign('mainPage.php');
+                //alert("logged out successfully!");         
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
                 

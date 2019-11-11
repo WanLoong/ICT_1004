@@ -13,8 +13,6 @@ if(isset($_GET["logcount"]))
 }
 ?>
 
-
-
 <html>
     <head>
         <title>Welcome To Guilty Pleasures!</title>
