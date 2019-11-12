@@ -1,5 +1,6 @@
 <?php
 //submit_form.php
+session_start();
 if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['password'])) {
 
     // Submitted form data
@@ -36,11 +37,10 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
                 
                 $user_name = $row["username"];
                 $user_type = $row["type"];
-                
+                $_SESSION["user"] = $user_name;
                 //console_log($user_name);
         
                 $statusLogin = 'ok';
-             
                 
                 //$lname = $row["lname"];
                 //$successMsg = "Login Successful";
@@ -56,7 +56,7 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
         $conn->close();
     
     echo $statusLogin;
-    //echo $user_type;
+    echo $user_type;
     echo $user_name;
     
     

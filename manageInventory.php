@@ -1,11 +1,13 @@
+
 <?php
 #check for admin session cookie
 session_start();
 #
-#if(!isset($_SESSION["admin"]))
-#{
-#    header("location: mainPage.php?logcount");
-#}
+if(!isset($_SESSION['user']) || $_SESSION["user"]!='kq')
+{
+    header("location: mainPage.php");
+}
+
 ?>
 
 <?php
@@ -136,9 +138,9 @@ if(isset($_GET['remove']))
 
     </head>
     
-    <body id="inventbody">
-        <?php include_once 'admin_header.php';
-        include_once "headerlogin.php";?>
+    <body id="inventbody">     
+        <?php include 'headerLogin.php';?>
+
         
         <section class="container" id="manageInventory">
             <div class="jumbotron">

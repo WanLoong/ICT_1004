@@ -1,9 +1,12 @@
-<?php ?>   
 <style>
     .nav-tabs .nav-link.active{
         background-color: #f9f9f9;
+
     }
-   
+    .md-form {
+        margin-bottom: 8px;
+    }
+
 </style>
 <body onload="setDisplay()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,10 +38,15 @@
                     <a class="dropdown-item" href="#">View Profile</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
-                    
+
                 </div>
             </div>
-            <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
+            <?php
+            if(isset($_SESSION["user"]))
+            {
+             echo ' <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>';      
+            }
+            ?>
             <!-- Log In Modal -->
             <div id="myModal" class="modal fade" role="dialog">  
                 <div class="modal-dialog">
@@ -115,14 +123,14 @@
                         <div class="modal-body mx-3">
 
                             <form role="form">
-                                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist" style="margin-top:0px;">
+                                <!--<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist" style="margin-top:0px;">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="user-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">User</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="admin-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Admin</a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <p class="statusMsg" style="margin-top:12px;"></p>
                                 <div class="md-form" style="margin-top:-8px;">
                                     <i class="fas fa-user prefix grey-text"></i>
@@ -175,10 +183,25 @@
             <!--MainPage SideMenu-->
             <div id="mySidepanel" class="sidepanel">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                <?php
+                if(isset($_SESSION["user"]))
+                {
+                    if($_SESSION["user"]=='kq')
+                    {
+                        echo'<a href="manageInventory.php" style="font-family: Times, Times New Roman, serif">Inventory</a>';
+                        echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
+                    }
+                    else
+                    {
+                        echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
+                    }
+                }
+                ?>
                 <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
                 <a href="cuisinesKQ.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
                 <a href="locateUs.php" style="font-family: Times, Times New Roman, serif">Locations</a>
                 <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
+ 
             </div>
 
         </div>
@@ -190,6 +213,9 @@
         var userDisplay = '';
         var Display = '';
         var state = 'false';
+        var typeUser = '';
+        var adminDisplay = '';
+        var checkTypeUser = '';
         //var menuState;
 
 
@@ -197,8 +223,8 @@
         $("#loginButton").click(function () {
             $(this).data('clicked', true);
             console.log(state);
-            
-            if(state == 'true'){
+
+            if (state == 'true') {
                 //$('body').css('overflow-y', 'auto');
                 $('.dropdown-menu').toggleClass('show');
                 var menuState = document.getElementById('dropdownMenu');
@@ -206,35 +232,56 @@
                 $('body').css('overflow-y', 'auto');
                 //$('#myModal').modal('hide');
                 //$('body').css('overflow-y', 'hidden');
-            }
-            
-            else if(state == 'false'){
+            } else if (state == 'false') {
                 $('.dropdown-menu').toggleClass('hide');
                 var menuState = document.getElementById('dropdownMenu');
                 menuState.style.visibility = 'hidden';
                 $('body').css('overflow-y', 'hidden');
                 $('#myModal').modal('show');
             }
-        
-          
-            
+
+
+
             // console.log('menuopen');
 
         });
 
         $("#logoutButton").click(function () {
-            $(this).data('clicked', true);
-            document.getElementById('testOutput').innerHTML = "Login";
-            var menuState = document.getElementById('dropdownMenu');
-            menuState.style.visibility = 'hidden';
-            sessionStorage.clear();
-            //$('.dropdown-menu').toggleClass('hide');
-            $('body').css('overflow-y', 'auto');
-            $('body').css('overflow-x', 'hidden');
-            alert("logged out successfully!");
-            document.getElementById('loginStatusMsg').style.display = 'none';
-            state = 'false';
-            
+            checkTypeUser = sessionStorage.getItem("admin_type");
+            if (checkTypeUser == 'admin') {
+                $(this).data('clicked', true);
+                document.getElementById('testOutput').innerHTML = "Login";
+                var menuState = document.getElementById('dropdownMenu');
+                menuState.style.visibility = 'hidden';
+                sessionStorage.clear();
+                //$('.dropdown-menu').toggleClass('hide');
+                $('body').css('overflow-y', 'auto');
+                $('body').css('overflow-x', 'hidden');
+                alert("logged out successfully!");  
+                window.location.assign('mainPage.php?reset=1');
+                //alert("logged out successfully!");         
+                document.getElementById('loginStatusMsg').style.display = 'none';
+                state = 'false';
+
+                
+                
+            } else if (checkTypeUser != 'admin') {
+                $(this).data('clicked', true);
+                document.getElementById('testOutput').innerHTML = "Login";
+                var menuState = document.getElementById('dropdownMenu');
+                menuState.style.visibility = 'hidden';
+                sessionStorage.clear();
+                //$('.dropdown-menu').toggleClass('hide');
+                $('body').css('overflow-y', 'auto');
+                $('body').css('overflow-x', 'hidden');
+                alert("logged out successfully!");
+                window.location.assign('mainPage.php?reset=1');
+                document.getElementById('loginStatusMsg').style.display = 'none';
+                state = 'false';
+            }
+
+
+
             //alert('hi');
             //submitContactForm(type);
             //processLogin();
@@ -242,7 +289,7 @@
             //alert(type);
 
         });
-        
+
 
         $("#loginSubmitButton").click(function () {
             $(this).data('clicked', true);
@@ -345,9 +392,8 @@
             }
         }
 
-
-
         function processLogin() {
+
             //var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
             var name = $('#usernameTextBox').val();
             console.log(name);
@@ -380,35 +426,110 @@
                         console.log(msgLogin);
                         statusMsg = msgLogin.substring(0, 2);
                         //console.log(statusMsg);
-                        user_name = msgLogin.substring(2, msgLogin.length);
-                        userDisplay = "Welcome, " + user_name;
-                        //console.log(user_name);
-                        if (statusMsg == 'ok') {
-                            $('#usernameTextBox').val('');
-                            $('#passwordTextBox').val('');
-                            $('.loginStatusMsg').html('<span style="color:green;">Login Successful!</p>');
-                            document.getElementById('testOutput').innerHTML = userDisplay;
-                            sessionStorage.setItem("user_display", userDisplay);
-                            $('#myModal').modal('hide');
-                            $('body').css('overflow-y', 'auto');
-                            state = 'true';
-                            //$('.dropdown-menu').toggleClass('show');
-
-
-                            //var us = username;
-                            //console.log(us);
-
-                        } else {
-                            $('.loginStatusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
+                        typeUser = msgLogin.substring(2, 7);
+                        console.log(typeUser)
+                        if (typeUser == 'admin') {
+                            user_name = msgLogin.substring(7, msgLogin.length);
+                            console.log(user_name);
+                            //userDisplay = "Welcome, " + user_name;
+                            //document.getElementById('testOutput').innerHTML = userDisplay;
+                            sessionStorage.setItem("admin_display", user_name);
+                            sessionStorage.setItem("admin_type", typeUser);
+                            window.location.assign('manageInventory.php');
+                        } else if (typeUser != 'admin') {
+                            user_name = msgLogin.substring(6, msgLogin.length);
+                            console.log(user_name);
+                            userDisplay = "Welcome, " + user_name;
+                            window.location.assign('cuisinesKQ.php');
+                            //console.log(user_name);
+                            if (statusMsg == 'ok') {
+                                $('#usernameTextBox').val('');
+                                $('#passwordTextBox').val('');
+                                $('.loginStatusMsg').html('<span style="color:green;">Login Successful!</p>');
+                                document.getElementById('testOutput').innerHTML = userDisplay;
+                                sessionStorage.setItem("user_display", userDisplay);
+                                $('#myModal').modal('hide');
+                                $('body').css('overflow-y', 'auto');
+                                state = 'true';
+                                //$('.dropdown-menu').toggleClass('show');
+                                //var us = username;
+                                //console.log(us);
+                            } else {
+                                $('.loginStatusMsg').html('<span style="color:red;">Login Unsuccessful, please try again.</span>');
+                            }
+                            $('.submitBtn').removeAttr("disabled");
+                            $('.modal-body').css('opacity', '');
                         }
-                        $('.submitBtn').removeAttr("disabled");
-                        $('.modal-body').css('opacity', '');
+
                         //user_name = user;
                         //console.log(user_name);
                     }
                 });
             }
         }
+
+        /*function processLogin() {
+         //var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+         var name = $('#usernameTextBox').val();
+         console.log(name);
+         //var email = $('#inputEmail').val();
+         var password = $('#passwordTextBox').val();
+         console.log(password);
+         //var confPassword = $('#inputConfPassword').val();
+         //var userType = type;
+         //alert(userType);
+         
+         if (name.trim() == '') {
+         alert('Please Enter Your Username.');
+         $('#usernameTextBox').focus();
+         return false;
+         } else if (password.trim() == '') {
+         alert('Please Enter Your Password.');
+         $('#passwordTextBox').focus();
+         return false;
+         } else {
+         $.ajax({
+         type: 'POST',
+         url: 'submit_login.php',
+         //data: 'contactFrmSubmit=1&name='+name+'&email='+email+'&password='+password+'$confPassword='+confPassword,
+         data: 'loginFrmSubmit=1&name=' + name + '&password=' + password,
+         beforeSend: function () {
+         $('.submitBtn').attr("disabled", "disabled");
+         $('.modal-body').css('opacity', '.5');
+         },
+         success: function (msgLogin) {
+         console.log(msgLogin);
+         statusMsg = msgLogin.substring(0, 2);
+         //console.log(statusMsg);
+         user_name = msgLogin.substring(2, msgLogin.length);
+         userDisplay = "Welcome, " + user_name;
+         //console.log(user_name);
+         if (statusMsg == 'ok') {
+         $('#usernameTextBox').val('');
+         $('#passwordTextBox').val('');
+         $('.loginStatusMsg').html('<span style="color:green;">Login Successful!</p>');
+         document.getElementById('testOutput').innerHTML = userDisplay;
+         sessionStorage.setItem("user_display", userDisplay);
+         $('#myModal').modal('hide');
+         $('body').css('overflow-y', 'auto');
+         state = 'true';
+         //$('.dropdown-menu').toggleClass('show');
+         
+         
+         //var us = username;
+         //console.log(us);
+         
+         } else {
+         $('.loginStatusMsg').html('<span style="color:red;">Login Unsuccessful, please try again.</span>');
+         }
+         $('.submitBtn').removeAttr("disabled");
+         $('.modal-body').css('opacity', '');
+         //user_name = user;
+         //console.log(user_name);
+         }
+         });
+         }
+         }*/
 
         //toggleLogin();
 
@@ -429,7 +550,21 @@
                 //openPopup();
 
             }
+            setAdminDisplay();
 
+        }
+
+        function setAdminDisplay() {
+            //alert('hi');
+            //console.log("loaded");
+            adminDisplay = sessionStorage.getItem("admin_display");
+            console.log(adminDisplay);
+            if (adminDisplay != null) {
+                document.getElementById('testOutput').innerHTML = "Welcome, " + adminDisplay;
+                state = 'true';
+                //$("#myModal").modal('show');
+                //openModal();
+            }
         }
 
         function openModal() {
@@ -459,7 +594,7 @@
 
         }
 
-     
+
 
 
 
