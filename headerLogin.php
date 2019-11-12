@@ -134,22 +134,22 @@
                                 <p class="statusMsg" style="margin-top:12px;"></p>
                                 <div class="md-form" style="margin-top:-8px;">
                                     <i class="fas fa-user prefix grey-text"></i>
-                                    <input type="text" id="inputUsername" class="form-control" >
+                                    <input type="text" required="required" id="inputUsername" class="form-control" >
                                     <label for="inputUsername">Your Username</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fas fa-envelope prefix grey-text"></i>
-                                    <input type="email" id="inputEmail" class="form-control">
+                                    <input type="email" required="required" id="inputEmail" class="form-control">
                                     <label for="inputEmail">Your Email</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fas fa-lock prefix grey-text"></i>
-                                    <input type="password" id="inputPassword" class="form-control">
+                                    <input type="password" required="required" id="inputPassword" class="form-control">
                                     <label for="inputPassword">Your Password</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fas fa-lock prefix grey-text"></i>
-                                    <input type="password" id="inputConfPassword" class="form-control">
+                                    <input type="password" required="required" id="inputConfPassword" class="form-control">
                                     <label for="inputConfPassword">Confirm Password</label>
                                 </div>
                             </form>

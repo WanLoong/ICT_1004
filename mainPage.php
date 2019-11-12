@@ -17,6 +17,7 @@ if(isset($_GET['reset']))
     {
         unset($_SESSION['cart_array']);
     }
+    session_destroy();
     header("location:mainPage");
 }
 ?>
