@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION["user"]))
 {
-    header("location:mainPage.php");
+    header("location:mainPage");
 }
 
 $productDisplay = "";
@@ -46,7 +46,7 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '        <input type="number" value="1" min="1" max="10">';
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-removal">';
-        $productDisplay .= '    <form method="post" action="shoppingCartNel.php">';
+        $productDisplay .= '    <form method="post" action="shoppingCartNel">';
         $productDisplay .= '                    <input type="submit" class="remove-product" name="dltBtn' . $pid . '" id="dltBtn" value="Remove"/>';
         $productDisplay .= '                    <input type="hidden" name="index" value="'. $pid . '" id="index"/>';
         $productDisplay .= '                  </form>'; 
@@ -59,7 +59,7 @@ if(isset($_SESSION["cart_array"])){
     }
         $x=$i+1;
         $checkoutbtn.=' <div class="check-out">';
-        $checkoutbtn.='<form method="post" action="payment.php">';
+        $checkoutbtn.='<form method="post" action="payment">';
         $checkoutbtn.='<input type="hidden" name="item_name_'.$x.'" value="'.$productName .'">';
         $checkoutbtn.='<input type="hidden" name="amount_'.$x.'" value="'.$price .'">';
         //$checkoutbtn.='<input type="hidden" name="product-quantity'.$x.'" value="'.$eachitem['pquantity'] .'">';
@@ -85,7 +85,7 @@ if(isset($_POST["index"]))
             {
                 unset($_SESSION['cart_array'][$eachitem]);
                 $i--;
-                header("location:shoppingCartNel.php");
+                header("location:shoppingCartNel");
             }
         }
     }

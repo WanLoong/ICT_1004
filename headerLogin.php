@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="mainPage.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="mainPage">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" style="padding-right: 40px;">
@@ -44,7 +44,7 @@
             <?php
             if(isset($_SESSION["user"]))
             {
-             echo ' <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>';      
+             echo ' <a id="shoppingCartButton" href="shoppingCartNel" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>';      
             }
             ?>
             <!-- Log In Modal -->
@@ -188,7 +188,7 @@
                 {
                     if($_SESSION["user"]=='kq')
                     {
-                        echo'<a href="manageInventory.php" style="font-family: Times, Times New Roman, serif">Inventory</a>';
+                        echo'<a href="manageInventory" style="font-family: Times, Times New Roman, serif">Inventory</a>';
                         echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
                     }
                     else
@@ -197,10 +197,10 @@
                     }
                 }
                 ?>
-                <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
-                <a href="cuisinesKQ.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
-                <a href="locateUs.php" style="font-family: Times, Times New Roman, serif">Locations</a>
-                <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
+                <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">About Us</a>
+                <a href="cuisinesKQ" style="font-family: Times, Times New Roman, serif">Cuisines</a>
+                <a href="locateUs" style="font-family: Times, Times New Roman, serif">Locations</a>
+                <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">Contact Us</a>
  
             </div>
 
@@ -258,7 +258,7 @@
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
                 alert("logged out successfully!");  
-                window.location.assign('mainPage.php?reset=1');
+                window.location.assign('mainPage?reset=1');
                 //alert("logged out successfully!");         
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
@@ -275,7 +275,7 @@
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
                 alert("logged out successfully!");
-                window.location.assign('mainPage.php?reset=1');
+                window.location.assign('mainPage?reset=1');
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
             }
@@ -435,12 +435,12 @@
                             //document.getElementById('testOutput').innerHTML = userDisplay;
                             sessionStorage.setItem("admin_display", user_name);
                             sessionStorage.setItem("admin_type", typeUser);
-                            window.location.assign('manageInventory.php');
+                            window.location.assign('manageInventory');
                         } else if (typeUser != 'admin') {
                             user_name = msgLogin.substring(6, msgLogin.length);
                             console.log(user_name);
                             userDisplay = "Welcome, " + user_name;
-                            window.location.assign('cuisinesKQ.php');
+                            window.location.assign('cuisinesKQ');
                             //console.log(user_name);
                             if (statusMsg == 'ok') {
                                 $('#usernameTextBox').val('');
