@@ -6,19 +6,20 @@ document.getElementsByTagName('head')[0].appendChild(js_file);
 var mapProp;
 var map;
 
-
-function myMap() {
-    var mapProp= {
-        center:new google.maps.LatLng(1.3521,103.8198),
-        zoom:15,
-        mapTypeId: google.maps.MapTypeId.HYBRID
-    };
-    var map = new google.maps.Map(document.getElementById("googleMaps"),mapProp);
-    var marker = new google.maps.Marker({position: mapProp.center});
-
-    marker.setMap(map);
-    google.maps.event.addDomListener(window, 'load', myMap);
-}
+//function myMap() {
+//    var mapProp= {
+//        center:new google.maps.LatLng(". $row['latitude'] . "," . $row['longitude'] ."),
+//        zoom:15,
+//        mapTypeId: google.maps.MapTypeId.HYBRID
+//    };
+//    var map = new google.maps.Map(document.getElementById('googleMaps'),mapProp);
+//    var marker2_co = new google.maps.LatLng(". $row['latitude'] . "," . $row['longitude'] .");
+//    var marker2 = new google.maps.Marker({position: marker2_co});
+//
+//    marker2.setMap(map);
+//    
+//    google.maps.event.addDomListener(window, 'load', myMap);
+//}
 
 function display_page(lat, lng)
 {
@@ -26,11 +27,12 @@ function display_page(lat, lng)
     map.panTo(latLng);
 }
 
-function add_marker(lat, lng)
+function add_marker(lat = 1.3013, lng = 103.905)
 {
-    var position = new js_file.google.maps.LatLng(lat, lng);
-    var marker = new js_file.google.maps.Marker({position: position, map: map});
+    var position = new google.maps.LatLng(lat, lng);
+    var marker = new google.maps.Marker({position: position, map: map});
     marker.setMap(map);
+}
     
 function display_page()
 {

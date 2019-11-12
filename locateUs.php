@@ -13,7 +13,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
         <script src="js/modal.js"></script>
-        <script src="js/locateUs.js"></script>
+        <script src="js/require.js"></script> 
 
         <style>
 
@@ -216,19 +216,52 @@
         ?>
         
         <div class="jumbotron">
+            <?php
+                $servername = "161.117.122.252";
+                $username = "p5_6";
+                $password = "BKDEzs6TDN";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("<h1>Connection failed: " . $conn->connect_error . "</h1>");
+                }
+            ?>
             <button type="button" onclick="display_page();">test</button>
         </div>
         
-        <div id = "googleMaps" style="width: 1000px; height: 500px;"></div>
-       
-        script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script>
+        <div id = "googleMaps" style="width: 100%; height: 500px;"></div>
+        <!--script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script-->
         <?php
+            echo "<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=add_marker' type='text/javascript'></script>";
             $sql = "SELECT * FROM p5_6.location";
             $result = $conn->query($sql);
+            $markers_script = "<script>function myMap() {
+                                            var mapProp= {
+                                                center:new google.maps.LatLng(1.3521,103.8198),
+                                                zoom:12,
+                                                mapTypeId: google.maps.MapTypeId.HYBRID
+                                            };
+                                            var map = new google.maps.Map(document.getElementById('googleMaps'),mapProp);";
+            $index = 0;
             while($row = $result->fetch_assoc())
             {
-                echo "<script>add_marker(" . $row['latitude'] . "," . $row['longitude'] . ")</script>";
+                echo "<p>" . $row['latitude'] . "," . $row['longitude'] . "<p>";
+                $markers_script = $markers_script .  "
+    var marker". $index ."_co = new google.maps.LatLng(". $row['latitude'] . "," . $row['longitude'] .");
+    var marker" . $index ."= new google.maps.Marker({position: marker". $index ."_co});
+
+    marker". $index .".setMap(map);";
+                $index = $index + 1;
+                
+//                echo "<script>add_marker(" . $row['latitude'] . "," . $row['longitude'] . ")</script>";
             }
+            $markers_script = $markers_script . "google.maps.event.addDomListener(window, 'load', myMap);
+}</script>";
+            
+            echo $markers_script;
         ?>
         <br>
         <div class='container-fluid' style="height: 100%;">
@@ -248,12 +281,9 @@
                     echo "</div>";
                 }
             ?>
+        <script src="js/locateUs.js"></script>
         </div>
-        <div style="position: relative; bottom: 0; width: 100%;">
-        <!--<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>-->
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script>
-        <script>myMap();</script>
-        </div>
+        
         
         <?php
             include "footer.php";
