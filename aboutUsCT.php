@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-
+<?php session_start();?>
 <html>
      <head>
         <title>Welcome To Guilty Pleasures!</title>
@@ -218,22 +218,7 @@ and open the template in the editor.
 
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
-        
-          <div id="mySidepanel" class="sidepanel">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-            <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
-            <a href="cuisinesKQ.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
-            <a href="locateUs.php" style="font-family: Times, Times New Roman, serif">Locations</a>
-            <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
-        </div>
-        
-        <?php 
-            //include "header.php";
-            include 'headerLogin.php';
-        ?>
+        <?php include 'headerLogin.php';?>
         <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             <a class="navbar-brand" href="#" onclick="openNav()" style="font-family: Snell Roundhand, cursive; font-size: 29px;"><i class="fa fa-bars bars" id="navMenuButton"></i>Guilty Pleasures</a>

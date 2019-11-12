@@ -5,15 +5,17 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-if(isset($_GET["logcount"]))
-{
-    echo '<script type="text/javascript">';
-    echo '  alert("You are not logged in to admin.")';
-    echo '</script>';
-}
+session_start();
 ?>
 
+<?php
 
+if(isset($_GET['reset']))
+{
+    unset($_SESSION["user"]);
+    header("location:mainPage.php");
+}
+?>
 
 <html>
     <head>

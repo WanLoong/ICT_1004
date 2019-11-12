@@ -216,25 +216,12 @@
         ?>
         
         <div class="jumbotron">
-            <?php
-                $servername = "161.117.122.252";
-                $username = "p5_6";
-                $password = "BKDEzs6TDN";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password);
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("<h1>Connection failed: " . $conn->connect_error . "</h1>");
-                }
-            ?>
             <button type="button" onclick="display_page();">test</button>
         </div>
         
-        <div id = "googleMaps" style="width: 100%; height: 500px;"></div>
-        
-        <!--script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script-->
+        <div id = "googleMaps" style="width: 1000px; height: 500px;"></div>
+       
+        script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script>
         <?php
             $sql = "SELECT * FROM p5_6.location";
             $result = $conn->query($sql);
@@ -263,9 +250,13 @@
             ?>
         </div>
         <div style="position: relative; bottom: 0; width: 100%;">
+        <!--<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>-->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script>
+        <script>myMap();</script>
+        </div>
+        
         <?php
             include "footer.php";
         ?>
-        </div>
     </body>
 </html>
