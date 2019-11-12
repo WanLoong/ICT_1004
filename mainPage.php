@@ -13,6 +13,10 @@ session_start();
 if(isset($_GET['reset']))
 {
     unset($_SESSION["user"]);
+    if(isset($_SESSION['cart_array']))
+    {
+        unset($_SESSION['cart_array']);
+    }
     header("location:mainPage.php");
 }
 ?>
