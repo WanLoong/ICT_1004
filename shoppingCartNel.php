@@ -20,13 +20,17 @@ if(isset($_SESSION["cart_array"])){
 
     foreach($_SESSION["cart_array"] as $eachitem)
     {   
+        
+        print_r($eachitem);
         $i++;
         $pid = $eachitem['product_id'];
         $productName = $eachitem['productName'];
         $productDesc = $eachitem['productDesc'];
         $price = $eachitem['price'];
+        $quantity = $eachitem['quantity'];
 
-        $cartOutput = $price + $cartOutput;
+        $productTotal = $price* $quantity;
+        $cartOutput = $productTotal + $cartOutput;
         $tax = 0.05*$cartOutput;
         $tax = number_format($tax, 2);
         $carttotal = $cartOutput+5+$tax;
@@ -42,18 +46,20 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '        <p class="product-description">' . $productDesc . '</p>';
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-price">'. $price .'</div>';
-        $productDisplay .= '    <div class="product-quantity">';
-        $productDisplay .= '        <input type="number" value="1" min="1" max="10">';
-        $productDisplay .= '    </div>';
+        $productDisplay .= '    <form action ="shoppingCartNel.php"method"post">';
+        $productDisplay .= '    <input name="quantity"type="number" value="'.$eachitem['quantity'].'"size="1"maxlength"2"/>';
+        $productDisplay .= '    <input name="adjustBtn'.$pid.'"type="submit"value="change"/>';
+        $productDisplay .= '    <input name="item_to_adjust"type="hidden" value="'.$pid.'"/>';
+        $productDisplay .= '    </form>';
         $productDisplay .= '    <div class="product-removal">';
         $productDisplay .= '    <form method="post" action="shoppingCartNel.php">';
         $productDisplay .= '                    <input type="submit" class="remove-product" name="dltBtn' . $pid . '" id="dltBtn" value="Remove"/>';
         $productDisplay .= '                    <input type="hidden" name="index" value="'. $pid . '" id="index"/>';
         $productDisplay .= '                  </form>'; 
         $productDisplay .= '    </div>';
-        $productDisplay .= '    <div class="product-line-price">'.$price.'</div>';
+        $productDisplay .= '    <div class="product-line-price">'.$productTotal.'</div>';
         $productDisplay .= '</div>';  
-  
+        
         
    
     }
@@ -70,7 +76,23 @@ if(isset($_SESSION["cart_array"])){
 
 
 ?>
+<?php
 
+
+    if(isset($_POST['item_to_adjust'])&&$_POST['item_to_adjust']!=""){
+        $item_to_adjust = $_POST['item_to_adjust'];
+        $quantity = $_POST['quantity'];
+        $i=0;
+        foreach($_SESSION["cart_array"]as $eachitem){
+            $i++;
+            array_splice($_SESSION["cart_array"],$i-1,1,array(array("product_id"=>$item_to_adjust,"quantity"=>$quantity)));
+                
+                
+            
+        }
+    }
+
+?>
 
 
 <?php
