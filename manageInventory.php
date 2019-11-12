@@ -5,7 +5,7 @@ session_start();
 #
 if(!isset($_SESSION['user']) || $_SESSION["user"]!='kq')
 {
-    header("location: mainPage.php");
+    header("location: mainPage");
 }
 
 ?>
@@ -23,7 +23,7 @@ $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 if ($conn->connect_error)
 {
     $_SESSION['dberror']=$conn->connect_error;
-    header('Location:dbError.php');
+    header('Location:dbError');
 
 }
 
@@ -57,7 +57,7 @@ if($result->num_rows > 0)
         $productTable .= '  <th>images/' . $id .'.JPG</th>';
         $productTable .= '  <th>'. $productName .'</th>';
         $productTable .= '  <th>'. $quantity . '</th>';
-        $productTable .= '  <th><a href="manageInventory.php?remove='. $productName .'">Remove</a></th>';
+        $productTable .= '  <th><a href="manageInventory?remove='. $productName .'">Remove</a></th>';
         $productTable .= "</tr>";  
         $i++;
     }
@@ -84,19 +84,19 @@ if(isset($_GET['add']))
         $result = $conn->query($sql);
         if($result == TRUE)
         {
-            header("location:manageInventory.php");
+            header("location:manageInventory");
         }
         else
         {
             echo '<script type="text/javascript">';
             echo '  alert("Error adding record or Required fields are empty.")';
             echo '</script>';
-            header("location:manageInventory.php");
+            header("location:manageInventory");
         }
     }
     else
     {
-        header("location:manageInventory.php");
+        header("location:manageInventory");
     }
 }
 
@@ -116,7 +116,7 @@ if(isset($_GET['remove']))
     $identifier = $_GET['remove'];
     $sql = "DELETE FROM product_table WHERE product_name='$identifier'";
     $result = $conn->query($sql);
-    header("location:manageInventory.php"); 
+    header("location:manageInventory"); 
 }
 
 ?>
@@ -153,7 +153,7 @@ if(isset($_GET['remove']))
         </section>
         <section id="addProducts">
             <h2 style="text-align: center;">Add New Products</h2>
-            <form method="post" action = "manageInventory.php?add=1">
+            <form method="post" action = "manageInventory?add=1">
                 <label for="productName">Product Name:</label>
                 <input class="form-control" required="required" type="text" name="addpname" placeholder="Product Name...">
                 <label for="price">Price:</label>

@@ -11,7 +11,7 @@ session_start();
 if ($conn->connect_error)
 {
     $_SESSION['dberror']=$conn->connect_error;
-    header('Location:dbError.php');
+    header('Location:dbError');
 
 }
 

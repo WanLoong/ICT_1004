@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="mainPage.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="mainPage">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" style="padding-right: 40px;">
@@ -25,7 +25,7 @@
         </form>
 
         <a id="loginButton" href="#" style="padding-right: 10px; color: gray;" data-toggle="modal" data-target="#myModal"><i class="fas fa-user"></i> <span id="testOutput">Login</span></a>
-        <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
+        <a id="shoppingCartButton" href="shoppingCartNel" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
         <!-- Log In Modal -->
         <div id="myModal" class="modal fade" role="dialog">  
             <div class="modal-dialog">
@@ -159,10 +159,10 @@
         <!--MainPage SideMenu-->
         <div id="mySidepanel" class="sidepanel">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-            <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
-            <a href="cuisinesKQ.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
-            <a href="locateUs.php" style="font-family: Times, Times New Roman, serif">Locations</a>
-            <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
+            <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">About Us</a>
+            <a href="cuisinesKQ" style="font-family: Times, Times New Roman, serif">Cuisines</a>
+            <a href="locateUs" style="font-family: Times, Times New Roman, serif">Locations</a>
+            <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">Contact Us</a>
         </div>
 
     </div>

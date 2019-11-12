@@ -46,7 +46,7 @@ if($result->num_rows > 0)
         $dynamicTable .= '          <div class="modal-footer">';
         if(isset($_SESSION["user"]))
         {
-        $dynamicTable .= '                  <form id = "addToCart" name = "addToCart" method="post" action="cuisinesKQ.php">';
+        $dynamicTable .= '                  <form id = "addToCart" name = "addToCart" method="post" action="cuisinesKQ">';
         $dynamicTable .= '                    <input type="hidden" name="pid" id="pid" value="' . $id . '"/>';
         $dynamicTable .= '                    <input type="hidden" name="pname" id="pname" value="' . $productName . '"/>'; 
         $dynamicTable .= '                    <input type="hidden" name="pdesc" id="pdesc" value="' . $productDesc . '"/>';
