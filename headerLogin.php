@@ -363,6 +363,9 @@
                 alert('Your Passwords Do Not Match.');
                 //$('#inputConfPassword').focus();
                 return false;
+            } else if ((password_validate(password.trim())) != "ok") {
+                  alert(password_validate(password));
+                  return false;
             } else {
                 $.ajax({
                     type: 'POST',
@@ -425,7 +428,7 @@
                     success: function (msgLogin) {
                         console.log(msgLogin);
                         statusMsg = msgLogin.substring(0, 2);
-                        //console.log(statusMsg);
+                        console.log("here" + statusMsg);
                         typeUser = msgLogin.substring(2, 7);
                         console.log(typeUser)
                         if (typeUser == 'admin') {
@@ -595,6 +598,64 @@
         }
 
 
+        function password_validate(password) {
+            
+            var letter_lower = 'abcdefghijklmnopqrstuvwxyz';
+            console.log(letter_lower);
+            var letter_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var numbers = '0123456789';
+            var spchr = '~`!@#$%^&*()+=_-{}[]\|:;”’?/<>,.';
+            var upperCount = 0;
+            var lowerCount = 0;
+            var numCount = 0;
+            var spchrCount = 0;
+            var valid = true;
+            
+            var pass_err = "Your password is not strong enough! The following errors were found:\n";
+            
+            for (var i = 0; i < password.length; i++) {
+                if (letter_upper.includes(password[i])) {
+                    upperCount += 1;
+                }
+                if (letter_lower.includes(password[i])) {
+                    lowerCount += 1;
+                } 
+                if (numbers.includes(password[i])) {
+                    numCount += 1;
+                }
+                if (spchr.includes(password[i])) {
+                    spchrCount += 1;
+                }
+            }
+            
+            if (password.length < 12) {
+                pass_err = pass_err.concat("-Password must be at least 12 characters.\n");
+                valid = false;
+            }
+            
+            if (upperCount < 1) {
+                pass_err = pass_err.concat("-No uppercase letters.\n");
+                valid = false;
+            }
+            
+            if (lowerCount < 1) {
+                pass_err = pass_err.concat("-No lowercase letters.\n");
+                valid = false;
+            }
+            
+            if (spchrCount < 1) {
+                pass_err = pass_err.concat("-No special letters.\n");
+                valid = false;
+            }
+            
+            if (!valid) {
+                return pass_err;
+            }
+            else {
+                return "ok";
+            }
+            
+        }
 
 
 
