@@ -1,8 +1,8 @@
 
-var js_file = document.createElement('script');
-js_file.type = 'text/javascript';
-js_file.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap";
-document.getElementsByTagName('head')[0].appendChild(js_file);
+//var js_file = document.createElement('script');
+//js_file.type = 'text/javascript';
+//js_file.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap";
+//document.getElementsByTagName('head')[0].appendChild(js_file);
 var mapProp;
 var map;
 
@@ -34,13 +34,4 @@ function add_marker(lat = 1.3013, lng = 103.905)
     marker.setMap(map);
 }
     
-function display_page()
-{
-    var mapProp= {
-        center:new google.maps.LatLng(33.8688,151.2093),
-        zoom:10,
-        mapTypeId: google.maps.MapTypeId.HYBRID
-    };
-    var map = new google.maps.Map(document.getElementById("googleMaps"),mapProp);
-}
 
