@@ -440,7 +440,6 @@
                             user_name = msgLogin.substring(6, msgLogin.length);
                             console.log(user_name);
                             userDisplay = "Welcome, " + user_name;
-                            window.location.assign('cuisinesKQ');
                             //console.log(user_name);
                             if (statusMsg == 'ok') {
                                 $('#usernameTextBox').val('');
@@ -451,6 +450,7 @@
                                 $('#myModal').modal('hide');
                                 $('body').css('overflow-y', 'auto');
                                 state = 'true';
+                                window.location.assign('cuisinesKQ');
                                 //$('.dropdown-menu').toggleClass('show');
                                 //var us = username;
                                 //console.log(us);
