@@ -234,8 +234,7 @@
         
         <div id = "googleMaps" style="width: 100%; height: 500px;"></div>
         
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script>
-        <script>myMap();</script>
+        <!--script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script-->
         <?php
             $sql = "SELECT * FROM p5_6.location";
             $result = $conn->query($sql);
