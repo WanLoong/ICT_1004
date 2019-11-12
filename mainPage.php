@@ -4,14 +4,13 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php
-session_start();
-?>
+
 
 <?php
 
 if(isset($_GET['reset']))
 {
+    session_start();
     unset($_SESSION["user"]);
     if(isset($_SESSION['cart_array']))
     {

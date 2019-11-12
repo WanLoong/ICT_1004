@@ -53,8 +53,8 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
                 $statusLogin = 'rejected';
             }
             $result->free_result();
-           
-        }
+            unset($row);
+            }
         $conn->close();
     
     echo $statusLogin;

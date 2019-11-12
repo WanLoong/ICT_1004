@@ -10,26 +10,11 @@ if(!isset($_SESSION['user']) || $_SESSION["user"]!='kq')
 
 ?>
 
-<?php
 
-define("DBHOST", "161.117.122.252");
-define("DBNAME", "p5_6");
-define("DBUSER", "p5_6");
-define("DBPASS", "BKDEzs6TDN");
-
-
-$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
-
-if ($conn->connect_error)
-{
-    $_SESSION['dberror']=$conn->connect_error;
-    header('Location:dbError');
-
-}
-
-?>
 
 <?php
+include "connectmysql.php";
+
 $productTable = "";
 
 $sql = "SELECT * FROM product_table";
@@ -63,7 +48,6 @@ if($result->num_rows > 0)
     }
      $productTable .= '</table>';
 }
-
 ?>
 
 <?php
@@ -181,3 +165,8 @@ if(isset($_GET['remove']))
     
 </html>
 
+<?php
+unset($row);
+$result->free_result();
+$conn->close();
+?>
