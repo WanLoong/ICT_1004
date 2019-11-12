@@ -425,7 +425,7 @@
                     success: function (msgLogin) {
                         console.log(msgLogin);
                         statusMsg = msgLogin.substring(0, 2);
-                        //console.log(statusMsg);
+                        console.log("here" + statusMsg);
                         typeUser = msgLogin.substring(2, 7);
                         console.log(typeUser)
                         if (typeUser == 'admin') {

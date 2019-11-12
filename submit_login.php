@@ -1,6 +1,9 @@
+
 <?php
 //submit_form.php
 session_start();
+    
+
 if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['password'])) {
 
     // Submitted form data
@@ -14,6 +17,7 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
     $serverName = "161.117.122.252";
     $usernameDB = "p5_6";
     $passwordDB = "BKDEzs6TDN";
+    $errorMsg = "";
  
     
         //$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
@@ -53,11 +57,13 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
             $result->free_result();
            
         }
+        
         $conn->close();
     
     echo $statusLogin;
     echo $user_type;
     echo $user_name;
+    echo "<h1>" . $error_msg . "</h1>";
     
     
     //
@@ -66,4 +72,4 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
     
     die;
 }
-
+?>
