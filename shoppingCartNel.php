@@ -20,13 +20,17 @@ if(isset($_SESSION["cart_array"])){
 
     foreach($_SESSION["cart_array"] as $eachitem)
     {   
+        
+        
         $i++;
         $pid = $eachitem['product_id'];
         $productName = $eachitem['productName'];
         $productDesc = $eachitem['productDesc'];
         $price = $eachitem['price'];
+        $quantity = $eachitem['quantity'];
 
-        $cartOutput = $price + $cartOutput;
+        $productTotal = $price* $quantity;
+        $cartOutput = $productTotal + $cartOutput;
         $tax = 0.05*$cartOutput;
         $tax = number_format($tax, 2);
         $carttotal = $cartOutput+5+$tax;
@@ -42,29 +46,26 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '        <p class="product-description">' . $productDesc . '</p>';
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-price">'. $price .'</div>';
-        $productDisplay .= '    <div class="product-quantity">';
-        $productDisplay .= '        <input type="number" value="1" min="1" max="10">';
-        $productDisplay .= '    </div>';
+        $productDisplay .= '    <div class="product-quantity">'.$eachitem['quantity'].'</div>';
         $productDisplay .= '    <div class="product-removal">';
         $productDisplay .= '    <form method="post" action="shoppingCartNel">';
         $productDisplay .= '                    <input type="submit" class="remove-product" name="dltBtn' . $pid . '" id="dltBtn" value="Remove"/>';
         $productDisplay .= '                    <input type="hidden" name="index" value="'. $pid . '" id="index"/>';
         $productDisplay .= '                  </form>'; 
         $productDisplay .= '    </div>';
-        $productDisplay .= '    <div class="product-line-price">'.$price.'</div>';
+        $productDisplay .= '    <div class="product-line-price">'.$productTotal.'</div>';
         $productDisplay .= '</div>';  
-  
+        
         
    
     }
         $x=$i+1;
         $checkoutbtn.=' <div class="check-out">';
-        $checkoutbtn.='<form method="post" action="payment">';
-        $checkoutbtn.='<input type="hidden" name="item_name_'.$x.'" value="'.$productName .'">';
-        $checkoutbtn.='<input type="hidden" name="amount_'.$x.'" value="'.$price .'">';
-        //$checkoutbtn.='<input type="hidden" name="product-quantity'.$x.'" value="'.$eachitem['pquantity'] .'">';
+        $checkoutbtn.='<form method="post" action="payment.php">';
         $checkoutbtn.='<input type="submit" class="checkout" name="button" value="Checkout"/>';
-        $checkoutbtn.='                  </form>';    
+        $checkoutbtn.='                  </form>';  
+        
+        
 }
 
 
@@ -163,6 +164,11 @@ if($i<=0)
                     <div class="totals-value" id="cart-total"><b><?php echo $carttotal?></b></div>
                 </div>
                 <?php echo $checkoutbtn ?>
+
+                <form  action="cuisinesKQ.php">
+                    <input class="returntomenu"type="submit" value="Return To Menu"/>
+                </form>
+
             </div>
         </div>
     </body>

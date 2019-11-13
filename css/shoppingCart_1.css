@@ -505,3 +505,17 @@ body{
     background-size: 100%;
     padding: 0px;
 }
+.returntomenu{
+    float:left;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 6px 25px;
+    background-color:#6b6;
+    color:#fff;
+    font-size: 25px;
+    border-radius: 3px;
+}
+.returntomenu:hover {
+  background-color: #494;
+}
+.

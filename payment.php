@@ -14,20 +14,23 @@ if(isset($_SESSION["cart_array"])){
     foreach($_SESSION["cart_array"] as $eachitem)
     {   
 
+          
         $i++;
-
-        
         $pid = $eachitem['product_id'];
         $productName = $eachitem['productName'];
         $productDesc = $eachitem['productDesc'];
         $price = $eachitem['price'];
-        $cartOutput = $price + $cartOutput;
+        $quantity = $eachitem['quantity'];
+
+        $productTotal = $price* $quantity;
+        $cartOutput = $productTotal + $cartOutput;
         $tax = 0.05*$cartOutput;
         $tax = number_format($tax, 2);
         $carttotal = $cartOutput+5+$tax;
         $delivery = 5.00;
         
         $productDisplay .= '<p><a href="#">'. $productName .'</a> <span class="product-price">$'.$price.'</span></p>';
+        $productDisplay .= '<div class="product-quantity">Qtn x '.$eachitem['quantity'].'</div>';
 
     }
    
