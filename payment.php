@@ -78,7 +78,7 @@ if($i<=0)
         <link rel="stylesheet" href="css/modalcss.css"/>
         <!--<link rel="stylesheet" href="css/cusineMenu.css"/>-->
        
-        <link rel="stylesheet" href="css/payment.css"/>
+         <link rel="stylesheet" href="css/payment.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
@@ -149,7 +149,7 @@ if($i<=0)
 
                 </div>
                 <label>
-                    <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                    <input type="checkbox" checked="checked" name="sameadr"> Delivery address same as billing
                 </label>
                     <input type="submit" value="Continue to checkout" class="btn1">
                 </form>
