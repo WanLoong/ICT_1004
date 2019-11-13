@@ -232,7 +232,11 @@
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label form-control-label editLabel"></label>
                                                 <div class="col-lg-9">
-                                                    <input type="reset" class="btn btn-secondary" value="Cancel">
+<<<<<<< HEAD
+                                                    <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+=======
+                                                    <!--<input type="reset" class="btn btn-secondary" value="Cancel">-->
+>>>>>>> 4d770c72135eed12cd6330083141d95a77c80998
                                                     <input type="button" class="btn btn-primary" id="updateButton" value="Save Changes">
                                                 </div>
                                             </div>
@@ -301,7 +305,7 @@
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label form-control-label editLabel"></label>
                                                 <div class="col-lg-9">
-                                                    <input type="reset" class="btn btn-secondary" value="Cancel">
+                                                    <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
                                                     <input type="button" class="btn btn-primary" id="adminUpdateButton" value="Save Changes">
                                                 </div>
                                             </div>
@@ -399,7 +403,7 @@
                     }
                     else
                     {
-                        echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
+                        echo'<a href="order_tracking" style="font-family: Times, Times New Roman, serif">Orders</a>';
                     } 
                 }
                 ?>
@@ -1175,7 +1179,7 @@
             e.preventDefault();
             $('body').css('overflow-y', 'auto');
             document.getElementById('updateStatusMsg').style.display = 'none';
-            window.location.assign('mainPage');
+
 
 
         });
@@ -1184,13 +1188,19 @@
             e.preventDefault();
             $('body').css('overflow-y', 'auto');
             document.getElementById('updateStatusMsg').style.display = 'none';
-            window.location.assign('mainPage');
+
 
 
         });
+        
+          $('#cancelButton').click(function (e) {
+            e.preventDefault();
+            $('body').css('overflow-y', 'auto');
+            document.getElementById('updateStatusMsg').style.display = 'none';
 
 
 
+        });
 
 
 
