@@ -235,6 +235,7 @@
                 
                 //REPLACE  "user" WITH "user_gp" FOR FINAL SUBMISSION
                 //ALSO NEED TO FIND TABLE WITH ALL THE PRODUCTS. AS A PLACEHOLDER, IT IS CURRENTLY "cuisines"
+                //USER IS CURRENTLY ALSO HARDCODED IN
                 
                 $sql = "SELECT DISTINCT order_id FROM p5_6.orders WHERE user_id=2;"; //REPLACE user_id WITH LOGGED IN USER
                 $result = $conn->query($sql);
