@@ -233,14 +233,45 @@
                     die("<h1>Connection failed: " . $conn->connect_error . "</h1>");
                 }
                 
-                $sql = "SELECT DISTINCT order_id FROM p5_6.orders WHERE user_id=2;";
+                //REPLACE  "user" WITH "user_gp" FOR FINAL SUBMISSION
+                //ALSO NEED TO FIND TABLE WITH ALL THE PRODUCTS. AS A PLACEHOLDER, IT IS CURRENTLY "cuisines"
+                
+                $sql = "SELECT DISTINCT order_id FROM p5_6.orders WHERE user_id=2;"; //REPLACE user_id WITH LOGGED IN USER
                 $result = $conn->query($sql);
+                $table = "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered from</th><th>Status</th></thead><tbody>";
+                
+                
+
                 while ($row = $result->fetch_assoc())
                 {
                  $sql_order = "SELECT * FROM p5_6.orders where order_id=" . $row["order_id"] . ";";
+                 $result_order = $conn->query($sql_order);
+                 $index = 0;
+                 while ($row_order = $result_order->fetch_assoc())
+                 {
+                     $product = mysqli_fetch_assoc((($conn->query("SELECT name FROM p5_6.cuisines WHERE product_id=" . $row_order['product_id'] . ";"))))['name'];
+                     $location = mysqli_fetch_assoc((($conn->query("SELECT location_name FROM p5_6.location WHERE location_id=" . $row_order['location_id'] . ";"))))['location_name'];
+                     if (mysqli_num_rows($result_order) == 1)
+                     {
+                        $table .= "<tr><td>" . $row_order['order_id'] . "</td><td>" . $product . "</td><td>" . $row_order['quantity'] . "</td><td>" . $location . "</td><td>" . $row_order['status'] ."</td></tr>";
+                     }
+                     else //for orders with multiple items ordered
+                     {
+                         if ($index == 0)
+                         {
+                            $table .= "<tr><td rowspan=" . mysqli_num_rows($result_order) .">" . $row_order['order_id'] . "</td><td>" . $product . "</td><td>" . $row_order['quantity'] . "</td><td rowspan=" . mysqli_num_rows($result_order) .">" . $location . "</td><td rowspan=" . mysqli_num_rows($result_order) . ">" . $row_order['status'] ."</td></tr>"; 
+                         }
+                         else
+                         {
+                             $table .= "<tr><td>" . $product . "</td><td>" . $row_order['quantity'] . "</td>" ."</tr>";
+                         }
+                     }
+                     $index += 1;
+                 }
                  
-                 echo "<p>" . $row['order_id'] ."</p>"; 
+                 //echo "<p>" . $row['order_id'] ."</p>";
                 }
+                echo $table . "</tbody></table>";
             ?>
             </table>
             
