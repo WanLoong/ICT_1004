@@ -39,9 +39,7 @@ if(isset($_SESSION["cart_array"])){
 
 ?>
 
-<?php
-   
-?>
+
 <?php
 if(isset($_POST["index"]))
 {
@@ -78,7 +76,7 @@ if($i<=0)
         <link rel="stylesheet" href="css/modalcss.css"/>
         <!--<link rel="stylesheet" href="css/cusineMenu.css"/>-->
        
-        <link rel="stylesheet" href="css/payment.css"/>
+         <link rel="stylesheet" href="css/payment.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
@@ -101,7 +99,7 @@ if($i<=0)
                         <div class="col-50">
                             <h3>Billing Address</h3>
                                 <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                                <input type="text" id="fname" name="firstname" pattern="[A-Za-z].{5,}" placeholder="John M. Doe">
+                                <input type="text" id="fname" name="firstname" pattern="[A-Za-z].{5,}" placeholder="John M. Doe" >
                                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
                                 <input type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="john@example.com">
                                 <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
@@ -149,7 +147,7 @@ if($i<=0)
 
                 </div>
                 <label>
-                    <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                    <input type="checkbox" checked="checked" name="sameadr"> Delivery address same as billing
                 </label>
                     <input type="submit" value="Continue to checkout" class="btn1">
                 </form>

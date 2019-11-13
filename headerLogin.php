@@ -395,10 +395,12 @@
                 if (isset($_SESSION["user"])) {
                     if ($_SESSION["user"] == 'kq') {
                         echo'<a href="manageInventory" style="font-family: Times, Times New Roman, serif">Inventory</a>';
-                        echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
-                    } else {
-                        echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
+                        echo'<a href="order_tracking" style="font-family: Times, Times New Roman, serif">Orders</a>';
                     }
+                    else
+                    {
+                        echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
+                    } 
                 }
                 ?>
                 <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">About Us</a>
@@ -1029,12 +1031,11 @@
             //$('body').css('overflow-y', 'auto');
             //$('body').css('overflow-x', 'hidden');
             //alert("logged out successfully!");
-            //window.location.assign('mainPage.php');
-            //document.getElementById('loginStatusMsg').style.display = 'none';
+            //document.getElementById('loginStatusMsg').style.display = 'none';            
             document.getElementById('loginStatusMsg').style.display = 'none';
             state = 'false';
-
-
+            alert("Updated Successfully. Please re-login.");
+            window.location.assign('mainPage?reset=1');
         }
 
         function menuProfileClicked() {
