@@ -36,16 +36,15 @@
                 <a id="loginButton" href="#" style="padding-right: 10px; color: gray;" role="button" id="dropdownMenuLink"><i class="fas fa-user"></i> <span id="testOutput">Login</span></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdownMenu">
                     <!--<a class="dropdown-item" href="#">View Profile</a>-->
-                     <a class="dropdown-item" href="" id="viewProfileButton" data-toggle="modal" data-target="#profileModal" onclick="menuProfileClicked()">View Profile</a>
+                    <a class="dropdown-item" href="" id="viewProfileButton" data-toggle="modal" data-target="#profileModal" onclick="menuProfileClicked()">View Profile</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
 
                 </div>
             </div>
             <?php
-            if(isset($_SESSION["user"]))
-            {
-             echo ' <a id="shoppingCartButton" href="shoppingCartNel" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>';      
+            if (isset($_SESSION["user"])) {
+                echo ' <a id="shoppingCartButton" href="shoppingCartNel" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>';
             }
             ?>
             <!-- Log In Modal -->
@@ -109,7 +108,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--Profile Modal-->
             <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
@@ -137,13 +136,13 @@
                                 </ul>
                                 <div class="tab-content p-b-3">
                                     <div class="tab-pane active tabContent" id="profile">
-                                        <div id="welcomeProfile">
-                                            
+                                        <div id="welcomeProfile" style="margin-top:15px;">
+
                                         </div>
                                         <!--<h4 class="m-y-2" id="editUser" style="font-weight:bold;">Welcome, kbk! To Guilty Pleasures!</h4>-->
                                         <div class="row">
                                             <div class="col-md-12" id="welcomeText" style="margin-top:10px;">
-                                                <h6>Thanks for joining us!</h6>
+                                                <h6>Thanks for joining guilty pleasures!</h6>
 
                                             </div>
 
@@ -162,7 +161,7 @@
                                                             </td>
 
                                                         </tr>
-                                                        
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -170,7 +169,7 @@
                                         <!--/row-->
                                     </div>
                                     <div class="tab-pane tabContent" id="messages">
-                                        <h4 class="m-y-2" id="editNotifications" style="font-weight:bold;">Notifications</h4>
+                                        <h4 class="m-y-2" id="editNotifications" style="font-weight:bold;margin-top:15px;">Notifications</h4>
                                         <div class="alert alert-info alert-dismissable">
                                             <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
                                         </div>
@@ -200,11 +199,11 @@
                                         </table>
                                     </div>
                                     <div class="tab-pane tabContent" id="edit">
-                                        <h4 class="m-y-2" id="editProfile" style="margin-bottom:20px;font-weight: bold;">Edit Profile</h4>
+                                        <h4 class="m-y-2" id="editProfile" style="margin-bottom:20px;font-weight: bold;margin-top:15px;">Edit Profile</h4>
                                         <form role="form">
-                                      
-                                        <p class="updateStatusMsg" style="margin-top:12px;" id="updateStatusMsg"></p>
-                                        
+
+                                            <p class="updateStatusMsg" style="margin-top:12px;" id="updateStatusMsg"></p>
+
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label form-control-label editLabel">Username:</label>
                                                 <div class="col-lg-9">
@@ -220,13 +219,13 @@
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label form-control-label editLabel">Password:</label>
                                                 <div class="col-lg-9">
-                                                    <input class="form-control" id="up_password" type="text" value="">
+                                                    <input class="form-control" id="up_password" type="password" value="" placeholder="Enter new password">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label form-control-label editLabel">Confirm Password:</label>
                                                 <div class="col-lg-9">
-                                                    <input class="form-control" type="text" value="" id="up_confPassword" placeholder="Confirm new password">
+                                                    <input class="form-control" type="password" value="" id="up_confPassword" placeholder="Confirm new password">
                                                 </div>
                                             </div>
 
@@ -324,15 +323,11 @@
             <div id="mySidepanel" class="sidepanel">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                 <?php
-                if(isset($_SESSION["user"]))
-                {
-                    if($_SESSION["user"]=='kq')
-                    {
+                if (isset($_SESSION["user"])) {
+                    if ($_SESSION["user"] == 'kq') {
                         echo'<a href="manageInventory" style="font-family: Times, Times New Roman, serif">Inventory</a>';
                         echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
-                    }
-                    else
-                    {
+                    } else {
                         echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
                     }
                 }
@@ -341,7 +336,7 @@
                 <a href="cuisinesKQ" style="font-family: Times, Times New Roman, serif">Cuisines</a>
                 <a href="locateUs" style="font-family: Times, Times New Roman, serif">Locations</a>
                 <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">Contact Us</a>
- 
+
             </div>
 
         </div>
@@ -357,6 +352,7 @@
         var adminDisplay = '';
         var checkTypeUser = '';
         //var menuState;
+        var status = '';
 
 
 
@@ -397,14 +393,14 @@
                 //$('.dropdown-menu').toggleClass('hide');
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
-                alert("logged out successfully!");  
+                alert("logged out successfully!");
                 window.location.assign('mainPage?reset=1');
                 //alert("logged out successfully!");         
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
 
-                
-                
+
+
             } else if (checkTypeUser != 'admin') {
                 $(this).data('clicked', true);
                 document.getElementById('testOutput').innerHTML = "Login";
@@ -468,7 +464,20 @@
             //alert(type);
 
         });
-        
+
+        $("#updateButton").click(function () {
+            $(this).data('clicked', true);
+            //alert('hi');
+            //submitContactForm(type);
+            //updateContactForm(type);
+            //update();
+            updateContactForm(type)
+
+            //type = 'admin';
+            //alert(type);
+
+        });
+
 
         function submitContactForm(type) {
             var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
@@ -504,8 +513,8 @@
                 //$('#inputConfPassword').focus();
                 return false;
             } else if ((password_validate(password.trim())) != "ok") {
-                  alert(password_validate(password));
-                  return false;
+                alert(password_validate(password));
+                return false;
             } else {
                 $.ajax({
                     type: 'POST',
@@ -534,7 +543,19 @@
                 });
             }
         }
-        
+        function update() {
+
+            if (confirm("Do you want to proceed without changing your password?")) {
+                status = 'ok';
+                updateContactForm(type);
+                //txt = "You pressed OK!";
+            } else {
+                //txt = "You pressed Cancel!";
+                status = 'all';
+            }
+
+        }
+
         function updateContactForm(type) {
             var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
             var name = $('#up_username').val();
@@ -576,7 +597,7 @@
                     type: 'POST',
                     url: 'updateForm.php',
                     //data: 'contactFrmSubmit=1&name='+name+'&email='+email+'&password='+password+'$confPassword='+confPassword,
-                    data: 'updateFrmSubmit=1&name=' + name + '&email=' + email + '&password=' + password + '&confPassword=' + confPassword + '&userType=' + userType +'&userId=' + userId,
+                    data: 'updateFrmSubmit=1&name=' + name + '&email=' + email + '&password=' + password + '&confPassword=' + confPassword + '&userType=' + userType + '&userId=' + userId,
                     beforeSend: function () {
                         $('.submitBtn').attr("disabled", "disabled");
                         $('.modal-body').css('opacity', '.5');
@@ -601,7 +622,6 @@
                 });
             }
         }
-        
 
         function processLogin() {
 
@@ -656,6 +676,7 @@
                             if (statusMsg == 'ok') {
                                 $('#usernameTextBox').val('');
                                 $('#passwordTextBox').val('');
+                                document.getElementById('loginStatusMsg').style.display = 'block';
                                 $('.loginStatusMsg').html('<span style="color:green;">Login Successful!</p>');
                                 document.getElementById('testOutput').innerHTML = userDisplay;
                                 sessionStorage.setItem("user_display", userDisplay);
@@ -667,6 +688,7 @@
                                 //var us = username;
                                 //console.log(us);
                             } else {
+                                document.getElementById('loginStatusMsg').style.display = 'block';
                                 $('.loginStatusMsg').html('<span style="color:red;">Login Unsuccessful, please try again.</span>');
                             }
                             $('.submitBtn').removeAttr("disabled");
@@ -679,7 +701,7 @@
                 });
             }
         }
-        
+
         function retrieveProfile() {
             console.log('rcalled');
             if (user_name != '') {
@@ -690,17 +712,17 @@
                     //data: ({user_name:user_name}),
                     success: function (dataString) {
                         console.log(dataString);
-                        u_username = dataString.split('0').pop().split('1')[0];
+                        u_username = dataString.split('{').pop().split('}')[0];
                         console.log(u_username);
-                        u_email = dataString.split('1').pop().split('2')[0];
+                        u_email = dataString.split('}').pop().split('[')[0];
                         console.log(u_email);
-                        u_password = dataString.split('2').pop().split('#')[0];
+                        u_password = dataString.split('[').pop().split(']')[0];
                         console.log(u_password);
-                        u_userID  = dataString.split('#').pop().split('%')[0];
+                        u_userID = dataString.split(']').pop().split('|')[0];
                         $('#up_username').val(u_username);
                         $('#up_email').val(u_email);
                         //$('#up_password').val(u_password);
-                        
+
                         //$('#userDetail').html(data);
                     }
                 });
@@ -720,12 +742,12 @@
                         console.log(u_email);
                         u_password = dataString.split('[').pop().split(']')[0];
                         console.log(u_password);
-                        u_userID  = dataString.split(']').pop().split('}')[0];
+                        u_userID = dataString.split(']').pop().split('|')[0];
                         $('#up_username').val(u_username);
                         $('#up_email').val(u_email);
                         //$('#up_password').val(u_password);
-                        
-                       // $('#userDetail').html(data);
+
+                        // $('#userDetail').html(data);
                     }
                 });
             }
@@ -733,8 +755,8 @@
 
 
         }
-        
-         function retrieveMainProfile() {
+
+        function retrieveMainProfile() {
             console.log('rcalled');
             console.log(user_name);
             if (user_name != '') {
@@ -767,22 +789,22 @@
 
         }
 
-        
-        function logoutAfterUpdate(){
-        
-                document.getElementById('testOutput').innerHTML = "Login";
-                //var menuState = document.getElementById('dropdownMenu');
-                //menuState.style.visibility = 'hidden';
-                sessionStorage.clear();
-                //$('.dropdown-menu').toggleClass('hide');
-                //$('body').css('overflow-y', 'auto');
-                //$('body').css('overflow-x', 'hidden');
-                //alert("logged out successfully!");
-                //window.location.assign('mainPage.php');
-                //document.getElementById('loginStatusMsg').style.display = 'none';
-                document.getElementById('loginStatusMsg').style.display = 'none';
-                state = 'false';
-            
+
+        function logoutAfterUpdate() {
+
+            document.getElementById('testOutput').innerHTML = "Login";
+            //var menuState = document.getElementById('dropdownMenu');
+            //menuState.style.visibility = 'hidden';
+            sessionStorage.clear();
+            //$('.dropdown-menu').toggleClass('hide');
+            //$('body').css('overflow-y', 'auto');
+            //$('body').css('overflow-x', 'hidden');
+            //alert("logged out successfully!");
+            //window.location.assign('mainPage.php');
+            //document.getElementById('loginStatusMsg').style.display = 'none';
+            document.getElementById('loginStatusMsg').style.display = 'none';
+            state = 'false';
+
 
         }
 
@@ -858,11 +880,11 @@
             });
 
         }
-        
+
 
 
         function password_validate(password) {
-            
+
             var letter_lower = 'abcdefghijklmnopqrstuvwxyz';
             console.log(letter_lower);
             var letter_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -873,16 +895,16 @@
             var numCount = 0;
             var spchrCount = 0;
             var valid = true;
-            
+
             var pass_err = "Your password is not strong enough! The following errors were found:\n";
-            
+
             for (var i = 0; i < password.length; i++) {
                 if (letter_upper.includes(password[i])) {
                     upperCount += 1;
                 }
                 if (letter_lower.includes(password[i])) {
                     lowerCount += 1;
-                } 
+                }
                 if (numbers.includes(password[i])) {
                     numCount += 1;
                 }
@@ -890,42 +912,41 @@
                     spchrCount += 1;
                 }
             }
-            
-            if (password.length < 12) {
-                pass_err = pass_err.concat("-Password must be at least 12 characters.\n");
+
+            if (password.length < 8) {
+                pass_err = pass_err.concat("-Password must be at least 8 characters.\n");
                 valid = false;
             }
-            
+
             if (upperCount < 1) {
                 pass_err = pass_err.concat("-No uppercase letters.\n");
                 valid = false;
             }
-            
+
             if (lowerCount < 1) {
                 pass_err = pass_err.concat("-No lowercase letters.\n");
                 valid = false;
             }
-            
+
             if (spchrCount < 1) {
                 pass_err = pass_err.concat("-No special letters.\n");
                 valid = false;
             }
-            
+
             if (!valid) {
                 return pass_err;
-            }
-            else {
+            } else {
                 return "ok";
             }
-            
+
         }
-        
-         $('#profileCloseButton').click(function (e) {
-                e.preventDefault();
-                $('body').css('overflow-y', 'auto');
-                document.getElementById('updateStatusMsg').style.display = 'none';
-                
-                
+
+        $('#profileCloseButton').click(function (e) {
+            e.preventDefault();
+            $('body').css('overflow-y', 'auto');
+            document.getElementById('updateStatusMsg').style.display = 'none';
+
+
         });
 
 

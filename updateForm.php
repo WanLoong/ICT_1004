@@ -6,7 +6,8 @@ if (isset($_POST['updateFrmSubmit']) && !empty($_POST['name']) && !empty($_POST[
     // Submitted form data
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    //$password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $confPassword = $_POST['confPassword'];
     $type  = $_POST['userType'];
     $userID = $_POST['userId'];
