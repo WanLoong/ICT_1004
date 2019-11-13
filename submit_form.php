@@ -76,8 +76,7 @@ if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST
             $success = false;
         }
     }
-    $result->free_result();
-    unset($row);
+
     $conn->close();
     
     echo $status;
