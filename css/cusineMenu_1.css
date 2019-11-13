@@ -189,7 +189,7 @@ label {
     border: none;
 }
 
-.containbody p{
+.containbody p, .modal-body input{
     margin-right: 20px;
     margin-left: 20px;
 }

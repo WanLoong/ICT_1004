@@ -42,16 +42,19 @@ if($result->num_rows > 0)
         $dynamicTable .= '                  <img src="images/' . $id . '.JPG" alt="'. $productName .'" >';
         $dynamicTable .= '                  <p>'. $productDesc .'</p>';
         $dynamicTable .= '              </section>';
+        if(isset($_SESSION["user"]))
+        {
+            $dynamicTable .= '                  <form id = "addToCart" name = "addToCart" method="post" action="cuisinesKQ">';
+            $dynamicTable .= '                    <input type="number" name="quantity" id="quantity"min="1" max="5" value="1"/>';  
+        }
         $dynamicTable .= '          </div>';
         $dynamicTable .= '          <div class="modal-footer">';
         if(isset($_SESSION["user"]))
         {
-        $dynamicTable .= '                  <form id = "addToCart" name = "addToCart" method="post" action="cuisinesKQ">';
         $dynamicTable .= '                    <input type="hidden" name="pid" id="pid" value="' . $id . '"/>';
         $dynamicTable .= '                    <input type="hidden" name="pname" id="pname" value="' . $productName . '"/>'; 
         $dynamicTable .= '                    <input type="hidden" name="pdesc" id="pdesc" value="' . $productDesc . '"/>';
         $dynamicTable .= '                    <input type="hidden" name="price" id="price" value="' . $price . '"/>'; 
-        $dynamicTable .= '                    <input type="number" name="quantity" id="quantity"min="1" max="5" value="1"/>';  
         $dynamicTable .= '                    <input type="submit" class="btn btn-info btn-default" name="button" value="Add to Shopping Cart"/>';
         $dynamicTable .= '                  </form>';       
         }

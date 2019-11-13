@@ -14,7 +14,8 @@ if(isset($_POST["pid"]))
     $productDesc = sanitize_input($_POST["pdesc"]);
     $price = sanitize_input($_POST["price"]);
     $qtn = sanitize_input($_POST["quantity"]);
-
+    $i = 0;
+    
     $found = false;
     if(!isset($_SESSION["cart_array"])||count($_SESSION["cart_array"])<1)
     {
@@ -24,10 +25,12 @@ if(isset($_POST["pid"]))
     {
         foreach($_SESSION["cart_array"] as $eachitem)
         {
+            $i++;
             while(list($key,$value)=each($eachitem))
             {
                 if($key == "product_id" && $value == $pid)
                 {
+                    array_splice($_SESSION['cart_array'], $i-1, 1, array(array("product_id"=>$pid, "productName"=>$productName, "productDesc"=>$productDesc, "price"=>$price, "quantity"=>$eachitem["quantity"] + $qtn)));
                     $found = true;
                 }
             }
