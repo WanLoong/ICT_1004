@@ -123,8 +123,9 @@ function sanitize_input($data)
 } 
         
 /** Helper function to write the data to the DB*/
-global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $name;
+global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $name, $status;
 // Create connection
+$status = "processing";
 $i=0;
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 //Check connection
@@ -139,22 +140,27 @@ else
 {
     if(isset($_SESSION["cart_array"]))
     {        
-        foreach($_SESSION["cart_array"] as $eachitem)
+        foreach($_SESSION["cart_array"] as $eachitem )
         {
-            print_r($eachitem);
-            $i++;
+
+         $i++;
         $pid = $eachitem['product_id'];
         $productName = $eachitem['productName'];
         $price = $eachitem['price'];
         $quantity = $eachitem['quantity'];
-        $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased)";
-        $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$name')";
+        
+        $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status)";
+        $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$fname','$status')";
+        if ($conn->query($sql) === TRUE) {
+        echo "";
+        } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+}
+        
         }
+        
      }
-     if ($conn->query($sql)){
-            $errorMsg = "Database error: " . $conn->error;
-            $success = false;
-    } 
+     
 }
 $conn->close();  
 ?>
