@@ -1,5 +1,14 @@
+
+
 <?php
 session_start();
+
+if(!isset($_SESSION["user"]))
+{
+    session_destroy();
+    header("location: mainPage");
+}
+
     include "connectmysql.php";
    
      $name = $email = $pwd = $city = $address = $state = $zip = $cname = $cnum = $expmonth = $expyear = $cvv = "";
@@ -180,6 +189,7 @@ if(isset($_POST["index"]))
             }
         }
     }
+
 }
 ?>
 
@@ -190,6 +200,15 @@ if($i<=0)
     $checkoutbtn = '';
 }
 ?>
+
+
+$conn->close();
+
+}
+
+?>
+
+<html>
 
 <head>
         <title>Welcome To Guilty Pleasures!</title>

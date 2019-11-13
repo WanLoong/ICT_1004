@@ -189,7 +189,7 @@ label {
     border: none;
 }
 
-.containbody p, .modal-body input{
+.containbody p, .modal-body #quantity{
     margin-right: 20px;
     margin-left: 20px;
 }

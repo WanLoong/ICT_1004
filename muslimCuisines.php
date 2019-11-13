@@ -45,7 +45,7 @@ if($result->num_rows > 0)
         if(isset($_SESSION["user"]))
         {
             $dynamicTable .= '                  <form id = "addToCart" name = "addToCart" method="post" action="cuisinesKQ">';
-            $dynamicTable .= '                    <input type="number" name="quantity" id="quantity"min="1" max="5" value="1"/>';  
+            $dynamicTable .= '                    <input type="number" name="quantity" id="quantity" min="1" max="5" value="1"/>';  
         }
         $dynamicTable .= '          </div>';
         $dynamicTable .= '          <div class="modal-footer">';
