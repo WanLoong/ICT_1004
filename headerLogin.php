@@ -699,7 +699,7 @@
                         u_userID  = dataString.split('#').pop().split('%')[0];
                         $('#up_username').val(u_username);
                         $('#up_email').val(u_email);
-                        $('#up_password').val(u_password);
+                        //$('#up_password').val(u_password);
                         
                         //$('#userDetail').html(data);
                     }
@@ -714,16 +714,16 @@
                     //data: ({user_name:user_name}),
                     success: function (dataString) {
                         console.log(dataString);
-                        u_username = dataString.split('0').pop().split('1')[0];
+                        u_username = dataString.split('{').pop().split('}')[0];
                         console.log(u_username);
-                        u_email = dataString.split('1').pop().split('2')[0];
+                        u_email = dataString.split('}').pop().split('[')[0];
                         console.log(u_email);
-                        u_password = dataString.split('2').pop().split('#')[0];
+                        u_password = dataString.split('[').pop().split(']')[0];
                         console.log(u_password);
-                        u_userID  = dataString.split('#').pop().split('%')[0];
+                        u_userID  = dataString.split(']').pop().split('}')[0];
                         $('#up_username').val(u_username);
                         $('#up_email').val(u_email);
-                        $('#up_password').val(u_password);
+                        //$('#up_password').val(u_password);
                         
                        // $('#userDetail').html(data);
                     }
