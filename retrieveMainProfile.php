@@ -27,7 +27,7 @@ if (isset($_POST['retrieveMainFormSubmit']) && !empty($_POST['name'])) {
             // one row in the result set.
             $row = $result->fetch_assoc();
 
-            $output .= '<h4 class="m-y-2" id="editUser" style="font-weight:bold;">Welcome, '.$row["username"].' ! To Guilty Pleasures!</h4>';
+            $output .= '<h4 class="m-y-2" id="editUser" style="font-weight:bold;">Welcome, '.$row["username"].' !</h4>';
         }
         echo $output;
         

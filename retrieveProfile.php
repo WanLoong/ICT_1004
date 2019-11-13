@@ -59,15 +59,15 @@ if (isset($_POST['retrieveFormSubmit']) && !empty($_POST['name'])) {
                                 </div>';*/
         }
         //echo $output;
-        echo '0';
+        echo '{';
         echo $u_username;
-        echo '1';
+        echo '}';
         echo $u_email;
-        echo '2';
+        echo '[';
         echo $u_password;
-        echo '#';
+        echo ']';
         echo $u_userId;
-        echo '%';
+        echo '|';
         
     } 
 }
