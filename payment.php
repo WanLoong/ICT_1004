@@ -39,9 +39,7 @@ if(isset($_SESSION["cart_array"])){
 
 ?>
 
-<?php
-   
-?>
+
 <?php
 if(isset($_POST["index"]))
 {
@@ -101,7 +99,7 @@ if($i<=0)
                         <div class="col-50">
                             <h3>Billing Address</h3>
                                 <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                                <input type="text" id="fname" name="firstname" pattern="[A-Za-z].{5,}" placeholder="John M. Doe">
+                                <input type="text" id="fname" name="firstname" pattern="[A-Za-z].{5,}" placeholder="John M. Doe" >
                                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
                                 <input type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="john@example.com">
                                 <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
