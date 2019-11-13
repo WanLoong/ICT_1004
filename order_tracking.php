@@ -221,17 +221,7 @@
             <h1>Order Tracking</h1>
             <table>
             <?php
-                $servername = "161.117.122.252";
-                $username = "p5_6";
-                $password = "BKDEzs6TDN";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password);
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("<h1>Connection failed: " . $conn->connect_error . "</h1>");
-                }
+                include "connectmysql.php";
                 
                 //REPLACE  "user" WITH "user_gp" FOR FINAL SUBMISSION
                 //ALSO NEED TO FIND TABLE WITH ALL THE PRODUCTS. AS A PLACEHOLDER, IT IS CURRENTLY "cuisines"

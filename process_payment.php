@@ -1,3 +1,5 @@
+
+
 <?php
     include "connectmysql.php";
      $name = $email = $pwd = $city = $address = $state = $zip = $cname = $cnum = $expmonth = $expyear = $cvv = "";
@@ -157,7 +159,7 @@ $conn->close();
 
 ?>
 
-
+<html>
 <head>
         <title>Welcome To Guilty Pleasures!</title>
         <meta charset="UTF-8">
