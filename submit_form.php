@@ -4,9 +4,9 @@
 if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['email']) && (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) && !empty($_POST['password']) && !empty($_POST['confPassword'])&& !empty($_POST['userType'])) {
 
     // Submitted form data
-    $name = $_POST['name'];
+    $name =  $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $confPassword = $_POST['confPassword'];
     $type  = $_POST['userType'];
     $success = true;
@@ -60,7 +60,7 @@ if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST
     $conn = new mysqli($serverName, $usernameDB, $passwordDB);
     // Check connection
     if ($conn->connect_error) {
-        echo '<p>connection failed</p>';
+        header("location:dbError");
         //console.log("connection failed");
         //$errorMsg = "Connection failed: " . $conn->connect_error;
         $success = false;
@@ -70,12 +70,14 @@ if (isset($_POST['contactFrmSubmit']) && !empty($_POST['name']) && !empty($_POST
         $status = 'ok';
         //echo '<p>connection passed</p>';
         // Execute the query
-        
+      //  $salt = substr(base_convert(sha1(uniqid(mt_rand())),16,36), 0, 14);
         if (!$conn->query($sql)) {
             $errorMsg = "Database error: " . $conn->error;
             $success = false;
         }
     }
+    $result->free_result();
+    unset($row);
     $conn->close();
     
     echo $status;

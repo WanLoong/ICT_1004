@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION["user"]))
 {
-    header("location:mainPage.php");
+    header("location:mainPage");
 }
 
 $productDisplay = "";
@@ -48,7 +48,7 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '    <div class="product-price">'. $price .'</div>';
         $productDisplay .= '    <div class="product-quantity">'.$eachitem['quantity'].'</div>';
         $productDisplay .= '    <div class="product-removal">';
-        $productDisplay .= '    <form method="post" action="shoppingCartNel.php">';
+        $productDisplay .= '    <form method="post" action="shoppingCartNel">';
         $productDisplay .= '                    <input type="submit" class="remove-product" name="dltBtn' . $pid . '" id="dltBtn" value="Remove"/>';
         $productDisplay .= '                    <input type="hidden" name="index" value="'. $pid . '" id="index"/>';
         $productDisplay .= '                  </form>'; 
@@ -86,7 +86,7 @@ if(isset($_POST["index"]))
             {
                 unset($_SESSION['cart_array'][$eachitem]);
                 $i--;
-                header("location:shoppingCartNel.php");
+                header("location:shoppingCartNel");
             }
         }
     }

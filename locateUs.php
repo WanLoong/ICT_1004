@@ -215,7 +215,6 @@
             include "headerLogin.php";
         ?>
         
-        <div class="jumbotron">
             <?php
                 $servername = "161.117.122.252";
                 $username = "p5_6";
@@ -229,26 +228,23 @@
                     die("<h1>Connection failed: " . $conn->connect_error . "</h1>");
                 }
             ?>
-            <button type="button" onclick="display_page();">test</button>
-        </div>
         
-        <div id = "googleMaps" style="width: 100%; height: 500px;"></div>
+        <div id = "googleMaps" style="width: 100%; height: 350px;"></div>
         <!--script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap" type="text/javascript"></script-->
         <?php
-            echo "<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=add_marker' type='text/javascript'></script>";
+            echo "<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap' type='text/javascript'></script>";
             $sql = "SELECT * FROM p5_6.location";
             $result = $conn->query($sql);
             $markers_script = "<script>function myMap() {
                                             var mapProp= {
                                                 center:new google.maps.LatLng(1.3521,103.8198),
-                                                zoom:12,
+                                                zoom:11,
                                                 mapTypeId: google.maps.MapTypeId.HYBRID
                                             };
                                             var map = new google.maps.Map(document.getElementById('googleMaps'),mapProp);";
             $index = 0;
             while($row = $result->fetch_assoc())
             {
-                echo "<p>" . $row['latitude'] . "," . $row['longitude'] . "<p>";
                 $markers_script = $markers_script .  "
     var marker". $index ."_co = new google.maps.LatLng(". $row['latitude'] . "," . $row['longitude'] .");
     var marker" . $index ."= new google.maps.Marker({position: marker". $index ."_co});
@@ -269,7 +265,7 @@
             <?php
                 $region_array = array("North", "South", "East", "West");
                 foreach($region_array as &$region) {
-                    echo "<div class='col-md-3'><h2 style='color: green;'>" . $region . "</h2><hr><ul>";
+                    echo "<div class='col-md-3' id='><h2 style='color: green;'>" . $region . "</h2><hr><ul>";
 
                     $sql = "SELECT * FROM p5_6.location WHERE region='" . $region . "'; ";
                     $result = $conn->query($sql);

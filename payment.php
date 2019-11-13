@@ -54,7 +54,7 @@ if(isset($_POST["index"]))
             {
                 unset($_SESSION['cart_array'][$eachitem]);
                 $i--;
-                header("location:shoppingCartNel.php");
+                header("location:shoppingCartNel");
             }
         }
     }
@@ -87,24 +87,16 @@ if($i<=0)
 
 </head>
 <body>
-    <div id="mySidepanel" class="sidepanel">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <!--<a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Home</a>-->
-        <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
-        <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
-        <!--<a href="#" style="font-family: Times, Times New Roman, serif">Locations</a>-->
-        <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
-    </div>
         
     <?php 
-        include "header.php";
+        include "headerLogin.php";
     ?>   
 
 
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form action="/action_page.php">
+                <form action="action_page">
                     <div class="row">
                         <div class="col-50">
                             <h3>Billing Address</h3>

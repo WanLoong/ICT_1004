@@ -1,19 +1,11 @@
 <?php
 
-define("DBHOST", "161.117.122.252");
-define("DBNAME", "p5_6");
-define("DBUSER", "p5_6");
-define("DBPASS", "BKDEzs6TDN");
 
-$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+include "connectmysql.php";
+
 session_start();
 
-if ($conn->connect_error)
-{
-    $_SESSION['dberror']=$conn->connect_error;
-    header('Location:dbError.php');
 
-}
 
 if(isset($_POST["pid"]))
 {
@@ -169,3 +161,9 @@ and open the template in the editor.
 
 
 </html>
+
+<?php
+unset($row);
+$result->free_result();
+$conn->close();
+?>

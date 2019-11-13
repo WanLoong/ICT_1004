@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="mainPage.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="mainPage">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" style="padding-right: 40px;">
@@ -44,7 +44,7 @@
             <?php
             if(isset($_SESSION["user"]))
             {
-             echo ' <a id="shoppingCartButton" href="shoppingCartNel.php" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>';      
+             echo ' <a id="shoppingCartButton" href="shoppingCartNel" style="padding-left: 10px; padding-right: 10px; color: gray;"><i class="fas fa-shopping-cart"></i></a>';      
             }
             ?>
             <!-- Log In Modal -->
@@ -134,22 +134,22 @@
                                 <p class="statusMsg" style="margin-top:12px;"></p>
                                 <div class="md-form" style="margin-top:-8px;">
                                     <i class="fas fa-user prefix grey-text"></i>
-                                    <input type="text" id="inputUsername" class="form-control" >
+                                    <input type="text" required="required" id="inputUsername" class="form-control" >
                                     <label for="inputUsername">Your Username</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fas fa-envelope prefix grey-text"></i>
-                                    <input type="email" id="inputEmail" class="form-control">
+                                    <input type="email" required="required" id="inputEmail" class="form-control">
                                     <label for="inputEmail">Your Email</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fas fa-lock prefix grey-text"></i>
-                                    <input type="password" id="inputPassword" class="form-control">
+                                    <input type="password" required="required" id="inputPassword" class="form-control">
                                     <label for="inputPassword">Your Password</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fas fa-lock prefix grey-text"></i>
-                                    <input type="password" id="inputConfPassword" class="form-control">
+                                    <input type="password" required="required" id="inputConfPassword" class="form-control">
                                     <label for="inputConfPassword">Confirm Password</label>
                                 </div>
                             </form>
@@ -188,7 +188,7 @@
                 {
                     if($_SESSION["user"]=='kq')
                     {
-                        echo'<a href="manageInventory.php" style="font-family: Times, Times New Roman, serif">Inventory</a>';
+                        echo'<a href="manageInventory" style="font-family: Times, Times New Roman, serif">Inventory</a>';
                         echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
                     }
                     else
@@ -197,10 +197,10 @@
                     }
                 }
                 ?>
-                <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">About Us</a>
-                <a href="cuisinesKQ.php" style="font-family: Times, Times New Roman, serif">Cuisines</a>
-                <a href="locateUs.php" style="font-family: Times, Times New Roman, serif">Locations</a>
-                <a href="aboutUsCT.php" style="font-family: Times, Times New Roman, serif">Contact Us</a>
+                <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">About Us</a>
+                <a href="cuisinesKQ" style="font-family: Times, Times New Roman, serif">Cuisines</a>
+                <a href="locateUs" style="font-family: Times, Times New Roman, serif">Locations</a>
+                <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">Contact Us</a>
  
             </div>
 
@@ -258,7 +258,7 @@
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
                 alert("logged out successfully!");  
-                window.location.assign('mainPage.php?reset=1');
+                window.location.assign('mainPage?reset=1');
                 //alert("logged out successfully!");         
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
@@ -275,7 +275,7 @@
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
                 alert("logged out successfully!");
-                window.location.assign('mainPage.php?reset=1');
+                window.location.assign('mainPage?reset=1');
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
             }
@@ -363,6 +363,9 @@
                 alert('Your Passwords Do Not Match.');
                 //$('#inputConfPassword').focus();
                 return false;
+            } else if ((password_validate(password.trim())) != "ok") {
+                  alert(password_validate(password));
+                  return false;
             } else {
                 $.ajax({
                     type: 'POST',
@@ -425,7 +428,7 @@
                     success: function (msgLogin) {
                         console.log(msgLogin);
                         statusMsg = msgLogin.substring(0, 2);
-                        //console.log(statusMsg);
+                        console.log("here" + statusMsg);
                         typeUser = msgLogin.substring(2, 7);
                         console.log(typeUser)
                         if (typeUser == 'admin') {
@@ -435,12 +438,11 @@
                             //document.getElementById('testOutput').innerHTML = userDisplay;
                             sessionStorage.setItem("admin_display", user_name);
                             sessionStorage.setItem("admin_type", typeUser);
-                            window.location.assign('manageInventory.php');
+                            window.location.assign('manageInventory');
                         } else if (typeUser != 'admin') {
                             user_name = msgLogin.substring(6, msgLogin.length);
                             console.log(user_name);
                             userDisplay = "Welcome, " + user_name;
-                            window.location.assign('cuisinesKQ.php');
                             //console.log(user_name);
                             if (statusMsg == 'ok') {
                                 $('#usernameTextBox').val('');
@@ -451,6 +453,7 @@
                                 $('#myModal').modal('hide');
                                 $('body').css('overflow-y', 'auto');
                                 state = 'true';
+                                window.location.assign('cuisinesKQ');
                                 //$('.dropdown-menu').toggleClass('show');
                                 //var us = username;
                                 //console.log(us);
@@ -595,6 +598,64 @@
         }
 
 
+        function password_validate(password) {
+            
+            var letter_lower = 'abcdefghijklmnopqrstuvwxyz';
+            console.log(letter_lower);
+            var letter_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var numbers = '0123456789';
+            var spchr = '~`!@#$%^&*()+=_-{}[]\|:;”’?/<>,.';
+            var upperCount = 0;
+            var lowerCount = 0;
+            var numCount = 0;
+            var spchrCount = 0;
+            var valid = true;
+            
+            var pass_err = "Your password is not strong enough! The following errors were found:\n";
+            
+            for (var i = 0; i < password.length; i++) {
+                if (letter_upper.includes(password[i])) {
+                    upperCount += 1;
+                }
+                if (letter_lower.includes(password[i])) {
+                    lowerCount += 1;
+                } 
+                if (numbers.includes(password[i])) {
+                    numCount += 1;
+                }
+                if (spchr.includes(password[i])) {
+                    spchrCount += 1;
+                }
+            }
+            
+            if (password.length < 12) {
+                pass_err = pass_err.concat("-Password must be at least 12 characters.\n");
+                valid = false;
+            }
+            
+            if (upperCount < 1) {
+                pass_err = pass_err.concat("-No uppercase letters.\n");
+                valid = false;
+            }
+            
+            if (lowerCount < 1) {
+                pass_err = pass_err.concat("-No lowercase letters.\n");
+                valid = false;
+            }
+            
+            if (spchrCount < 1) {
+                pass_err = pass_err.concat("-No special letters.\n");
+                valid = false;
+            }
+            
+            if (!valid) {
+                return pass_err;
+            }
+            else {
+                return "ok";
+            }
+            
+        }
 
 
 
