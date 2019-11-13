@@ -1,19 +1,16 @@
-
-
 <?php
 session_start();
-
 if(!isset($_SESSION["user"]))
 {
     session_destroy();
     header("location: mainPage");
 }
 
-    include "connectmysql.php";
-   
-     $name = $email = $pwd = $city = $address = $state = $zip = $cname = $cnum = $expmonth = $expyear = $cvv = "";
-        $errorMsg = "";
-        $success = true;
+include "connectmysql.php";
+$i=0;
+$name = $email = $city = $address = $state = $zip = $cardname = $cardnum = $expmonth = $expyear = $cvv = "";
+$errorMsg = "";
+$success = true;
         
         
         
@@ -40,50 +37,174 @@ else
 //else 
 //{     
 //    $email = sanitize_input($_POST["email"]); 
-// 
+//}
 //// Additional check to make sure e-mail address is well-formed.     
 //if (!filter_var($email, FILTER_VALIDATE_EMAIL))     
 //{         
 //    $errorMsg .= "Invalid email format.<br>";         
 //    $success = false;     
 //} 
-//} 
+//
 
-/*----------------------------------pwd------------------------------------*/
-//if (empty($_POST["password"])) 
+/*--------------------------------Address------------------------------------*/
+//if (empty($_POST["address"])) 
 //{
-//    $errorMsg .= "Password is required.<br>";     
+//    $errorMsg .= "Address is required.<br>";     
 //    $success = false; 
 //}
-//else
+//else 
+//{     
+//    $address = sanitize_input($_POST["address"]); 
+// 
+//
+//} 
+/*--------------------------------city------------------------------------*/
+//if (empty($_POST["cardname"])) 
 //{
-//    //Add regex check
-//    if (strlen($_POST["password"]) <= 8) {
-//        $errorMsg = "Your Password Must Contain At Least 8 Characters!<br>";
-//        $success = false; 
-//    }
-//    elseif(!preg_match("#[0-9]+#", $_POST["password"])) 
+//    $errorMsg .= "city is required.<br>";     
+//    $success = false; 
+//}
+//else 
+//{     
+//    $city = sanitize_input($_POST["email"]); 
+// 
+//} 
+/*--------------------------------city------------------------------------*/
+//if (empty($_POST["cardname"])) 
+//{
+//    $errorMsg .= "city is required.<br>";     
+//    $success = false; 
+//}
+//else 
+//{     
+//    $city = sanitize_input($_POST["email"]); 
+// 
+//} 
+/*--------------------------------state------------------------------------*/
+//if (empty($_POST["state"])) 
+//{
+//    $errorMsg .= "State is required.<br>";     
+//    $success = false; 
+//}
+//else 
+//{     
+//    $state = sanitize_input($_POST["state"]); 
+// 
+//} 
+/*--------------------------------zip------------------------------------*/
+//if (empty($_POST["zip"])) 
+//{
+//    $errorMsg .= "Zip code is required.<br>";     
+//    $success = false; 
+//}
+//else 
+//{     
+//    $zip = sanitize_input($_POST["zip"]); 
+//     $zipleng = strlen((string)$zip);
+//    if($zipleng == 6) {
+//    // Pass
+//} else {
+//        $errorMsg .= "Zip Code is in wrong format. <br>";
+//        $success = false;
+//    // Fail
+//} 
+// 
+//} 
+/*--------------------------------credit card ------------------------------------*/
+if (empty($_POST["cardnum"])) 
+{
+    $errorMsg .= "Credit Card Number is required.<br>";     
+    $success = false; 
+}
+else 
+{     
+    $cardnum = sanitize_input($_POST["cardnum"]); 
+    $cardtype = array(
+        "visa"       => "/^4[0-9]{12}(?:[0-9]{3})?$/",
+        "mastercard" => "/^5[1-5][0-9]{14}$/",
+        "amex"       => "/^3[47][0-9]{13}$/",
+        "discover"   => "/^6(?:011|5[0-9]{2})[0-9]{12}$/",
+    );
+    if (preg_match($cardtype['visa'],$cardnum))
+    {
+	$type= "Visa";
+        
+	
+    }
+    else if (preg_match($cardtype['mastercard'],$cardnum))
+    {
+	$type= "Mastercard";
+        
+    }
+    else if (preg_match($cardtype['amex'],$cardnum))
+    {
+	$type= "Amex";
+        
+	
+    }
+    else if (preg_match($cardtype['discover'],$cardnum))
+    {
+	$type= "Discover";
+        
+    }
+    else
+    {
+        $errorMsg .= "Invalid Credit Card Number format.<br>";  
+        $success = false; 
+    } 
+    
+ 
+}
+
+
+
+ 
+
+/*--------------------------------exp month------------------------------------*/
+//if (empty($_POST["expmonth"])) 
+//{
+//    $errorMsg .= "Expire Month is required.<br>";     
+//    $success = false; 
+//    if (empty($_POST["expyear"])) 
 //    {
-//        $errorMsg = "Your Password Must Contain At Least 1 Number!<br>";
-//        $success = false; 
-//    }
-//    elseif(!preg_match("#[A-Z]+#", $_POST["password"])) 
-//    {
-//        $errorMsg = "Your Password Must Contain At Least 1 Capital Letter!<br>";
-//        $success = false; 
-//    }
-//    elseif (!preg_match("#[a-z]+#", $_POST["password"]))
-//    {
-//        $errorMsg = "Your Password Must Contain At Least 1 Lowercase Letter!<br>";
-//        $success = false; 
-//    }
-//    else 
-//    {
-//        $pwd = sanitize_input($_POST["password"]);
+//    $errorMsg .= "Expire year is required.<br>";     
+//    $success = false; 
 //    }
 //}
+//else 
+//{     
+//    $expmonth = sanitize_input($_POST["expmonth"]); 
+//    $expyear = sanitize_input($_POST["expyear"]);
+//    $expires = \DateTime::createFromFormat('my',$expmonth.$expyear);
+//    $now     = new \DateTime();
+//    if ($expires < $now) {
+//        $errorMsg .= "This card is expired. <br>";
+//        $success = false;
+//    // expired
+//}
+// 
+//} 
 
-    
+/*-------------------------------cvv------------------------------------*/
+//if (empty($_POST["cvv"])) 
+//{
+//    $errorMsg .= "cvv is required.<br>";     
+//    $success = false; 
+//}
+//else 
+//{     
+//    $cvv = sanitize_input($_POST["cvv"]);
+//    $num_length = strlen((string)$num);
+//    if($num_length == 3) {
+//    // Pass
+//} else {
+//        $errorMsg .= "CVV is in wrong format. <br>";
+//        $success = false;
+//    // Fail
+//} 
+// 
+//} 
+//    
 /*-----------------------------check deliver address---------------------------------*/
 //if(!isset($_POST["sameadr"]) && empty ($_POST["sameadr"]))
 //{
@@ -96,46 +217,16 @@ if ($success)
 {     
     echo "<h4>Your payment is successful!</h4>";
     echo "<p>Thank you for purchasing, " . $fname;
+    echo "<br>";
+    echo $type." ".$cardnum."<P> has be successfully been deducted";
     echo "<br><br>";
     echo '<button type="button" class="btn btn-light"><a href="mainPage"/>Return to Home</a></button>';
-    
-    
-        
-} 
-else 
-{    
-    
-    echo "<link rel='stylesheet' type='text/css' href='css/bootstrap.min.css' />";
-    echo "<link rel='stylesheet' type='text/css' href='css/mycss.css' />";
-    echo '<section id="register_fail">';
-    echo "<h2>Oops!</h2>";
-    echo "<h4>The following input errors were detected:</h4>";    
-    echo "<p>" . $errorMsg . "</p>"; 
-   
-    echo '<section id="payment_button">';
-    echo '<button type="button" class="btn btn-light"><a href="payment"/>Return to payment</a></button>';    
-    echo "</section>";
-    echo "</section>";
-    
-
-    
-} 
- 
-//Helper function that checks input for malicious or unwanted content.
-
-function sanitize_input($data) 
-{   
-    $data = trim($data);   
-    $data = stripslashes($data);   
-    $data = htmlspecialchars($data);   
-    return $data; 
-} 
-        
+            
 /** Helper function to write the data to the DB*/
 global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $name, $status;
 // Create connection
 $status = "processing";
-$i=0;
+
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 //Check connection
 if ($conn->connect_error)
@@ -171,7 +262,39 @@ else
      }
      
 }
-$conn->close();  
+$conn->close(); 
+    
+    
+        
+} 
+else 
+{    
+    
+    echo "<link rel='stylesheet' type='text/css' href='css/bootstrap.min.css' />";
+    echo "<link rel='stylesheet' type='text/css' href='css/mycss.css' />";
+    echo '<section id="register_fail">';
+    echo "<h2>Oops!</h2>";
+    echo "<h4>The following input errors were detected:</h4>";    
+    echo "<p>" . $errorMsg . "</p>"; 
+    echo '<section id="payment_button">';
+    echo '<button type="button" class="btn btn-light"><a href="payment"/>Return to payment</a></button>';    
+    echo "</section>";
+    echo "</section>";
+    
+
+    
+} 
+ 
+//Helper function that checks input for malicious or unwanted content.
+
+function sanitize_input($data) 
+{   
+    $data = trim($data);   
+    $data = stripslashes($data);   
+    $data = htmlspecialchars($data);   
+    return $data; 
+} 
+ 
 ?>
 <?php
 if(isset($_POST["index"]))
@@ -189,26 +312,16 @@ if(isset($_POST["index"]))
             }
         }
     }
-
 }
 ?>
 
 <?php
 if($i<=0)
 {
-    $productDisplay .= '<h1 style="margin-left:50px;">Your Shopping Cart is Empty.</h1>';
+    
     $checkoutbtn = '';
 }
 ?>
-
-
-$conn->close();
-
-}
-
-?>
-
-<html>
 
 <head>
         <title>Welcome To Guilty Pleasures!</title>

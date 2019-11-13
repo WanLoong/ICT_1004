@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if(!isset($_SESSION["user"]))
 {
     session_destroy();
@@ -119,7 +120,7 @@ if($i<=0)
                                 </div>
                                 <div class="col-50">
                                 <label for="zip">Zip</label>
-                                <input type="text" id="zip" name="zip" placeholder="10001">
+                                <input type="text" id="zip" name="zip" placeholder="10001" maxlength="6"ax>
                                 </div>
                             </div>
                         </div>
@@ -136,17 +137,17 @@ if($i<=0)
                         <label for="cname">Name on Card</label>
                         <input type="text" id="cname" name="cardname" placeholder="John More Doe">
                         <label for="ccnum">Credit card number</label>
-                        <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                        <input type="text" id="ccnum" name="cardnum" placeholder="1111222233334444">
                         <label for="expmonth">Exp Month</label>
-                        <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                        <input type="text" id="expmonth" name="expmonth" placeholder="08">
                         <div class="row">
                             <div class="col-50">
                                 <label for="expyear">Exp Year</label>
-                                <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                <input type="text" id="expyear" name="expyear" placeholder="19">
                             </div>
                             <div class="col-50">
                                 <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" name="cvv" placeholder="352">
+                                <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3"ax>
                             </div>
                         </div>
                     </div>
