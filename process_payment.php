@@ -227,17 +227,18 @@ global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $nam
 // Create connection
 $status = "processing";
 
-$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+//$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 //Check connection
-if ($conn->connect_error)
-{
-    $errorMsg = "Connection failed: " . 
-    $conn->connect_error;
-    $success = false;
+//if ($conn->connect_error)
+//{
+ //   $errorMsg = "Connection failed: " . 
+ //   $conn->connect_error;
+ //   $success = false;
 
-}
-else
-{
+//}
+//else
+//{
+$u_purchased = $_SESSION['user'];
     if(isset($_SESSION["cart_array"]))
     {        
         foreach($_SESSION["cart_array"] as $eachitem )
@@ -250,18 +251,29 @@ else
         $quantity = $eachitem['quantity'];
         
         $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status)";
-        $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$fname','$status')";
-        if ($conn->query($sql) === TRUE) {
+        $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$u_purchased','$status')";
+        if ($conn->query($sql) == TRUE) {
         echo "";
         } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
 }
-        
+        $sql = "SELECT product_quantity FROM p5_6.product_table WHERE product_name='$productName'";
+        $result = $conn->query($sql);
+        if($result -> num_rows > 0)
+        {
+            $row = $result -> fetch_assoc();
+            $cart_quant = $row["product_quantity"];
+            $new_cart_quant = $cart_quant - $quantity;
+        }
+        $sql = "UPDATE p5_6.product_table SET product_quantity='$new_cart_quant' WHERE product_name='$productName'";
+        $result = $conn->query($sql);
         }
         
      }
+     unset($_SESSION["cart_array"]);
      
-}
+//}
+unset($row);
 $conn->close(); 
     
     

@@ -1,6 +1,6 @@
 <?php
 //submit_form.php
-session_start();
+
 if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['password'])) {
 
     // Submitted form data
@@ -36,6 +36,7 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
                 $row = $result->fetch_assoc();
                 if(password_verify($password, $row['password']))
                 {
+                    session_start();
                     $user_name = $row["username"];
                     $user_type = $row["type"];
                     $_SESSION["user"] = $user_name;
@@ -60,7 +61,6 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
     echo $statusLogin;
     echo $user_type;
     echo $user_name;
-    
     
     //
     //console.log($username);

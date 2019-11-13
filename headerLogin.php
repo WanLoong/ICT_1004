@@ -1,3 +1,4 @@
+
 <style>
     .nav-tabs .nav-link.active{
         background-color: #f9f9f9;
@@ -5,12 +6,12 @@
     }
     .md-form {
         margin-bottom: 8px;
-    }
+    }$
 
 </style>
 <body onload="setDisplay()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
+        
         <a class="navbar-brand" href="#" onclick="openNav()" style="font-family: Snell Roundhand; font-size: 29px;"><i class="fa fa-bars bars" id="navMenuButton"></i>Guilty Pleasures</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -432,7 +433,7 @@
 
         $("#loginButton").click(function () {
             $(this).data('clicked', true);
-            console.log(state);
+      //      console.log(state);
 
             if (state == 'true') {
                 //$('body').css('overflow-y', 'auto');
@@ -647,7 +648,7 @@
                         $('.modal-body').css('opacity', '.5');
                     },
                     success: function (msg) {
-                        console.log(msg);
+       //                 console.log(msg);
                         if (msg == 'ok') {
                             $('#inputUsername').val('');
                             $('#inputEmail').val('');
@@ -687,7 +688,7 @@
             var userId = u_userID;
             //var test = ''
             //alert(userType);
-            console.log(userId);
+         //   console.log(userId);
             if (name.trim() == '') {
                 alert('Please Enter Your Username.');
                 $('#up_username').focus();
@@ -727,7 +728,7 @@
                         $('.modal-body').css('opacity', '.5');
                     },
                     success: function (msg) {
-                        console.log(msg);
+           //             console.log(msg);
                         if (msg == 'ok') {
                             $('#up_username').val('');
                             $('#up_email').val('');
@@ -749,7 +750,7 @@
         }
         
         function updateAdminContactForm() {
-            console.log('here');
+  //          console.log('here');
             var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
             var name = $('#upA_username').val();
             var email = $('#upA_email').val();
@@ -759,7 +760,7 @@
             var userId = u_userID;
             //var test = ''
             //alert(userType);
-            console.log(userId);
+   //         console.log(userId);
             if (name.trim() == '') {
                 alert('Please Enter Your Username.');
                 $('#upA_username').focus();
@@ -799,7 +800,7 @@
                         $('.modal-body').css('opacity', '.5');
                     },
                     success: function (msg) {
-                        console.log(msg);
+               //         console.log(msg);
                         if (msg == 'ok') {
                             $('#upA_username').val('');
                             $('#upA_email').val('');
@@ -825,10 +826,10 @@
 
             //var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
             var name = $('#usernameTextBox').val();
-            console.log(name);
+   //         console.log(name);
             //var email = $('#inputEmail').val();
             var password = $('#passwordTextBox').val();
-            console.log(password);
+     //       console.log(password);
             //var confPassword = $('#inputConfPassword').val();
             //var userType = type;
             //alert(userType);
@@ -852,15 +853,15 @@
                         $('.modal-body').css('opacity', '.5');
                     },
                     success: function (msgLogin) {
-                        console.log(msgLogin);
+           //             console.log(msgLogin);
                         statusMsg = msgLogin.substring(0, 2);
-                        console.log("here" + statusMsg);
+            //            console.log("here" + statusMsg);
                         typeUser = msgLogin.substring(2, 7);
-                        console.log(typeUser)
+              //          console.log(typeUser)
                         if (typeUser == 'admin') {
                             user_name = msgLogin.substring(7, msgLogin.length);
                             //sessionStorage.setItem("a_username", user_name);
-                            console.log(user_name);
+                //            console.log(user_name);
                             //userDisplay = "Welcome, " + user_name;
                             //document.getElementById('testOutput').innerHTML = userDisplay;
                             sessionStorage.setItem("admin_display", user_name);
@@ -869,7 +870,7 @@
                         } else if (typeUser != 'admin') {
                             user_name = msgLogin.substring(6, msgLogin.length);
                             sessionStorage.setItem("r_username", user_name);
-                            console.log(user_name);
+               //             console.log(user_name);
                             userDisplay = "Welcome, " + user_name;
                             //console.log(user_name);
                             if (statusMsg == 'ok') {
@@ -902,7 +903,7 @@
         }
 
         function retrieveProfile() {
-            console.log('rcalled');
+   //         console.log('rcalled');
             if (user_name != '') {
                 $.ajax({
                     type: 'POST',
@@ -910,13 +911,13 @@
                     data: 'retrieveFormSubmit=1&name=' + user_name,
                     //data: ({user_name:user_name}),
                     success: function (dataString) {
-                        console.log(dataString);
+     //                   console.log(dataString);
                         u_username = dataString.split('{').pop().split('}')[0];
-                        console.log(u_username);
+       //                 console.log(u_username);
                         u_email = dataString.split('}').pop().split('[')[0];
-                        console.log(u_email);
+         //               console.log(u_email);
                         u_password = dataString.split('[').pop().split(']')[0];
-                        console.log(u_password);
+           //             console.log(u_password);
                         u_userID = dataString.split(']').pop().split('|')[0];
                         $('#up_username').val(u_username);
                         $('#up_email').val(u_email);
@@ -927,20 +928,20 @@
                 });
             } else {
                 rUserName = sessionStorage.getItem("r_username");
-                console.log(rUserName);
+   //             console.log(rUserName);
                 $.ajax({
                     type: 'POST',
                     url: 'retrieveProfile.php',
                     data: 'retrieveFormSubmit=1&name=' + rUserName,
                     //data: ({user_name:user_name}),
                     success: function (dataString) {
-                        console.log(dataString);
+     //                   console.log(dataString);
                         u_username = dataString.split('{').pop().split('}')[0];
-                        console.log(u_username);
+       //                 console.log(u_username);
                         u_email = dataString.split('}').pop().split('[')[0];
-                        console.log(u_email);
+         //               console.log(u_email);
                         u_password = dataString.split('[').pop().split(']')[0];
-                        console.log(u_password);
+           //             console.log(u_password);
                         u_userID = dataString.split(']').pop().split('|')[0];
                         $('#up_username').val(u_username);
                         $('#up_email').val(u_email);
@@ -956,12 +957,12 @@
         }
         
          function retrieveAdminProfile() {
-            console.log('rcalled');
-            console.log(checkTypeUser);
+      //      console.log('rcalled');
+       //     console.log(checkTypeUser);
             
             if (checkTypeUser == 'admin') {
                 aUsername = sessionStorage.getItem("admin_display");
-                console.log(aUsername);
+         //       console.log(aUsername);
                 $.ajax({
                     type: 'POST',
                     url: 'retrieveProfile.php',
@@ -970,11 +971,11 @@
                     success: function (dataString) {
                         //console.log(dataString);
                         u_username = dataString.split('{').pop().split('}')[0];
-                        console.log(u_username);
+           //             console.log(u_username);
                         u_email = dataString.split('}').pop().split('[')[0];
-                        console.log(u_email);
+             //           console.log(u_email);
                         u_password = dataString.split('[').pop().split(']')[0];
-                        console.log(u_password);
+               //         console.log(u_password);
                         u_userID = dataString.split(']').pop().split('|')[0];
                         $('#upA_username').val(u_username);
                         $('#upA_email').val(u_email);
@@ -990,8 +991,8 @@
         }
 
         function retrieveMainProfile() {
-            console.log('rcalled');
-            console.log(user_name);
+          //  console.log('rcalled');
+           // console.log(user_name);
             if (user_name != '') {
                 $.ajax({
                     type: 'POST',
@@ -999,20 +1000,20 @@
                     data: 'retrieveMainFormSubmit=1&name=' + user_name,
                     //data: ({user_name:user_name}),
                     success: function (data) {
-                        console.log(data);
+             //           console.log(data);
                         $('#welcomeProfile').html(data);
                     }
                 });
             } else {
                 rUserName = sessionStorage.getItem("r_username");
-                console.log(rUserName);
+               // console.log(rUserName);
                 $.ajax({
                     type: 'POST',
                     url: 'retrieveMainProfile.php',
                     data: 'retrieveMainFormSubmit=1&name=' + rUserName,
                     //data: ({user_name:user_name}),
                     success: function (data) {
-                        console.log(data);
+              //          console.log(data);
                         $('#welcomeProfile').html(data);
                     }
                 });
@@ -1042,7 +1043,7 @@
 
         function menuProfileClicked() {
 
-            console.log("test");
+        //    console.log("test");
             //$('.dropdown-menu').toggleClass('hide');
             var menuState = document.getElementById('dropdownMenu');
             menuState.style.visibility = 'hidden';
@@ -1055,8 +1056,11 @@
         function setDisplay() {
             //alert('hi');
             //console.log("loaded");
+        //    sid = document.getElementById("session_value").value;
+         //   console.log(sid);
+        //    sessionStorage.setItem("user_display", sid);
             Display = sessionStorage.getItem("user_display");
-            //console.log(Display);
+         //   console.log(Display);
             if (Display == null) {
                 document.getElementById('testOutput').innerHTML = "Login";
                 state = 'false';
@@ -1077,7 +1081,7 @@
             //alert('hi');
             //console.log("loaded");
             adminDisplay = sessionStorage.getItem("admin_display");
-            console.log(adminDisplay);
+        //    console.log(adminDisplay);
             if (adminDisplay != null) {
                 document.getElementById('testOutput').innerHTML = "Welcome, " + adminDisplay;
                 state = 'true';
@@ -1118,7 +1122,7 @@
         function password_validate(password) {
 
             var letter_lower = 'abcdefghijklmnopqrstuvwxyz';
-            console.log(letter_lower);
+       //     console.log(letter_lower);
             var letter_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             var numbers = '0123456789';
             var spchr = '~`!@#$%^&*()+=_-{}[]\|:;”’?/<>,.';
