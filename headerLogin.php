@@ -232,7 +232,7 @@
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label form-control-label editLabel"></label>
                                                 <div class="col-lg-9">
-                                                    <input type="reset" class="btn btn-secondary" value="Cancel">
+                                                    <!--<input type="reset" class="btn btn-secondary" value="Cancel">-->
                                                     <input type="button" class="btn btn-primary" id="updateButton" value="Save Changes">
                                                 </div>
                                             </div>
