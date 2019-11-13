@@ -1,5 +1,20 @@
 <!DOCTYPE html>
-<?php session_start();?>
+<?php session_start();
+if(!isset($_SESSION['user']))
+{
+    session_destroy();
+    header("location:mainPage");
+}
+else
+{
+    if($_SESSION["user"] == "kq")
+    {
+        header("location:mainPage");
+    }
+}
+
+
+;?>
 <html>
      <head>
         <title>Order Tracking</title>
