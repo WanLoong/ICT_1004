@@ -265,7 +265,7 @@
             <?php
                 $region_array = array("North", "South", "East", "West");
                 foreach($region_array as &$region) {
-                    echo "<div class='col-md-3' id='><h2 style='color: green;'>" . $region . "</h2><hr><ul>";
+                    echo "<div class='col-md-3' id=''><h2 style='color: green;'>" . $region . "</h2><hr><ul>";
 
                     $sql = "SELECT * FROM p5_6.location WHERE region='" . $region . "'; ";
                     $result = $conn->query($sql);
