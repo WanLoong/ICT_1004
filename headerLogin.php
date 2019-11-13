@@ -36,7 +36,7 @@
                 <a id="loginButton" href="#" style="padding-right: 10px; color: gray;" role="button" id="dropdownMenuLink"><i class="fas fa-user"></i> <span id="testOutput">Login</span></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="dropdownMenu">
                     <!--<a class="dropdown-item" href="#">View Profile</a>-->
-                    <a class="dropdown-item" href="" id="viewProfileButton" data-toggle="modal" data-target="#profileModal" onclick="menuProfileClicked()">View Profile</a>
+                    <a class="dropdown-item" href="" id="viewProfileButton" data-toggle="modal">View Profile</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
 
@@ -247,6 +247,75 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Admin profile Modal-->
+            
+            <div class="modal fade" id="adminProfileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100" style="color: #26bf83;"></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="adminProfileCloseButton">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+
+                            <div class="col-lg-12 push-lg-4" id="innerForm">
+                               
+                                <div class="tab-content p-b-3">
+                                    
+                                   
+                                  
+                                        <h4 class="m-y-2" id="editProfile" style="margin-bottom:20px;font-weight: bold;margin-top:15px;">Edit Profile</h4>
+                                        <form role="form">
+
+                                            <p class="adminUpdateStatusMsg" style="margin-top:12px;" id="adminUpdateStatusMsg"></p>
+
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label editLabel">Username:</label>
+                                                <div class="col-lg-9">
+                                                    <input class="form-control" id="upA_username" type="text" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label editLabel">Email:</label>
+                                                <div class="col-lg-9">
+                                                    <input class="form-control" id="upA_email" type="text" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label editLabel">Password:</label>
+                                                <div class="col-lg-9">
+                                                    <input class="form-control" id="upA_password" type="password" value="" placeholder="Enter new password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label editLabel">Confirm Password:</label>
+                                                <div class="col-lg-9">
+                                                    <input class="form-control" type="password" value="" id="upA_confPassword" placeholder="Confirm new password">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-lg-3 col-form-label form-control-label editLabel"></label>
+                                                <div class="col-lg-9">
+                                                    <input type="reset" class="btn btn-secondary" value="Cancel">
+                                                    <input type="button" class="btn btn-primary" id="adminUpdateButton" value="Save Changes">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="modal-footer d-flex justify-content-center">
+                            <button class="btn submitBtn" id="signUpButton" style="background: lightgray;margin-bottom: 4px;">Sign up!</button>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
 
             <!--Sign Up Modal-->
             <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -355,6 +424,7 @@
         var checkTypeUser = '';
         //var menuState;
         var status = '';
+        var aUsername = '';
 
 
 
@@ -427,6 +497,40 @@
             //alert(type);
 
         });
+        
+        $("#viewProfileButton").click(function () {
+            checkTypeUser = sessionStorage.getItem("admin_type");
+            if (checkTypeUser == 'admin') {
+                $(this).data('clicked', true);
+                $("#adminProfileModal").modal();
+                var menuState = document.getElementById('dropdownMenu');
+                menuState.style.visibility = 'hidden';
+                retrieveAdminProfile();
+                //retrieveMainProfile();
+                //retrieveProfile();
+
+
+
+            } else if (checkTypeUser != 'admin') {
+                $(this).data('clicked', true);
+                $("#profileModal").modal();
+                var menuState = document.getElementById('dropdownMenu');
+                menuState.style.visibility = 'hidden';
+                retrieveMainProfile();
+                retrieveProfile();
+
+            }
+
+
+
+            //alert('hi');
+            //submitContactForm(type);
+            //processLogin();
+            //type = 'admin';
+            //alert(type);
+
+        });
+
 
 
         $("#loginSubmitButton").click(function () {
@@ -474,6 +578,19 @@
             //updateContactForm(type);
             //update();
             updateContactForm(type)
+
+            //type = 'admin';
+            //alert(type);
+
+        });
+        
+        $("#adminUpdateButton").click(function () {
+            $(this).data('clicked', true);
+            //alert('hi');
+            //submitContactForm(type);
+            //updateContactForm(type);
+            //update();
+            updateAdminContactForm();
 
             //type = 'admin';
             //alert(type);
@@ -594,6 +711,9 @@
                 alert('Your Passwords Do Not Match.');
                 //$('#inputConfPassword').focus();
                 return false;
+            } else if ((password_validate(password.trim())) != "ok") {
+                alert(password_validate(password));
+                return false;
             } else {
                 $.ajax({
                     type: 'POST',
@@ -615,6 +735,7 @@
                             $('.updateStatusMsg').html('<span style="color:green;">Updated Successfully!</p>');
                             logoutAfterUpdate();
                         } else {
+                            document.getElementById('updateStatusMsg').style.display = 'block';
                             $('.statusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
                         }
                         $('.submitBtn').removeAttr("disabled");
@@ -624,6 +745,79 @@
                 });
             }
         }
+        
+        function updateAdminContactForm() {
+            console.log('here');
+            var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+            var name = $('#upA_username').val();
+            var email = $('#upA_email').val();
+            var password = $('#upA_password').val();
+            var confPassword = $('#upA_confPassword').val();
+            var userType = 'admin';
+            var userId = u_userID;
+            //var test = ''
+            //alert(userType);
+            console.log(userId);
+            if (name.trim() == '') {
+                alert('Please Enter Your Username.');
+                $('#upA_username').focus();
+                //test = $('#ut_username').val();
+                return false;
+            } else if (email.trim() == '') {
+                alert('Please Enter Your Email.');
+                $('#upA_email').focus();
+                return false;
+            } else if (email.trim() != '' && !reg.test(email)) {
+                alert('Please Enter Valid Email.');
+                $('#upA_email').focus();
+                return false;
+            } else if (password.trim() == '') {
+                alert('Please Enter Your Password.');
+                $('#upA_password').focus();
+                return false;
+            } else if (confPassword.trim() == '') {
+                alert('Please Confirm Your Password.');
+                $('#upA_confPassword').focus();
+                return false;
+            } else if (confPassword != password) {
+                alert('Your Passwords Do Not Match.');
+                //$('#inputConfPassword').focus();
+                return false;
+            }  else if ((password_validate(password.trim())) != "ok") {
+                alert(password_validate(password));
+                return false;
+            }else {
+                $.ajax({
+                    type: 'POST',
+                    url: 'updateForm.php',
+                    //data: 'contactFrmSubmit=1&name='+name+'&email='+email+'&password='+password+'$confPassword='+confPassword,
+                    data: 'updateFrmSubmit=1&name=' + name + '&email=' + email + '&password=' + password + '&confPassword=' + confPassword + '&userType=' + userType + '&userId=' + userId,
+                    beforeSend: function () {
+                        $('.submitBtn').attr("disabled", "disabled");
+                        $('.modal-body').css('opacity', '.5');
+                    },
+                    success: function (msg) {
+                        console.log(msg);
+                        if (msg == 'ok') {
+                            $('#upA_username').val('');
+                            $('#upA_email').val('');
+                            $('#upA_password').val('');
+                            $('#upA_confPassword').val('');
+                            document.getElementById('updateStatusMsg').style.display = 'block';
+                            $('.adminUpdateStatusMsg').html('<span style="color:green;">Updated Successfully!</p>');
+                            logoutAfterUpdate();
+                        } else {
+                            document.getElementById('updateStatusMsg').style.display = 'block';
+                            $('.adminUpdateStatusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
+                        }
+                        $('.submitBtn').removeAttr("disabled");
+                        $('.modal-body').css('opacity', '');
+
+                    }
+                });
+            }
+        }
+        
 
         function processLogin() {
 
@@ -663,6 +857,7 @@
                         console.log(typeUser)
                         if (typeUser == 'admin') {
                             user_name = msgLogin.substring(7, msgLogin.length);
+                            //sessionStorage.setItem("a_username", user_name);
                             console.log(user_name);
                             //userDisplay = "Welcome, " + user_name;
                             //document.getElementById('testOutput').innerHTML = userDisplay;
@@ -757,6 +952,40 @@
 
 
         }
+        
+         function retrieveAdminProfile() {
+            console.log('rcalled');
+            console.log(checkTypeUser);
+            
+            if (checkTypeUser == 'admin') {
+                aUsername = sessionStorage.getItem("admin_display");
+                console.log(aUsername);
+                $.ajax({
+                    type: 'POST',
+                    url: 'retrieveProfile.php',
+                    data: 'retrieveFormSubmit=1&name=' + aUsername,
+                    //data: ({user_name:user_name}),
+                    success: function (dataString) {
+                        //console.log(dataString);
+                        u_username = dataString.split('{').pop().split('}')[0];
+                        console.log(u_username);
+                        u_email = dataString.split('}').pop().split('[')[0];
+                        console.log(u_email);
+                        u_password = dataString.split('[').pop().split(']')[0];
+                        console.log(u_password);
+                        u_userID = dataString.split(']').pop().split('|')[0];
+                        $('#upA_username').val(u_username);
+                        $('#upA_email').val(u_email);
+                        //$('#up_password').val(u_password);
+
+                        //$('#userDetail').html(data);
+                    }
+                });
+            }
+
+
+
+        }
 
         function retrieveMainProfile() {
             console.log('rcalled');
@@ -825,7 +1054,7 @@
             //alert('hi');
             //console.log("loaded");
             Display = sessionStorage.getItem("user_display");
-            console.log(Display);
+            //console.log(Display);
             if (Display == null) {
                 document.getElementById('testOutput').innerHTML = "Login";
                 state = 'false';
@@ -946,9 +1175,20 @@
             e.preventDefault();
             $('body').css('overflow-y', 'auto');
             document.getElementById('updateStatusMsg').style.display = 'none';
+            window.location.assign('mainPage');
 
 
         });
+        
+          $('#adminProfileCloseButton').click(function (e) {
+            e.preventDefault();
+            $('body').css('overflow-y', 'auto');
+            document.getElementById('updateStatusMsg').style.display = 'none';
+            window.location.assign('mainPage');
+
+
+        });
+
 
 
 
