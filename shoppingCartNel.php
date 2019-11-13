@@ -61,7 +61,7 @@ if(isset($_SESSION["cart_array"])){
     }
         $x=$i+1;
         $checkoutbtn.=' <div class="check-out">';
-        $checkoutbtn.='<form method="post" action="payment.php">';
+        $checkoutbtn.='<form method="post" action="payment">';
         $checkoutbtn.='<input type="submit" class="checkout" name="button" value="Checkout"/>';
         $checkoutbtn.='                  </form>';  
         
@@ -165,7 +165,7 @@ if($i<=0)
                 </div>
                 <?php echo $checkoutbtn ?>
 
-                <form  action="cuisinesKQ.php">
+                <form  action="cuisinesKQ">
                     <input class="returntomenu"type="submit" value="Return To Menu"/>
                 </form>
 
