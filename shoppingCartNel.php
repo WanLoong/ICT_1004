@@ -21,7 +21,7 @@ if(isset($_SESSION["cart_array"])){
     foreach($_SESSION["cart_array"] as $eachitem)
     {   
         
-        print_r($eachitem);
+        
         $i++;
         $pid = $eachitem['product_id'];
         $productName = $eachitem['productName'];
@@ -46,11 +46,7 @@ if(isset($_SESSION["cart_array"])){
         $productDisplay .= '        <p class="product-description">' . $productDesc . '</p>';
         $productDisplay .= '    </div>';
         $productDisplay .= '    <div class="product-price">'. $price .'</div>';
-        $productDisplay .= '    <form action ="shoppingCartNel.php"method"post">';
-        $productDisplay .= '    <input name="quantity"type="number" value="'.$eachitem['quantity'].'"size="1"maxlength"2"/>';
-        $productDisplay .= '    <input name="adjustBtn'.$pid.'"type="submit"value="change"/>';
-        $productDisplay .= '    <input name="item_to_adjust"type="hidden" value="'.$pid.'"/>';
-        $productDisplay .= '    </form>';
+        $productDisplay .= '    <div class="product-quantity">'.$eachitem['quantity'].'</div>';
         $productDisplay .= '    <div class="product-removal">';
         $productDisplay .= '    <form method="post" action="shoppingCartNel.php">';
         $productDisplay .= '                    <input type="submit" class="remove-product" name="dltBtn' . $pid . '" id="dltBtn" value="Remove"/>';
@@ -66,33 +62,16 @@ if(isset($_SESSION["cart_array"])){
         $x=$i+1;
         $checkoutbtn.=' <div class="check-out">';
         $checkoutbtn.='<form method="post" action="payment.php">';
-        $checkoutbtn.='<input type="hidden" name="item_name_'.$x.'" value="'.$productName .'">';
-        $checkoutbtn.='<input type="hidden" name="amount_'.$x.'" value="'.$price .'">';
-        //$checkoutbtn.='<input type="hidden" name="product-quantity'.$x.'" value="'.$eachitem['pquantity'] .'">';
         $checkoutbtn.='<input type="submit" class="checkout" name="button" value="Checkout"/>';
-        $checkoutbtn.='                  </form>';    
+        $checkoutbtn.='                  </form>';  
+        
+        
 }
 
 
 
 ?>
-<?php
 
-
-    if(isset($_POST['item_to_adjust'])&&$_POST['item_to_adjust']!=""){
-        $item_to_adjust = $_POST['item_to_adjust'];
-        $quantity = $_POST['quantity'];
-        $i=0;
-        foreach($_SESSION["cart_array"]as $eachitem){
-            $i++;
-            array_splice($_SESSION["cart_array"],$i-1,1,array(array("product_id"=>$item_to_adjust,"quantity"=>$quantity)));
-                
-                
-            
-        }
-    }
-
-?>
 
 
 <?php
@@ -185,6 +164,11 @@ if($i<=0)
                     <div class="totals-value" id="cart-total"><b><?php echo $carttotal?></b></div>
                 </div>
                 <?php echo $checkoutbtn ?>
+
+                <form  action="cuisinesKQ.php">
+                    <input class="returntomenu"type="submit" value="Return To Menu"/>
+                </form>
+
             </div>
         </div>
     </body>
