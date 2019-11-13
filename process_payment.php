@@ -1,5 +1,7 @@
 <?php
+session_start();
     include "connectmysql.php";
+   
      $name = $email = $pwd = $city = $address = $state = $zip = $cname = $cnum = $expmonth = $expyear = $cvv = "";
         $errorMsg = "";
         $success = true;
@@ -8,16 +10,16 @@
         
 
 /*-----------------------------first name---------------------------------*/
-//if (empty($_POST["fname"])) 
-//{     
-//    $errorMsg .= "First name is required.<br>";     
-//    $success = false; 
-//}
-//else 
-//{     
-//    $fname = sanitize_input($_POST["fname"]); 
-//} 
-//
+if (empty($_POST["fullname"])) 
+{     
+    $errorMsg .= "Full name is required.<br>";     
+    $success = false; 
+}
+else 
+{     
+    $fname = sanitize_input($_POST["fullname"]); 
+} 
+
 
 
 /*--------------------------------email------------------------------------*/
@@ -121,42 +123,67 @@ function sanitize_input($data)
 } 
         
 /** Helper function to write the data to the DB*/
-global $fname, $lname, $email, $pwd, $errorMsg, $success;
+global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $name;
 // Create connection
+$i=0;
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 //Check connection
-if ($conn->connect_error){$errorMsg = "Connection failed: " . 
-    $conn->connect_error;$success = false;
+if ($conn->connect_error)
+{
+    $errorMsg = "Connection failed: " . 
+    $conn->connect_error;
+    $success = false;
 
 }
-else{
-    if(isset($_SESSION["cart_array"])){
+else
+{
+    if(isset($_SESSION["cart_array"]))
+    {        
         foreach($_SESSION["cart_array"] as $eachitem)
         {
+            print_r($eachitem);
             $i++;
         $pid = $eachitem['product_id'];
         $productName = $eachitem['productName'];
-        $productDesc = $eachitem['productDesc'];
         $price = $eachitem['price'];
         $quantity = $eachitem['quantity'];
         $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased)";
         $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$name')";
         }
-        
-        // Execute the query
-        
-
-        }if ($conn->query($sql)){
+     }
+     if ($conn->query($sql)){
             $errorMsg = "Database error: " . $conn->error;
             $success = false;
-
+    } 
+}
+$conn->close();  
+?>
+<?php
+if(isset($_POST["index"]))
+{
+    if(isset($_SESSION["cart_array"]))
+    {
+        foreach($_SESSION["cart_array"] as $eachitem => $subeachitem)
+        {
+            $pid1 = $subeachitem['product_id'];
+            if($pid1 == $_POST['index'] )
+            {
+                unset($_SESSION['cart_array'][$eachitem]);
+                $i--;
+                header("location:shoppingCartNel");
+            }
+        }
     }
-$conn->close();
-
-    
-
+}
 ?>
 
+<?php
+if($i<=0)
+{
+    $productDisplay .= '<h1 style="margin-left:50px;">Your Shopping Cart is Empty.</h1>';
+    $checkoutbtn = '';
+}
+?>
 
 <head>
         <title>Welcome To Guilty Pleasures!</title>
@@ -177,10 +204,10 @@ $conn->close();
 
 </head>
 <body>
-        
-    <?php 
+    
+<?php 
         include "headerLogin.php";
-    ?>   
+?>   
 </body>
 
 </html>
