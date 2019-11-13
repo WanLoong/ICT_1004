@@ -329,7 +329,7 @@
                     if($_SESSION["user"]=='kq')
                     {
                         echo'<a href="manageInventory" style="font-family: Times, Times New Roman, serif">Inventory</a>';
-                        echo'<a href="#" style="font-family: Times, Times New Roman, serif">Orders</a>';
+                        echo'<a href="order_tracking" style="font-family: Times, Times New Roman, serif">Orders</a>';
                     }
                     else
                     {
