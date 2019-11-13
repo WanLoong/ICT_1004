@@ -800,12 +800,11 @@
             //$('body').css('overflow-y', 'auto');
             //$('body').css('overflow-x', 'hidden');
             //alert("logged out successfully!");
-            //window.location.assign('mainPage.php');
-            //document.getElementById('loginStatusMsg').style.display = 'none';
+            //document.getElementById('loginStatusMsg').style.display = 'none';            
             document.getElementById('loginStatusMsg').style.display = 'none';
             state = 'false';
-
-
+            alert("Updated Successfully. Please re-login.");
+            window.location.assign('mainPage?reset=1');
         }
 
         function menuProfileClicked() {
