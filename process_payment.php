@@ -213,14 +213,18 @@ else
 //}
 
 /*------------------------------success-----------------------------------*/
+ 
+include "headerLogin.php";
+
 if ($success) 
 {     
+    echo '<section id="payment_success" name="payment_success" style="border: 30px;background:white;padding-bottom:15px; opacity: 0.9;margin-top: 22px;text-align:center;">';
     echo "<h4>Your payment is successful!</h4>";
     echo "<p>Thank you for purchasing, " . $fname;
     echo "<br>";
     echo $type." ".$cardnum."<P> has be successfully been deducted";
     echo "<br><br>";
-    echo '<button type="button" class="btn btn-light"><a href="mainPage"/>Return to Home</a></button>';
+    echo '<button type="button" name="returnh" class="btn btn-light" style="background-color: wheat;"><a href="mainPage"/>Return to Home</a></button>';
             
 /** Helper function to write the data to the DB*/
 global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $name, $status;
@@ -272,6 +276,7 @@ $u_purchased = $_SESSION['user'];
      }
      unset($_SESSION["cart_array"]);
      
+     
 //}
 unset($row);
 $conn->close(); 
@@ -282,14 +287,12 @@ $conn->close();
 else 
 {    
     
-    echo "<link rel='stylesheet' type='text/css' href='css/bootstrap.min.css' />";
-    echo "<link rel='stylesheet' type='text/css' href='css/mycss.css' />";
-    echo '<section id="register_fail">';
+    echo '<section id="payment_fail" name="payment_fail" style="border: 30px;background:white;padding-bottom:15px; opacity: 0.9;margin-top: 22px;;text-align:center;">';
     echo "<h2>Oops!</h2>";
     echo "<h4>The following input errors were detected:</h4>";    
     echo "<p>" . $errorMsg . "</p>"; 
     echo '<section id="payment_button">';
-    echo '<button type="button" class="btn btn-light"><a href="payment"/>Return to payment</a></button>';    
+    echo '<button type="button" name="return" class="btn btn-light" style="background-color: wheat;"><a href="payment"/>Return to payment</a></button>';    
     echo "</section>";
     echo "</section>";
     
@@ -355,9 +358,7 @@ if($i<=0)
 </head>
 <body>
     
-<?php 
-        include "headerLogin.php";
-?>   
+   
 </body>
 
 </html>
