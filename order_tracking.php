@@ -241,8 +241,8 @@ else
                 //REPLACE  "user" WITH "user_gp" FOR FINAL SUBMISSION
                 //ALSO NEED TO FIND TABLE WITH ALL THE PRODUCTS. AS A PLACEHOLDER, IT IS CURRENTLY "cuisines"
                 //USER IS CURRENTLY ALSO HARDCODED IN
-                
-                $sql = "SELECT DISTINCT order_id FROM p5_6.orders WHERE user_id=2;"; //REPLACE user_id WITH LOGGED IN USER
+                $user_id = $_SESSION['userID'];
+                $sql = "SELECT DISTINCT order_id FROM p5_6.orders WHERE user_id=". $user_id .";"; //REPLACE user_id WITH LOGGED IN USER
                 $result = $conn->query($sql);
                 $table = "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered from</th><th>Status</th></thead><tbody>";
                 

@@ -39,7 +39,11 @@ if (isset($_POST['loginFrmSubmit']) && !empty($_POST['name']) && !empty($_POST['
                     session_start();
                     $user_name = $row["username"];
                     $user_type = $row["type"];
+                    $user_id = $row["userID"];
+                    $email = $row["email"];
                     $_SESSION["user"] = $user_name;
+                    $_SESSION["userID"] = $user_id;
+                    $_SESSION["email"] = $email;
                 //console_log($user_name);
                 
                     $statusLogin = 'ok';
