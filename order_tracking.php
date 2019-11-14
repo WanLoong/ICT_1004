@@ -255,7 +255,7 @@ else
                  $index = 0;
                  while ($row_order = $result_order->fetch_assoc())
                  {
-                     $product = mysqli_fetch_assoc((($conn->query("SELECT name FROM p5_6.cuisines WHERE product_id=" . $row_order['product_id'] . ";"))))['name'];
+                     $product = mysqli_fetch_assoc((($conn->query("SELECT product_name FROM p5_6.product_table WHERE product_id=" . $row_order['product_id'] . ";"))))['product_name'];
                      $location = mysqli_fetch_assoc((($conn->query("SELECT location_name FROM p5_6.location WHERE location_id=" . $row_order['location_id'] . ";"))))['location_name'];
                      if (mysqli_num_rows($result_order) == 1)
                      {
