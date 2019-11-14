@@ -1,3 +1,24 @@
+<?php
+if(isset($_SESSION['user']))
+{
+    $value = $_SESSION['user'];
+    echo "<script type='text/javascript'>";
+    if($_SESSION['user']== "kq")
+    {
+    echo "sessionStorage.setItem('admin_display', '".$value."');";
+    echo "sessionStorage.setItem('admin_type', 'admin');";
+    }
+    else
+    {
+        echo "sessionStorage.setItem('r_username', '".$value."');";
+    }
+        echo "userDisplay = 'Welcome, ' + '".$value ."';";
+      //  echo "console.log('". $value ."');";
+        echo 'sessionStorage.setItem("user_display", userDisplay);';
+        echo "state=true;";
+        echo "$('body').css('overflow-y', 'auto');";
+        echo "</script>";   
+}?>
 
 <style>
     .nav-tabs .nav-link.active{
@@ -6,7 +27,7 @@
     }
     .md-form {
         margin-bottom: 8px;
-    }$
+    }
 
 </style>
 <body onload="setDisplay()">

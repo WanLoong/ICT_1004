@@ -21,7 +21,6 @@ if(isset($_GET['reset']))
 }
 
 session_start();
-
 if(!isset($_SESSION['user']))
 {
     session_destroy();
