@@ -1,0 +1,23 @@
+.payment_success,.payment_fail{
+   
+border: 30px;
+background:white;
+padding-bottom:15px;
+opacity: 0.9;
+margin-top: 22px;
+text-align:center;
+ 
+}
+.btn{
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+      cursor: pointer;
+}
+.return_payment,.returnh{
+    background-color: wheat;
+}
+body{
+    background-image: url("../images/foodMain.jpg");;
+    background-size: 100%;
+    padding: 0px;
+}

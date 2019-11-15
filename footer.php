@@ -17,6 +17,5 @@
         </table>
         <p>42 Barker Street,<br>#09-09, WestWay Industrial Park,<br>Singapore 765742</p>
         <div class="footer-copyright">© 2019 Copyright:<a href="https://mdbootstrap.com/education/bootstrap/">Guilty Pleasures!</a></div>
-
     </footer>
 </html>
