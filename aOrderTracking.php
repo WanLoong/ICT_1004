@@ -16,7 +16,7 @@ include "connectmysql.php";
 $sql = "SELECT * FROM p5_6.product_purchased"; //REPLACE user_id WITH LOGGED IN USER
 $result = $conn->query($sql);
 $table = "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered To</th><th>Total Price</th><th>Status</th></thead><tbody>";
-
+$idarray = array();
 if($result->num_rows > 0)
 {
     while ($row = $result->fetch_assoc())
@@ -27,12 +27,27 @@ if($result->num_rows > 0)
                 . "<td>" . $row['zip'] . "</td>"
                 . "<td>" . $row['product_price_purchased'] . "</td>"
                 . "<td>"
-                . "<select id='status'>"
-                . "<option value='processing'>Processing</option>"
-                . "<option value='delivering'>Delivering</option>"
-                . "<option value='Delivered'>Delivered</option>"
-                . "<select>"
-                . "</td>";
+                . "<select id='".$row['product_id_purchased']."' onchange='ajaxfunction(this)'>";
+        if($row['delivery_status'] == "processing")
+        {
+            $table .= "<option value='processing'>Processing</option>"
+                    . "<option value='delivering'>Delivering</option>"
+                    . "<option value='Delivered'>Delivered</option>";
+        }
+        else if ($row['delivery_status'] == "delivering")
+        {
+            $table .= "<option value='delivering'>Delivering</option>"
+                    . "<option value='processing'>Processing</option>"
+                    . "<option value='Delivered'>Delivered</option>";
+        }
+        else{
+            $table .= "<option value='Delivered'>Delivered</option>"
+                    . "<option value='processing'>Processing</option>"
+                    . "<option value='delivering'>Delivering</option>";                    
+            
+        }
+            $table .= "</select>"
+                    . "</td>";
      }
      $table .= "</tbody></table>";
 }

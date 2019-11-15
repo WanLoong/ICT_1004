@@ -33,5 +33,19 @@ $('.close').click(function (e) {
     $('body').css('overflow-y', 'auto');
 });
 
-
+        function ajaxfunction(type)
+        {//     console.log(elementValue);
+            $(this).on('change',function() {
+                var elementId = type.id;
+                var elementValue = type.value;
+                $.ajax({
+                    type: 'POST',
+                    url: 'processes',
+                    data: 'updateStatus=1&elementId=' + elementId + '&elementValue=' + elementValue,
+                    success: function(){
+                        window.location.assign('aOrderTracking');
+                    }
+                });
+            });
+        }
 

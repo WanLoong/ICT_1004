@@ -60,6 +60,16 @@ if(isset($_GET['reset']))
     header("location:mainPage");
 }
 
+if(isset($_POST['updateStatus']))
+{
+    $elementId = $_POST['elementId'];
+    $elementValue = $_POST['elementValue'];
+    $sql = "UPDATE p5_6.product_purchased SET delivery_status='$elementValue' WHERE order_id ='$elementId' ";
+    // Execute the query
+    $result = $conn->query($sql);
+    header("location: aOrderTracking");
+}
+
 
 
 
