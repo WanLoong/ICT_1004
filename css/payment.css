@@ -3,31 +3,23 @@ body{
     background-size: 100%;
     padding: 0px;
 }
-.totals{
-     .totals-item {
-    float: right;
-    clear: both;
-    width: 100%;
-    margin-bottom: 10px;
-    
-    label {
-      float: left;
-      clear: both;
-      width: 79%;
-      text-align: right;
-    }
-    
-    .totals-value {
-      float: right;
-      width: 21%;
-      text-align: right;
-    }
-  }
-  
-  .totals-item-total {
-
-  }
+.fa-cc-mastercard{
+    color:red;
+    font-size:36px
 }
+.fa-cc-visa{
+    color:navy;
+    font-size:36px
+}
+.fa-cc-amex{
+    color:blue;
+    font-size:36px
+}
+.fa-cc-discover{
+    color:orange;
+    font-size:36px;
+}
+
 
 .row {
   display: -ms-flexbox; /* IE10 */
@@ -41,9 +33,9 @@ body{
   opacity: 0.9;
 }
 
-.col-25 {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
+.col-15 {
+  -ms-flex: 15%; /* IE10 */
+  flex: 15%;
 }
 
 .col-50 {
@@ -56,7 +48,7 @@ body{
   flex: 75%;
 }
 
-.col-25,
+.col-15,
 .col-50,
 .col-75 {
   padding: 0 16px;
@@ -76,12 +68,14 @@ input[type=text] {
   border: 1px solid #ccc;
   border-radius: 3px;
 }
-
-label {
+.row{
+    label {
   margin-bottom: 10px;
   display: block;
   color: black;
 }
+}
+
 
 .icon-container {
   margin-bottom: 20px;
@@ -99,6 +93,9 @@ label {
   border-radius: 3px;
   cursor: pointer;
   font-size: 17px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
 .btn1:hover {
