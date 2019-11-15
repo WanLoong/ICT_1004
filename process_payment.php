@@ -144,13 +144,13 @@ include "headerLogin.php";
 
 if ($success) 
 {     
-    echo '<section id="payment_success" name="payment_success" style="border: 30px;background:white;padding-bottom:15px; opacity: 0.9;margin-top: 22px;text-align:center;">';
+    echo '<section id="payment_success" >';
     echo "<h4>Your payment is successful!</h4>";
     echo "<p>Thank you for purchasing, " . $fname;
     echo "<br>";
     echo $type." ".$cardnum."<P> has be successfully been deducted";
     echo "<br><br>";
-    echo '<button type="button" name="returnh" class="btn btn-light" style="background-color: wheat;"><a href="mainPage"/>Return to Home</a></button>';
+    echo '<button type="button" class="btn btn-light" ><a href="mainPage"/>Return to Home</a></button>';
             
 /** Helper function to write the data to the DB*/
 global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $name, $status;
@@ -231,7 +231,7 @@ if($i<=0)
 
 <!DOCTYPE html>
 <head>
-        
+        <title>Welcome To Guilty Pleasures!</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
@@ -245,6 +245,6 @@ if($i<=0)
         <script src="js/sideMenu.js"></script>
 </head>
 <body>
-    <title>Welcome To Guilty Pleasures!</title>
+    
 </body>
 </html>
