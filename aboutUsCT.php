@@ -274,7 +274,7 @@ if(!isset($_SESSION["user"]))
 		<div class="container-fluid">
 			<div class="jumbotron">
                             <div>
-                                 <p class="entireWidth">In 2019, 4 students from the Singapore Institute of Technology were exhausted after a long day of lectures, tutorials, and group discussions that lasted well into the night. None of them had had the time to have dinner and were starving. Instead of making the sensible decision to go to a fast food retaurant for the fifth night in a row, they decided to treat themselves by going to a popular Laksa store they've known about since their National Service days.</p>
+                                 <p class="entireWidth">In 2019, 4 students from the Singapore Institute of Technology were exhausted after a long day of lectures, tutorials, and group discussions that lasted well into the night. None of them had had the time to have dinner and were starving. Instead of making the sensible decision to go to a fast food restaurant for the fifth night in a row, they decided to treat themselves by going to a popular Laksa store they've known about since their National Service days.</p>
                             </div>
                         </div>
 			<table style="table-layout: fixed; width: 100%;">
@@ -299,7 +299,7 @@ if(!isset($_SESSION["user"]))
                                     <img src="images/delivery_service.jpg" style="max-height: 100%; max-width: 100%; float: left;" />
                                 </td>
                                 <td style="width: 50%; padding-left: 50px;">
-                                    <p>Here at Guilty Pleasures, we strive to be the answer to be the answer to all your pressing mealtime needs. With over 1000 restaurants to choose from, from major chains to standalone family-run restaurants, you never have to worry about your fix of your favourite food when you need it most!</p>
+                                    <p>Here at Guilty Pleasures, we strive to be the answer to be the answer to all your pressing mealtime needs. With many dishes over many different types of cuisines, you never have to worry about your fix of your favourite food when you need it most!</p>
                                 </td>
                             </tr>
 			</table>
