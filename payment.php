@@ -36,7 +36,7 @@ if(isset($_SESSION["cart_array"])){
         $carttotal = $cartOutput+5+$tax;
         $delivery = 5.00;
         
-        $productDisplay .= '<p><a href="#">'. $productName .'</a> <span class="product-price">$'.$price.'</span></p>';
+        $productDisplay .= '<a href="#">'. $productName .'</a> <span class="product-price">$'.$price.'</span>';
         $productDisplay .= '<div class="product-quantity">Qtn x '.$eachitem['quantity'].'</div>';
 
     }
@@ -70,9 +70,10 @@ if(isset($_POST["index"]))
 <?php
 if($i<=0)
 {
-    $productDisplay .= '<h1 style="margin-left:50px;">Your Shopping Cart is Empty.</h1>';
+    $productDisplay .= '<h1>Your Shopping Cart is Empty.</h1>';
 }
 ?>
+<!DOCTYPE html>
 <head>
         <title>Welcome To Guilty Pleasures!</title>
         <meta charset="UTF-8">
@@ -81,23 +82,18 @@ if($i<=0)
         <link rel="stylesheet" href="css/bootstrap.css"/>
         <link rel="stylesheet" href="css/main2.css"/>
         <link rel="stylesheet" href="css/modalcss.css"/>
-        <!--<link rel="stylesheet" href="css/cusineMenu.css"/>-->
-       
          <link rel="stylesheet" href="css/payment.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-        <script src="js/Cart.js" async></script>
         <script src="js/sideMenu.js"></script>
 
 </head>
 <body>
-        
+    
     <?php 
         include "headerLogin.php";
     ?>   
-
-
     <div class="row">
         <div class="col-75">
             <div class="container">
@@ -108,9 +104,7 @@ if($i<=0)
                                 <label for="fname"><i class="fa fa-user"></i> Full Name</label>
                                 <input type="text" id="fname" name="fullname" pattern="[A-Za-z].{5,}" placeholder="John M. Doe" >
                                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                                <?php
-                                echo '<input type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="john@example.com" value="'. $_SESSION["email"] .'">';
-                                ?>
+                                <input type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="john@example.com">
                                 <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
                                 <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
                                 <label for="city"><i class="fa fa-institution"></i> City</label>
@@ -132,10 +126,10 @@ if($i<=0)
                         <h3>Payment</h3>
                         <label for="fname">Accepted Cards</label>
                         <div class="icon-container">
-                            <i class="fa fa-cc-visa" style="color:navy;"></i>
-                            <i class="fa fa-cc-amex" style="color:blue;"></i>
-                            <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                            <i class="fa fa-cc-discover" style="color:orange;"></i>
+                            <i class="fab fa-cc-visa" ></i>
+                            <i class="fab fa-cc-amex" ></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-discover"></i>
                         </div>
                         <label for="cname">Name on Card</label>
                         <input type="text" id="cname" name="cardname" placeholder="John More Doe">
@@ -163,36 +157,38 @@ if($i<=0)
                 </form>
             </div>
         </div>
-        <div class="col-25">
+        <div class="col-15">
             <div class="container">
                 <h4>Shopping Cart
-                    <span class="price" style="color:black">
+                    <span class="price" >
                         <i class="fa fa-shopping-cart"></i>
                     </span>
                 </h4>
                 <?php echo $productDisplay ?>
                 
                 <hr>
+                
                 <div class="totals">
-                    <div class="totals-item">
+                    <div class="totals-item" name="totals-item">
                         <label>Subtotal</label>
                         <div class="totals-value" id="cart-subtotal"><?php echo$cartOutput?></div>
                     </div>
-                    <div class="totals-item">
+                    <div class="totals-item"name="totals-item">
                         <label>Tax (5%)</label>
                         <div class="totals-value" id="cart-tax"><?php echo$tax?></div>
                     </div>
-                    <div class="totals-item">
+                    <div class="totals-item"name="totals-item">
                         <label>Delivery</label>
                         <div class="totals-value" id="cart-delivery"><?php echo$delivery?></div>
                     </div>
-                    <div class="totals-item totals-item-total">
+                    <div class="totals-item totals-item-total" name="totals-item">
                         <label>Grand Total</label>
                         <div class="totals-value" id="cart-total"><?php echo$carttotal?></div>
                     </div>
                 </div>
-                      <hr>
+                     
             </div>
         </div>
     </div>
 </body>
+</html>
