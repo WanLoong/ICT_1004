@@ -17,15 +17,16 @@ if(!isset($_SESSION["user"]))
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width" initial-scale=1>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/bootstrap.css"/>
-        <link rel="stylesheet" href="css/main2.css"/>
-        <!--<link rel="stylesheet" href="css/mainPage.css"/>-->
-        <link rel="stylesheet" href="css/modalcss.css"/>
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+        <!--link rel="stylesheet" href="css/main2.css"/-->
+        <link rel="stylesheet" href="css/mainPage.css" type="text/css">
+        <link rel="stylesheet" href="css/modalcss.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
         <script src="js/modal.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/about_us.css') }}">
 
         <style>
 
@@ -221,7 +222,7 @@ if(!isset($_SESSION["user"]))
                 }
             }
             
-            p {
+/*            p {
                 font-size: 2vw;
             }
             
@@ -236,7 +237,7 @@ if(!isset($_SESSION["user"]))
             
             h2 {
                 font-size: 3vw;
-            }
+            }*/
         </style>
 
     </head>
