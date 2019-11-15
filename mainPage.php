@@ -27,9 +27,6 @@ if(!isset($_SESSION['user']))
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
         <script src="js/modal.js"></script>
-        <script src="js/mainPage.js"></script>
-
-        
         <link href="css/main2.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"/>
@@ -58,7 +55,44 @@ if(!isset($_SESSION['user']))
         ?>
 
 
-     
+        <script>
+            $('#loginButton').click(function (e) {
+                e.preventDefault();
+                //$('body').css('overflow-y', 'hidden');
+
+            });
+
+            $('#messageSpan').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'hidden');
+            });
+
+            $('#signUpButton').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'hidden');
+            });
+
+            $('#closeButton').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'auto');
+            });
+
+            $('#bottomCloseButton').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'auto');
+            });
+
+            $('.close').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'auto');
+            });
+
+
+
+        </script>
+
+
+
 
 
 
