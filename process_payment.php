@@ -163,7 +163,8 @@ $status = "processing";
 //{
 $u_purchased = $_SESSION['user'];
     if(isset($_SESSION["cart_array"]))
-    {        
+    {   
+        $order_id = $_SESSION["cart_array"][0]['product_id'] + time();
         foreach($_SESSION["cart_array"] as $eachitem )
         {
 
@@ -174,8 +175,8 @@ $u_purchased = $_SESSION['user'];
         $quantity = $eachitem['quantity'];
         $zip = $_POST['zip'];
         
-        $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, zip)";
-        $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$u_purchased','$status','$zip')";
+        $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, zip, order_id)";
+        $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$u_purchased','$status','$zip',$order_id)";
         if ($conn->query($sql) == TRUE) {
         echo "";
         } else {
