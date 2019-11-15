@@ -220,6 +220,23 @@ if(!isset($_SESSION["user"]))
                     max-height: 100%;
                 }
             }
+            
+            p {
+                font-size: 2vw;
+            }
+            
+            p.entireWidth {
+                width: 100%;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 4vw;
+            }
+            
+            h2 {
+                font-size: 3vw;
+            }
         </style>
 
     </head>
@@ -256,8 +273,10 @@ if(!isset($_SESSION["user"]))
 		<br>
 		<div class="container-fluid">
 			<div class="jumbotron">
-				<p>In 2019, 4 students from the Singapore Institute of Technology were exhausted after a long day of lectures, tutorials, and group discussions that lasted well into the night. None of them had had the time to have dinner and were starving. Instead of making the sensible decision to go to a fast food retaurant for the fifth night in a row, they decided to treat themselves by going to a popular Laksa store they've known about since their National Service days.</p>
-			</div>
+                            <div>
+                                 <p class="entireWidth">In 2019, 4 students from the Singapore Institute of Technology were exhausted after a long day of lectures, tutorials, and group discussions that lasted well into the night. None of them had had the time to have dinner and were starving. Instead of making the sensible decision to go to a fast food retaurant for the fifth night in a row, they decided to treat themselves by going to a popular Laksa store they've known about since their National Service days.</p>
+                            </div>
+                        </div>
 			<table style="table-layout: fixed; width: 100%;">
 				<tr class="jumbotron">
 					<td style="width: 50%; padding-left: 50px;">
@@ -268,32 +287,36 @@ if(!isset($_SESSION["user"]))
 					</td>
 				</tr>
 			</table>
-			<div class="jumbotron" style="margin-top: 5px">
-				<p style="text-align: center">And the rest is history.</p>
-			</div>
+                        <br>
+			<div class="jumbotron">
+                            <div>
+				<p class="entireWidth">And the rest is history.</p>
+                            </div>
+                        </div>    
 			<table style="table-layout: fixed; width: 100%;">
-				<tr class="jumbotron">
-					<td style="width: 50%;">
-						<img src="images/delivery_service.jpg" style="max-height: 100%; max-width: 100%; float: left;" />
-					</td>
-					<td style="width: 50%; padding-left: 50px;">
-						<p>Here at Guilty Pleasures, we strive to be the answer to be the answer to all your pressing mealtime needs. With over 1000 restaurants to choose from, from major chains to standalone family-run restaurants, you never have to worry about your fix of your favourite food when you need it most!</p>
-					</td>
-				</tr>
+                            <tr class="jumbotron">
+                                <td style="width: 50%;">
+                                    <img src="images/delivery_service.jpg" style="max-height: 100%; max-width: 100%; float: left;" />
+                                </td>
+                                <td style="width: 50%; padding-left: 50px;">
+                                    <p>Here at Guilty Pleasures, we strive to be the answer to be the answer to all your pressing mealtime needs. With over 1000 restaurants to choose from, from major chains to standalone family-run restaurants, you never have to worry about your fix of your favourite food when you need it most!</p>
+                                </td>
+                            </tr>
 			</table>
+                        <br>
 			<h2>Contact Us</h2>
 			<table style="table-layout: fixed;width: 7%;height: 7%;margin: 0">
 				<tr>
-					<td><a href=""><img src="images/facebook.png" width="95%"/></a></td>
-					<td><a href=""><img src="images/twitter.png" width="95%" /></a></td>
-					<td><a href=""><img src="images/instagram.png" width="95%" /></a></td>
+                                    <td><a href=""><img src="images/facebook.png" style="width: 95%;"/></a></td>
+                                    <td><a href=""><img src="images/twitter.png" style="width: 95%;" /></a></td>
+                                    <td><a href=""><img src="images/instagram.png" style="width: 95%;" /></a></td>
 				</tr>
 			</table>
 		
-			<p>42 Barker Street,<br>#09-09, WestWay Industrial Park,<br>Singapore 00000000</p>
+			<p style="font-size: 1.25vw;">42 Barker Street,<br>#09-09, WestWay Industrial Park,<br>Singapore 00000000</p>
 		</div>	
 			
-		<!--footer??-->
+	<?php include "footer.php"; ?>
         
         
     </body>

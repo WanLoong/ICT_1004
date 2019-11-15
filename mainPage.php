@@ -242,10 +242,10 @@ if(!isset($_SESSION['user']))
            
 
         </style>
+        <link href="css/main2.css" rel="stylesheet">
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"/>
-        <link rel="stylesheet" href="css/main2.css"/>
         <!--<link rel="stylesheet" href="css/mainPage.css"/>-->
         <link rel="stylesheet" href="css/modalcss.css"/>
 

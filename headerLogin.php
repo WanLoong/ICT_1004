@@ -115,7 +115,7 @@ if(isset($_SESSION['user']))
                                         </tr>            
                                         <tr>              
                                             <td>                
-                                                <img id="loadingImg" src="loading.gif" />              
+                                                <!--img id="loadingImg" src="loading.gif" /-->              
                                             </td>           
                                         </tr>          
                                     </tbody>        
