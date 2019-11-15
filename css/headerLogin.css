@@ -1,0 +1,91 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16 Nov 2019, 3:49:51 AM
+    Author     : Dell
+*/
+
+.nav-tabs .nav-link.active{
+    background-color: #f9f9f9;
+
+}
+.md-form {
+    margin-bottom: 8px;
+}
+
+#head1{
+    font-family: Snell Roundhand; font-size: 29px;
+}
+
+#form1{
+    padding-right: 40px;
+}
+
+#loginButton{
+    padding-right: 10px; color: gray;
+}
+
+#mh1{
+    display:inline;
+}
+
+.w-100{
+    color: #26bf83;
+}
+
+#welcomeProfile{
+    margin-top:15px
+}
+
+#welcomeText{
+    margin-top:10px;
+}
+
+.m-y-2{
+    margin-bottom:20px;font-weight: bold;margin-top:15px;
+    
+}
+
+.updateStatusMsg{
+    margin-top:12px
+}
+
+.statusMsg{
+    margin-top:12px;
+}
+
+.mf1{
+    margin-top:12px;
+}
+
+.mf1btn{
+    background: lightgray;margin-bottom: 4px;
+}
+
+.signup1{
+    display:inline;
+}
+
+#shoppingCartButton{
+    padding-left: 10px; padding-right: 10px; color: gray;
+}
+
+@media screen and (max-width: 1030px) {
+    #shoppingCartButton{
+        padding-left: 0;
+    }
+}
+#loginStatusMsg{
+    margin-top:12px;margin-left: 15px;
+}
+
+#adminUpdateStatusMsg{
+    margin-top:12px;
+}
+
+.sidemenu{
+    font-family: Times, Times New Roman, serif
+}

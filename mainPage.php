@@ -34,7 +34,7 @@ if(!isset($_SESSION['user']))
         <link rel="stylesheet" href="css/modalcss.css"/>
 
     </head>
-    <body>
+    <body id="mainPagebody">
 
         <?php
         //include "header.php";
@@ -52,41 +52,7 @@ if(!isset($_SESSION['user']))
         ?>
 
 
-        <script>
-            $('#loginButton').click(function (e) {
-                e.preventDefault();
-                //$('body').css('overflow-y', 'hidden');
 
-            });
-
-            $('#messageSpan').click(function (e) {
-                e.preventDefault();
-                $('body').css('overflow-y', 'hidden');
-            });
-
-            $('#signUpButton').click(function (e) {
-                e.preventDefault();
-                $('body').css('overflow-y', 'hidden');
-            });
-
-            $('#closeButton').click(function (e) {
-                e.preventDefault();
-                $('body').css('overflow-y', 'auto');
-            });
-
-            $('#bottomCloseButton').click(function (e) {
-                e.preventDefault();
-                $('body').css('overflow-y', 'auto');
-            });
-
-            $('.close').click(function (e) {
-                e.preventDefault();
-                $('body').css('overflow-y', 'auto');
-            });
-
-
-
-        </script>
 
 
 

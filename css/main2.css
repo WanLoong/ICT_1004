@@ -112,12 +112,12 @@ and open the template in the editor.
         padding: 25px 20px 25px 20px;
     }
 }
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 1030px) {
     .center{
         font-size: 55px;
         text-align: center;
         font-weight: bold;
-        margin: 250px 100px 250px 100px;
+        margin: 250px 100px 350px 100px;
         text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
         border: 2px solid black;
         padding: 25px 20px 25px 20px;
@@ -155,7 +155,7 @@ and open the template in the editor.
     margin-bottom: 1.5rem;
 }
 
-body{
+#mainPagebody{
     background-image: url("../images/foodMain.jpg");
     background-size: 100%;
     padding: 0px;

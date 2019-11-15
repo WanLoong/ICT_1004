@@ -64,7 +64,7 @@ if(isset($_POST['updateStatus']))
 {
     $elementId = $_POST['elementId'];
     $elementValue = $_POST['elementValue'];
-    $sql = "UPDATE p5_6.product_purchased SET delivery_status='$elementValue' WHERE order_id ='$elementId' ";
+    $sql = "UPDATE p5_6.product_purchased SET delivery_status='$elementValue' WHERE product_id_purchased ='$elementId' ";
     // Execute the query
     $result = $conn->query($sql);
     header("location: aOrderTracking");

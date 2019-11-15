@@ -12,9 +12,33 @@ else
         header("location:mainPage");
     }
 }
-
-
 ?>
+<?php
+    include "connectmysql.php";
+    $index = 0;
+    //REPLACE  "user" WITH "user_gp" FOR FINAL SUBMISSION
+    //ALSO NEED TO FIND TABLE WITH ALL THE PRODUCTS. AS A PLACEHOLDER, IT IS CURRENTLY "cuisines"
+    //USER IS CURRENTLY ALSO HARDCODED IN
+    $user_id = $_SESSION['user'];
+    $sql = "SELECT * FROM p5_6.product_purchased WHERE user_purchased='$user_id';"; //REPLACE user_id WITH LOGGED IN USER
+    $result = $conn->query($sql);
+
+    if($result->num_rows > 0)
+    {
+        $table = "<h1>Order Tracking</h1>";
+        $table .= "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered from</th><th>Total Price</th><th>Status</th></thead><tbody>";
+        while ($row = $result->fetch_assoc())
+        {
+            $table .= "<tr><td>" . $row['product_id_purchased'] . "</td><td>" . $row['product_name_purchased'] . "</td><td>" . $row['product_quantity_purchased'] . "</td><td>" . $row['zip'] . "</td><td>" . $row['product_price_purchased'] . "</td><td>" . $row['delivery_status'] ."</td></tr>"; 
+            $index += 1;
+         }
+        $table .= "</tbody></table>";
+    }
+    else
+    {
+        $table = "<h1>No Existing Orders</h1>";
+    }
+?>        
 <html>
      <head>
         <title>Order Tracking</title>
@@ -34,45 +58,10 @@ else
     </head>
     
     <body id="orderbody">
-        <?php include "headerLogin.php"; ?>
+        <?php include "headerLogin.php" ?>
         <section class="container-fluid" id="orders">
-            <h1>Order Tracking</h1>
-            <?php
-                include "connectmysql.php";
-                $index = 0;
-                $user_id = $_SESSION['user'];
-                $sql = "SELECT DISTINCT order_id FROM p5_6.product_purchased WHERE user_purchased='$user_id';"; //REPLACE user_id WITH LOGGED IN USER
-                $result = $conn->query($sql);
-                $table = "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered to (ZIP Code)</th><th>Total Price</th><th>Status</th></thead><tbody>";
-                
-                while ($row = $result->fetch_assoc()) {
-                    $sql_order = "SELECT * FROM p5_6.product_purchased where order_id=" . $row["order_id"] . ";";
-                    $result_order = $conn->query($sql_order);
-                    $index = 0;
-                    while ($row_order = $result_order->fetch_assoc())
-                    {
-                        
-                        if (mysqli_num_rows($result_order) == 1)
-                        {
-                           $table .= "<tr><td>" . $row_order['order_id'] . "</td><td>" . $row_order["product_name_purchased"] . "</td><td>" . $row_order['product_quantity_purchased'] . "</td><td>" . $location . "</td><td>" . $row_order['zip'] . "</td><td>" . $row_order['product_price_purchased'] . "</td><td>" . $row_order['delivery_status'] ."</td></tr>";
-                        }
-                        else //for orders with multiple items ordered
-                        {
-                            if ($index == 0)
-                            {
-                                $table .= "<tr><td rowspan=" . mysqli_num_rows($result_order) .">" . $row_order['order_id'] . "</td><td>" . $row_order["product_name_purchased"] . "</td><td>" . $row_order['product_quantity_purchased'] . "</td><td rowspan=" . mysqli_num_rows($result_order) .">" . $row_order['zip'] . "</td><td rowspan=" . mysqli_num_rows($result_order) . ">$" . $row_order['product_price_purchased'] . "</td><td rowspan=" . mysqli_num_rows($result_order) . ">" . $row_order['delivery_status'] ."</td></tr>"; 
-                            }
-                            else
-                            {
-                                $table .= "<tr><td>" . $row_order["product_name_purchased"] . "</td><td>" . $row_order['product_quantity_purchased'] . "</td></tr>";
-                            }
-                        }
-                        $index += 1;
-                    }
-                   }
-                echo $table . "</table><br>";
-            ?>
+        <?php echo $table;?>
         </section>
-        <?php include "footer.php"; ?>
+        <?php include "footer.php" ?>
     </body>
     

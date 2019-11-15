@@ -34,4 +34,12 @@ function add_marker(lat = 1.3013, lng = 103.905)
     marker.setMap(map);
 }
     
-
+$(window).on('resize', function() {
+    if($(window).width() < 995) {
+        $('.displaylocation').addClass('col-md-12');
+        $('.displaylocation').removeClass('col-md-3');
+    }else{
+        $('.displaylocation').addClass('col-md-3');
+        $('.displaylocation').removeClass('col-md-12');
+    }
+})

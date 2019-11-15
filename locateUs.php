@@ -14,8 +14,8 @@ if(!isset($_SESSION['user']))
         <meta name="viewport" content="width=device-width" initial-scale=1>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"/>
-        <link rel="stylesheet" href="css/main2.css"/>
         <link rel="stylesheet" href="css/modalcss.css"/>
+        <link rel="stylesheet" href="css/main2.css"/>
         <link rel="stylesheet" href="css/locateus.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -23,7 +23,7 @@ if(!isset($_SESSION['user']))
         <script src="js/sideMenu.js"></script>
         <script src="js/modal.js"></script>
         <script src="js/require.js"></script> 
-
+        <script src="js/locateUs.js"></script>
     </head>
     <body>
         <?php
@@ -44,7 +44,7 @@ if(!isset($_SESSION['user']))
                 }
             ?>
         
-        <div id = "googleMaps" style="width: 100vw; height: 40vw;"></div>
+        <div id = "googleMaps"></div>
         <?php
             echo "<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap' type='text/javascript'></script>";
             $sql = "SELECT * FROM p5_6.location";
@@ -60,39 +60,39 @@ if(!isset($_SESSION['user']))
             while($row = $result->fetch_assoc())
             {
                 $markers_script = $markers_script .  "
-    var marker". $index ."_co = new google.maps.LatLng(". $row['latitude'] . "," . $row['longitude'] .");
-    var marker" . $index ."= new google.maps.Marker({position: marker". $index ."_co});
+                var marker". $index ."_co = new google.maps.LatLng(". $row['latitude'] . "," . $row['longitude'] .");
+                var marker" . $index ."= new google.maps.Marker({position: marker". $index ."_co});
 
-    marker". $index .".setMap(map);";
-                $index = $index + 1;
-                
-//                echo "<script>add_marker(" . $row['latitude'] . "," . $row['longitude'] . ")</script>";
-            }
-            $markers_script = $markers_script . "google.maps.event.addDomListener(window, 'load', myMap);
-}</script>";
-            
+                marker". $index .".setMap(map);";
+                            $index = $index + 1;
+
+            //                echo "<script>add_marker(" . $row['latitude'] . "," . $row['longitude'] . ")</script>";
+                        }
+                        $markers_script = $markers_script . "google.maps.event.addDomListener(window, 'load', myMap);
+            }</script>";
+
             echo $markers_script;
         ?>
         <br>
-        <div class='container'>
-            <h1 style='text-align:center;'><b>Our Locations</b></h1><hr><br>
+        <div class='container-fluid'>
+            <h1 id="locationhead"><b>Our Locations</b></h1><hr><br>
             <?php
                 $region_array = array("North", "South", "East", "West");
                 foreach($region_array as &$region) {
-                    echo "<div class='col-md-3 col-xs-1' id=''><h2 style='color: green;'>" . $region . "</h2><hr><ul>";
+                    echo "<div class='col-md-3 displaylocation'><h2>" . $region . "</h2><hr><ul>";
 
                     $sql = "SELECT * FROM p5_6.location WHERE region='" . $region . "'; ";
                     $result = $conn->query($sql);
 
                     while($row = $result->fetch_assoc()) {
-                        echo "<li><th><h4 style='color: brown;'>" . $row["location_name"] . "</h4></th></li>";
+                        echo "<li><th><h4>" . $row["location_name"] . "</h4></th></li>";
                         echo "<p>" . $row["address"] . "</p>";
                     }
-                    echo "</ul></div>";
+                    echo "</div>";
                 }
             ?>
         </div>
-        <br><br>
+        
         
         <?php
             include "footer.php";

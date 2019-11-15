@@ -15,13 +15,14 @@ include "connectmysql.php";
 <?php
 $sql = "SELECT * FROM p5_6.product_purchased"; //REPLACE user_id WITH LOGGED IN USER
 $result = $conn->query($sql);
-$table = "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered To</th><th>Total Price</th><th>Status</th></thead><tbody>";
+$table = "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>User Purchased</th><th>Product</th><th>Quantity</th><th>Delivered To</th><th>Total Price</th><th>Status</th></thead><tbody>";
 $idarray = array();
 if($result->num_rows > 0)
 {
     while ($row = $result->fetch_assoc())
     {
         $table .= "<tr><td>" . $row['product_id_purchased'] . "</td>"
+                . "<td>" . $row['user_purchased'] . "</td>"
                 . "<td>" . $row['product_name_purchased'] . "</td>"
                 . "<td>" . $row['product_quantity_purchased'] . "</td>"
                 . "<td>" . $row['zip'] . "</td>"
@@ -85,6 +86,7 @@ $conn->close();
         </section>
         <?php include "footer.php" ?>
     </body>
+
 </html>
 
 
