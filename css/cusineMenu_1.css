@@ -258,6 +258,12 @@ label {
     }
 }
 
+@media only screen and (max-width: 1470px){
+    body{
+        background-repeat: repeat;
+    }
+}
+
 #loadingImg {
 display: none;
 position: absolute;
