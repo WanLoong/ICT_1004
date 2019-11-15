@@ -117,7 +117,7 @@ if($i<=0)
                                 </div>
                                 <div class="col-50">
                                 <label for="zip">Zip</label>
-                                <input type="text" id="zip" name="zip" placeholder="10001" maxlength="6"ax>
+                                <input type="text" id="zip" name="zip" placeholder="10001" maxlength="6">
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@ if($i<=0)
                             </div>
                             <div class="col-50">
                                 <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3"ax>
+                                <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3">
                             </div>
                         </div>
                     </div>
@@ -169,19 +169,19 @@ if($i<=0)
                 <hr>
                 
                 <div class="totals">
-                    <div class="totals-item" name="totals-item">
+                    <div class="totals-item" >
                         <label>Subtotal</label>
                         <div class="totals-value" id="cart-subtotal"><?php echo$cartOutput?></div>
                     </div>
-                    <div class="totals-item"name="totals-item">
+                    <div class="totals-item">
                         <label>Tax (5%)</label>
                         <div class="totals-value" id="cart-tax"><?php echo$tax?></div>
                     </div>
-                    <div class="totals-item"name="totals-item">
+                    <div class="totals-item">
                         <label>Delivery</label>
                         <div class="totals-value" id="cart-delivery"><?php echo$delivery?></div>
                     </div>
-                    <div class="totals-item totals-item-total" name="totals-item">
+                    <div class="totals-item totals-item-total" >
                         <label>Grand Total</label>
                         <div class="totals-value" id="cart-total"><?php echo$carttotal?></div>
                     </div>
