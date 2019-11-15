@@ -1,2 +1,0 @@
-    productRow.remove();
-    recalculateCart();
