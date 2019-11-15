@@ -497,7 +497,7 @@ if(isset($_SESSION['user']))
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
                 alert("logged out successfully!");
-                window.location.assign('mainPage?reset=1');
+                window.location.assign('processes?reset=1');
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';
             }

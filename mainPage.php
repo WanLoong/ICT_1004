@@ -43,10 +43,7 @@ if(!isset($_SESSION['user']))
         ?>
 
 
-        <img src="images/foodMain.jpg" id="mainPic"/>
-        <div class="container-fluid">
             <div class="center">Got Cravings? Wait No More!</div>
-        </div>
 
 
         <!--MainPage Footer-->
