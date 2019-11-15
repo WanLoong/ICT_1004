@@ -85,7 +85,7 @@ if(!isset($_SESSION['user']))
                     $result = $conn->query($sql);
 
                     while($row = $result->fetch_assoc()) {
-                        echo "<li><th><h4>" . $row["location_name"] . "</h4></th></li>";
+                        echo "<li><th><h4 class='locationname'>" . $row["location_name"] . "</h4></th></li>";
                         echo "<p>" . $row["address"] . "</p>";
                     }
                     echo "</div>";
