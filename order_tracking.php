@@ -88,8 +88,9 @@ else
                     }
                    }
                 echo $table;
-            ?>            
+            ?>
         </section>
-        <?php include "footer.php" ?>
+        <br>
+        <?php include_once "footer.php" ?>
     </body>
     
