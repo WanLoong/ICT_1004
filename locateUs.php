@@ -44,7 +44,7 @@ if(!isset($_SESSION['user']))
                 }
             ?>
         
-        <div id = "googleMaps" style="width: 100%; height: 1000px;"></div>
+        <div id = "googleMaps" style="width: 100vw; height: 40vw;"></div>
         <?php
             echo "<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYRpKSmZtBiBy8I1qVqsewYuDmG1AXGc&callback=myMap' type='text/javascript'></script>";
             $sql = "SELECT * FROM p5_6.location";
@@ -74,12 +74,12 @@ if(!isset($_SESSION['user']))
             echo $markers_script;
         ?>
         <br>
-        <div class='container-fluid' style="height: 50%;">
+        <div class='container'>
             <h1 style='text-align:center;'><b>Our Locations</b></h1><hr><br>
             <?php
                 $region_array = array("North", "South", "East", "West");
                 foreach($region_array as &$region) {
-                    echo "<div class='col-md-3' id=''><h2 style='color: green;'>" . $region . "</h2><hr><ul>";
+                    echo "<div class='col-md-3 col-xs-1' id=''><h2 style='color: green;'>" . $region . "</h2><hr><ul>";
 
                     $sql = "SELECT * FROM p5_6.location WHERE region='" . $region . "'; ";
                     $result = $conn->query($sql);
@@ -88,12 +88,11 @@ if(!isset($_SESSION['user']))
                         echo "<li><th><h4 style='color: brown;'>" . $row["location_name"] . "</h4></th></li>";
                         echo "<p>" . $row["address"] . "</p>";
                     }
-                    echo "</div>";
+                    echo "</ul></div>";
                 }
             ?>
-        <script src="js/locateUs.js"></script>
         </div>
-        
+        <br><br>
         
         <?php
             include "footer.php";
