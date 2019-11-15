@@ -38,72 +38,23 @@ if($result->num_rows > 0)
         $quantity = $row["product_quantity"];
 
         $productTable .= "<tr>";
-        $productTable .= '  <th>'. $i .'</th>';
-        $productTable .= '  <th>images/' . $id .'.JPG</th>';
-        $productTable .= '  <th>'. $productName .'</th>';
-        $productTable .= '  <th>'. $quantity . '</th>';
-        $productTable .= '  <th><a href="manageInventory?remove='. $productName .'">Remove</a></th>';
+        $productTable .= '  <td>'. $i .'</td>';
+        $productTable .= '  <th>images/' . $id .'.JPG</td>';
+        $productTable .= '  <td>'. $productName .'</td>';
+        $productTable .= '  <td>'. $quantity . '</td>';
+        $productTable .= '  <td><a href="processes?remove='. $productName .'">Remove</a></td>';
         $productTable .= "</tr>";  
         $i++;
     }
      $productTable .= '</table>';
 }
+
+unset($row);
+$result->free_result();
+$conn->close();
 ?>
 
-<?php
-#add item to db
-if(isset($_GET['add']))
-{
-    if(isset($_POST['addpname'])&&isset($_POST['addprice'])&&isset($_POST['addptype'])&&isset($_POST['addquantity'])&&isset($_POST['addpdesc'])&& is_numeric($_POST['addprice']))
-    {
-        $addpname = sanitize_input($_POST['addpname']);
-        $addprice = sanitize_input($_POST['addprice']);
-        $addptype = sanitize_input($_POST['addptype']);
-        $addquantity = sanitize_input($_POST['addquantity']);
-        $addpdesc = sanitize_input($_POST['addpdesc']);
 
-        
-        $sql = "INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_type)"
-                . " VALUES ('$addpname', '$addpdesc',' $addprice', '$addquantity', '$addptype')";
-        $result = $conn->query($sql);
-        if($result == TRUE)
-        {
-            header("location:manageInventory");
-        }
-        else
-        {
-            echo '<script type="text/javascript">';
-            echo '  alert("Error adding record or Required fields are empty.")';
-            echo '</script>';
-            header("location:manageInventory");
-        }
-    }
-    else
-    {
-        header("location:manageInventory");
-    }
-}
-
-function sanitize_input($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-?>
-
-<?php
-#remove item from db
-if(isset($_GET['remove']))
-{
-    $identifier = $_GET['remove'];
-    $sql = "DELETE FROM product_table WHERE product_name='$identifier'";
-    $result = $conn->query($sql);
-    header("location:manageInventory"); 
-}
-
-?>
 
 <html>
     <head>
@@ -137,7 +88,7 @@ if(isset($_GET['remove']))
         </section>
         <section id="addProducts">
             <h2 style="text-align: center;">Add New Products</h2>
-            <form method="post" action = "manageInventory?add=1">
+            <form method="post" action = "processes?add=1">
                 <label for="productName">Product Name:</label>
                 <input class="form-control" required="required" type="text" name="addpname" placeholder="Product Name...">
                 <label for="price">Price:</label>
@@ -164,9 +115,3 @@ if(isset($_GET['remove']))
     
     
 </html>
-
-<?php
-unset($row);
-$result->free_result();
-$conn->close();
-?>

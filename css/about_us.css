@@ -1,3 +1,17 @@
+p {
+    font-size: 2vw;
+}
+
+p.entireWidth {
+    width: 100%;
+    text-align: center;
+}
+
+
+h2 {
+    font-size: 3vw;
+}
+
 .inlineImg {
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -10,6 +24,7 @@
 h1 {
 	font-family: Helvetica;
 	text-align: center;
+        font-size: 4vw;
 }
 	  
 body {

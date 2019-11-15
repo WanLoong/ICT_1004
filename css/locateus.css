@@ -1,0 +1,202 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15 Nov 2019, 9:07:02 PM
+    Author     : Dell
+*/
+
+
+.center{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    font-size: 90px;
+    font-weight: bold;
+    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+    text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
+    border: 2px solid black;
+    padding-left:25px;
+    padding-right:9px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+@media screen and (max-width: 1260px) {
+    .center{
+        position: relative;
+        top: -620px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        font-size: 60px;
+        font-weight: bold;
+        /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+        text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
+        border: 2px solid black;
+        padding-left:25px;
+        padding-right:9px;
+        padding-top: 8px;
+        padding-bottom: 10px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+@media screen and (max-width: 1246px) {
+    .center{
+        position: relative;
+        top: -560px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        font-size: 60px;
+        font-weight: bold;
+        /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+        text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
+        border: 2px solid black;
+        padding-left:25px;
+        padding-right:9px;
+        padding-top: 8px;
+        padding-bottom: 10px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+@media screen and (max-width: 1172px) {
+    .center{
+        position: relative;
+        top: -500px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        font-size: 60px;
+        font-weight: bold;
+        /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+        text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
+        border: 2px solid black;
+        padding-left:25px;
+        padding-right:9px;
+        padding-top: 8px;
+        padding-bottom: 10px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+@media screen and (max-width: 1098px) {
+    .center{
+        position: relative;
+        top: -420px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        font-size: 60px;
+        font-weight: bold;
+        /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+        text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
+        border: 2px solid black;
+        padding-left:25px;
+        padding-right:9px;
+        padding-top: 8px;
+        padding-bottom: 10px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    .center{
+        position: relative;
+        top: -380px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        font-size: 60px;
+        font-weight: bold;
+        /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+        text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
+        border: 2px solid black;
+        padding-left:25px;
+        padding-right:9px;
+        padding-top: 8px;
+        padding-bottom: 10px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .center{
+        /*position: absolute;*/
+        /*top: 40%;*/
+        position: relative;
+        top: -300px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        font-size: 50px;
+        font-weight: bold;
+        /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+        text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
+        border: 2px solid black;
+        padding-left:25px;
+        padding-right:9px;
+        padding-top: 8px;
+        padding-bottom: 10px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+
+    .center{
+        /*position: absolute;*/
+        /*top: 40%;*/
+        position: relative;
+        top: -230px;
+        left: 50%;
+        /*transform: translate(-50%, -50%);*/
+        z-index: 5;
+        font-size: 40px;
+        font-weight: bold;
+        /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+        text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
+        border: 2px solid black;
+        padding-left:25px;
+        padding-right:9px;
+        padding-top: 8px;
+        padding-bottom: 10px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .center{
+        position: relative;
+        top: -130px;
+        left: 50%;
+        /*transform: translate(-50%, -50%);*/
+        z-index: 5;
+        font-size: 30px;
+        font-weight: bold;
+        /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+        text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
+        border: 2px solid black;
+        padding-left:25px;
+        padding-right:9px;
+        padding-top: 8px;
+        padding-bottom: 10px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
