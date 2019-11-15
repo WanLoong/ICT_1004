@@ -9,9 +9,13 @@ and open the template in the editor.
 */
 
 
+
+
+
 @-ms-viewport{
   width: device-width;
 }
+
 
 #navMenuButton {
     padding-right: 20px;
@@ -261,7 +265,6 @@ and open the template in the editor.
 .mb-5 {
     margin-bottom: 1.5rem;
 }
-
 
 
 

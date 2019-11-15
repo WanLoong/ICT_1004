@@ -27,10 +27,9 @@ if(!isset($_SESSION['user']))
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
         <script src="js/modal.js"></script>
-
+        <link href="css/main2.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"/>
-        <link rel="stylesheet" href="css/main2.css"/>
         <!--<link rel="stylesheet" href="css/mainPage.css"/>-->
         <link rel="stylesheet" href="css/modalcss.css"/>
 
@@ -91,70 +90,6 @@ if(!isset($_SESSION['user']))
 
 
         </script>
-
-        <!--<script>
-            
-            
-            function submitContactForm(type) {
-                var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-                var name = $('#inputUsername').val();
-                var email = $('#inputEmail').val();
-                var password = $('#inputPassword').val();
-                var confPassword = $('#inputConfPassword').val();
-                var userType = type;
-                //alert(userType);
-
-                if (name.trim() == '') {
-                    alert('Please Enter Your Username.');
-                    $('#inputName').focus();
-                    return false;
-                } else if (email.trim() == '') {
-                    alert('Please Enter Your Email.');
-                    $('#inputEmail').focus();
-                    return false;
-                } else if (email.trim() != '' && !reg.test(email)) {
-                    alert('Please Enter Valid Email.');
-                    $('#inputEmail').focus();
-                    return false;
-                } else if (password.trim() == '') {
-                    alert('Please Enter Your Password.');
-                    $('#inputPassword').focus();
-                    return false;
-                } else if (confPassword.trim() == '') {
-                    alert('Please Confirm Your Password.');
-                    $('#inputConfPassword').focus();
-                    return false;
-                } else if (confPassword != password) {
-                    alert('Your Passwords Do Not Match.');
-                    //$('#inputConfPassword').focus();
-                    return false;
-                } else {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'submit_form.php',
-                        //data: 'contactFrmSubmit=1&name='+name+'&email='+email+'&password='+password+'$confPassword='+confPassword,
-                        data:'contactFrmSubmit=1&name='+name+'&email='+email+'&password='+password+'&confPassword='+confPassword+'&userType='+userType,
-                        beforeSend: function () {
-                            $('.submitBtn').attr("disabled", "disabled");
-                            $('.modal-body').css('opacity', '.5');
-                        },
-                        success:function(msg) {
-                            if (msg == 'ok') {
-                                $('#inputUsername').val('');
-                                $('#inputEmail').val('');
-                                $('#inputPassword').val('');
-                                $('#inputConfPassword').val('');
-                                $('.statusMsg').html('<span style="color:green;">Registered Successfully!</p>');
-                            } else {
-                                $('.statusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
-                            }
-                            $('.submitBtn').removeAttr("disabled");
-                            $('.modal-body').css('opacity', '');
-                        }
-                    });
-                }
-            }
-        </script>-->
 
 
 

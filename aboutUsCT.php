@@ -65,7 +65,5 @@ if(!isset($_SESSION["user"]))
 		</div>	
 			
 		<?php include "footer.php";?>
-        
-        
     </body>
 </html>
