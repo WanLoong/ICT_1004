@@ -28,88 +28,7 @@ else
 
 
 
-/*--------------------------------email------------------------------------*/
-//if (empty($_POST["email"])) 
-//{
-//    $errorMsg .= "Email is required.<br>";     
-//    $success = false; 
-//}
-//else 
-//{     
-//    $email = sanitize_input($_POST["email"]); 
-//}
-//// Additional check to make sure e-mail address is well-formed.     
-//if (!filter_var($email, FILTER_VALIDATE_EMAIL))     
-//{         
-//    $errorMsg .= "Invalid email format.<br>";         
-//    $success = false;     
-//} 
-//
 
-/*--------------------------------Address------------------------------------*/
-//if (empty($_POST["address"])) 
-//{
-//    $errorMsg .= "Address is required.<br>";     
-//    $success = false; 
-//}
-//else 
-//{     
-//    $address = sanitize_input($_POST["address"]); 
-// 
-//
-//} 
-/*--------------------------------city------------------------------------*/
-//if (empty($_POST["cardname"])) 
-//{
-//    $errorMsg .= "city is required.<br>";     
-//    $success = false; 
-//}
-//else 
-//{     
-//    $city = sanitize_input($_POST["email"]); 
-// 
-//} 
-/*--------------------------------city------------------------------------*/
-//if (empty($_POST["cardname"])) 
-//{
-//    $errorMsg .= "city is required.<br>";     
-//    $success = false; 
-//}
-//else 
-//{     
-//    $city = sanitize_input($_POST["email"]); 
-// 
-//} 
-/*--------------------------------state------------------------------------*/
-//if (empty($_POST["state"])) 
-//{
-//    $errorMsg .= "State is required.<br>";     
-//    $success = false; 
-//}
-//else 
-//{     
-//    $state = sanitize_input($_POST["state"]); 
-// 
-//} 
-/*--------------------------------zip------------------------------------*/
-//if (empty($_POST["zip"])) 
-//{
-//    $errorMsg .= "Zip code is required.<br>";     
-//    $success = false; 
-//}
-//else 
-//{     
-//    $zip = sanitize_input($_POST["zip"]); 
-//     $zipleng = strlen((string)$zip);
-//    if($zipleng == 6) {
-//    // Pass
-//} else {
-//        $errorMsg .= "Zip Code is in wrong format. <br>";
-//        $success = false;
-//    // Fail
-//} 
-// 
-//} 
 /*--------------------------------credit card ------------------------------------*/
 if (empty($_POST["cardnum"])) 
 {
@@ -249,13 +168,14 @@ $u_purchased = $_SESSION['user'];
         {
 
          $i++;
-        $pid = $eachitem['product_id'];
+        $pid = $eachitem['product_id'] + time();
         $productName = $eachitem['productName'];
-        $price = $eachitem['price'];
+        $price = $_POST["total"];
         $quantity = $eachitem['quantity'];
+        $zip = $_POST['zip'];
         
-        $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status)";
-        $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$u_purchased','$status')";
+        $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, zip)";
+        $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$u_purchased','$status','$zip')";
         if ($conn->query($sql) == TRUE) {
         echo "";
         } else {
@@ -275,11 +195,8 @@ $u_purchased = $_SESSION['user'];
         
      }
      unset($_SESSION["cart_array"]);
-     
-     
-//}
-unset($row);
-$conn->close(); 
+     unset($row);
+     $conn->close();
     
     
         
@@ -311,25 +228,6 @@ function sanitize_input($data)
 } 
  
 ?>
-<?php
-if(isset($_POST["index"]))
-{
-    if(isset($_SESSION["cart_array"]))
-    {
-        foreach($_SESSION["cart_array"] as $eachitem => $subeachitem)
-        {
-            $pid1 = $subeachitem['product_id'];
-            if($pid1 == $_POST['index'] )
-            {
-                unset($_SESSION['cart_array'][$eachitem]);
-                $i--;
-                header("location:shoppingCartNel");
-            }
-        }
-    }
-}
-?>
-
 <?php
 if($i<=0)
 {
