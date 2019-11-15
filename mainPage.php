@@ -8,22 +8,12 @@ and open the template in the editor.
 
 <?php
 
-if(isset($_GET['reset']))
-{
-    session_start();
-    unset($_SESSION["user"]);
-    if(isset($_SESSION['cart_array']))
-    {
-        unset($_SESSION['cart_array']);
-    }
-    session_destroy();
-    header("location:mainPage");
-}
-
 session_start();
 if(!isset($_SESSION['user']))
 {
+    unset($_SESSION['user']);
     session_destroy();
+
 }
 ?>
 
@@ -32,216 +22,11 @@ if(!isset($_SESSION['user']))
         <title>Welcome To Guilty Pleasures!</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width" initial-scale=1>
-        
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
         <script src="js/modal.js"></script>
-
-        <style>
-            
-            .center{
-                position: absolute;
-                top: 55%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                z-index: 5;
-                font-size: 91px;
-                font-weight: bold;
-                /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-                text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
-                border: 2px solid black;
-                padding-left:25px;
-                padding-right:9px;
-                padding-top: 8px;
-                padding-bottom: 10px;
-                max-width: 100%;
-                max-height: 100%;
-            }
-
-            @media screen and (max-width: 1260px) {
-                .center{
-                    position: relative;
-                    top: -620px;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 5;
-                    font-size: 60px;
-                    font-weight: bold;
-                    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-                    text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
-                    border: 2px solid black;
-                    padding-left:25px;
-                    padding-right:9px;
-                    padding-top: 8px;
-                    padding-bottom: 10px;
-                    max-width: 100%;
-                    max-height: 100%;
-                }
-            }
-
-            @media screen and (max-width: 1246px) {
-                .center{
-                    position: relative;
-                    top: -560px;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 5;
-                    font-size: 60px;
-                    font-weight: bold;
-                    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-                    text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
-                    border: 2px solid black;
-                    padding-left:25px;
-                    padding-right:9px;
-                    padding-top: 8px;
-                    padding-bottom: 10px;
-                    max-width: 100%;
-                    max-height: 100%;
-                }
-            }
-            @media screen and (max-width: 1172px) {
-                .center{
-                    position: relative;
-                    top: -500px;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 5;
-                    font-size: 60px;
-                    font-weight: bold;
-                    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-                    text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
-                    border: 2px solid black;
-                    padding-left:25px;
-                    padding-right:9px;
-                    padding-top: 8px;
-                    padding-bottom: 10px;
-                    max-width: 100%;
-                    max-height: 100%;
-                }
-            }
-            @media screen and (max-width: 1098px) {
-                .center{
-                    position: relative;
-                    top: -420px;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 5;
-                    font-size: 60px;
-                    font-weight: bold;
-                    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-                    text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
-                    border: 2px solid black;
-                    padding-left:25px;
-                    padding-right:9px;
-                    padding-top: 8px;
-                    padding-bottom: 10px;
-                    max-width: 100%;
-                    max-height: 100%;
-                }
-            }
-
-
-            @media screen and (max-width: 1024px) {
-                .center{
-                    position: relative;
-                    top: -380px;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 5;
-                    font-size: 60px;
-                    font-weight: bold;
-                    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-                    text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
-                    border: 2px solid black;
-                    padding-left:25px;
-                    padding-right:9px;
-                    padding-top: 8px;
-                    padding-bottom: 10px;
-                    max-width: 100%;
-                    max-height: 100%;
-                }
-            }
-
-            @media screen and (max-width: 950px) {
-                .center{
-                    /*position: absolute;*/
-                    /*top: 40%;*/
-                    position: relative;
-                    top: -300px;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 5;
-                    font-size: 50px;
-                    font-weight: bold;
-                    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-                    text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
-                    border: 2px solid black;
-                    padding-left:25px;
-                    padding-right:9px;
-                    padding-top: 8px;
-                    padding-bottom: 10px;
-                    max-width: 100%;
-                    max-height: 100%;
-                }
-            }
-
-
-            @media screen and (max-width: 650px) {
-
-                .center{
-                    /*position: absolute;*/
-                    /*top: 40%;*/
-                    position: relative;
-                    top: -230px;
-                    left: 50%;
-                    /*transform: translate(-50%, -50%);*/
-                    z-index: 5;
-                    font-size: 40px;
-                    font-weight: bold;
-                    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-                    text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
-                    border: 2px solid black;
-                    padding-left:25px;
-                    padding-right:9px;
-                    padding-top: 8px;
-                    padding-bottom: 10px;
-                    max-width: 100%;
-                    max-height: 100%;
-                }
-            }
-
-            @media screen and (max-width: 480px) {
-                .center{
-                    position: relative;
-                    top: -130px;
-                    left: 50%;
-                    /*transform: translate(-50%, -50%);*/
-                    z-index: 5;
-                    font-size: 30px;
-                    font-weight: bold;
-                    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-                    text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
-                    border: 2px solid black;
-                    padding-left:25px;
-                    padding-right:9px;
-                    padding-top: 8px;
-                    padding-bottom: 10px;
-                    max-width: 100%;
-                    max-height: 100%;
-                }
-            }
-
-
-            .mb-5 {
-                margin-bottom: 1.5rem;
-            }
-            
-           
-
-        </style>
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"/>

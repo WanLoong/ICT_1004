@@ -4,65 +4,10 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 6 Oct 2019, 17:59:29
-    Author     : kohboonkiat
+    Created on : 15 Nov 2019, 9:07:02 PM
+    Author     : Dell
 */
 
-
-@-ms-viewport{
-  width: device-width;
-}
-
-#navMenuButton {
-    padding-right: 20px;
-    font-size: 20px;
-}
-
-.sidepanel  {
-    width: 0;
-    position: fixed;
-    z-index: 10;
-    height: 100%;
-    top: 0;
-    left: 0;
-    /*background-color: #111;*/
-    /*background-color: #ccf2ff;*/
-    /*background-color: #e6f9ff;*/
-    /*background-color: #f8f9fa;*/
-    /*background-color: #F5F5F5;*/
-    background-color: #FFFFFFE3;
-    /*background-color: #111;*/
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidepanel a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    /*color: #818181;*/
-    color: #484d4d;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidepanel a:hover {
-    color: black;
-    text-decoration: underline;
-}
-
-.sidepanel .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-}
-
-#mainPic{
-    height: 100%;
-    width: 100%;
-}
 
 .center{
     position: absolute;
@@ -70,8 +15,7 @@ and open the template in the editor.
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
-    font-size: 91px;
-    text-align: center;
+    font-size: 90px;
     font-weight: bold;
     /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
     text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
@@ -256,12 +200,3 @@ and open the template in the editor.
         max-height: 100%;
     }
 }
-
-
-.mb-5 {
-    margin-bottom: 1.5rem;
-}
-
-
-
-

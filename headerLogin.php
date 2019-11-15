@@ -355,14 +355,6 @@ if(isset($_SESSION['user']))
                         <div class="modal-body mx-3">
 
                             <form role="form">
-                                <!--<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist" style="margin-top:0px;">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="user-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">User</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="admin-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Admin</a>
-                                    </li>
-                                </ul>-->
                                 <p class="statusMsg" style="margin-top:12px;"></p>
                                 <div class="md-form" style="margin-top:-8px;">
                                     <i class="fas fa-user prefix grey-text"></i>
@@ -419,7 +411,7 @@ if(isset($_SESSION['user']))
                 if (isset($_SESSION["user"])) {
                     if ($_SESSION["user"] == 'kq') {
                         echo'<a href="manageInventory" style="font-family: Times, Times New Roman, serif">Inventory</a>';
-                        echo'<a href="order_tracking" style="font-family: Times, Times New Roman, serif">Orders</a>';
+                        echo'<a href="aOrderTracking" style="font-family: Times, Times New Roman, serif">Orders</a>';
                     }
                     else
                     {
@@ -430,8 +422,6 @@ if(isset($_SESSION['user']))
                 <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">About Us</a>
                 <a href="cuisinesKQ" style="font-family: Times, Times New Roman, serif">Cuisines</a>
                 <a href="locateUs" style="font-family: Times, Times New Roman, serif">Locations</a>
-                <a href="aboutUsCT" style="font-family: Times, Times New Roman, serif">Contact Us</a>
-
             </div>
 
         </div>
@@ -490,7 +480,7 @@ if(isset($_SESSION['user']))
                 $('body').css('overflow-y', 'auto');
                 $('body').css('overflow-x', 'hidden');
                 alert("logged out successfully!");
-                window.location.assign('mainPage?reset=1');
+                window.location.assign('processes?reset=1');
                 //alert("logged out successfully!");         
                 document.getElementById('loginStatusMsg').style.display = 'none';
                 state = 'false';

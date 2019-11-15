@@ -115,6 +115,7 @@ if($i<=0)
                                 <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
                                 <label for="city"><i class="fa fa-institution"></i> City</label>
                                 <input type="text" id="city" name="city" placeholder="New York">
+                                <input type="hidden" id="total" name="total" value="<?php echo $carttotal?>">
                             <div class="row">
                                 <div class="col-50">
                                     <label for="state">State</label>
