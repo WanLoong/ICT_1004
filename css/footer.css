@@ -16,12 +16,18 @@ footer{
 }
 
 table img{
-    max-width: 2em;
+    max-width: 2.5em;
 }
 
 table {
     margin:auto;
 }
 
-
-
+@media screen and (max-width: 1440px) {
+    footer{
+        font-size: 15px;
+    }
+    footer h2{
+        font-size: 25px;
+    }
+}
