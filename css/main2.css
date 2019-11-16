@@ -69,7 +69,7 @@ and open the template in the editor.
 }
 
 .center{
-    /*font-size: 91px;*/
+    font-size: 91px;
     text-align: center;
     font-weight: bold;
     margin: 300px 400px 300px 400px;
@@ -93,10 +93,10 @@ and open the template in the editor.
 
 @media screen and (max-width: 1380px) {
     .center{
-        /*font-size: 65px;*/
+        font-size: 65px;
         text-align: center;
         font-weight: bold;
-        margin: 250px 300px 250px 300px;
+        margin: 250px 300px 300px 300px;
         text-shadow: -1px 0 , 0 1px #f2f2f2, 1px 0 #fff, 0 -1px black;
         border: 2px solid black;
         padding: 25px 20px 25px 20px;
