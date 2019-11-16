@@ -8,6 +8,7 @@
 
 function openNav() {
     document.getElementById("mySidepanel").style.width = "300px";
+    console.log("ddD");
 }
 
 function closeNav() {

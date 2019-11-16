@@ -22,9 +22,9 @@ if (!isset($_SESSION['user'])) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-        <script src="js/sideMenu.js"></script>
+        
         <script src="js/modal.js"></script>
-        <link href="css/main2.css" rel="stylesheet">
+        <!--<link href="css/main2.css" rel="stylesheet">-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"/>
         <!--<link rel="stylesheet" href="css/mainPage.css"/>-->
