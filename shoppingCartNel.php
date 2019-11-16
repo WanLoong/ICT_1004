@@ -112,7 +112,6 @@ if($i<=0)
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/main2.css"/>
     <link rel="stylesheet" href="css/modalcss.css"/>
-    <!--<link rel="stylesheet" href="css/cusineMenu.css"/>-->
     <link rel="stylesheet" href="css/shoppingCart_1.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
