@@ -74,6 +74,7 @@ if($i<=0)
 }
 ?>
 <!DOCTYPE html>
+<html lang="en">
 <head>
         <title>Welcome To Guilty Pleasures!</title>
         <meta charset="UTF-8">

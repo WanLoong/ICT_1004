@@ -137,37 +137,28 @@ include "headerLogin.php";
 
 if ($success) 
 {     
-    echo '<section id="payment_success" name="payment_success" style="border: 30px;background:white;padding-bottom:15px; opacity: 0.9;margin-top: 22px;text-align:center;">';
+    echo '<section id="payment_success" class="payment_success">';
     echo "<h4>Your payment is successful!</h4>";
     echo "<p>Thank you for purchasing, " . $fname;
     echo "<br>";
-    echo $type." ".$cardnum."<P> has be successfully been deducted";
+    echo $type." ".$cardnum."<br> has be successfully been deducted";
     echo "<br><br>";
-    echo '<button type="button" name="returnh" class="btn btn-light" style="background-color: wheat;"><a href="mainPage"/>Return to Home</a></button>';
-            
-/** Helper function to write the data to the DB*/
-global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $name, $status;
-// Create connection
-$status = "processing";
+    echo '<button type="button" id="returnh" name="returnh" class="btn returnh" ><a href="mainPage"/>Return to Home</a></button>';
+    echo "</section>";
+    
+    /** Helper function to write the data to the DB*/
+    global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $name, $status;
+    // Create connection
+    $status = "processing";
 
-//$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
-//Check connection
-//if ($conn->connect_error)
-//{
- //   $errorMsg = "Connection failed: " . 
- //   $conn->connect_error;
- //   $success = false;
 
-//}
-//else
-//{
-$u_purchased = $_SESSION['user'];
+    $u_purchased = $_SESSION['user'];
     if(isset($_SESSION["cart_array"]))
     {        
         foreach($_SESSION["cart_array"] as $eachitem )
         {
 
-         $i++;
+        $i++;
         $pid = $eachitem['product_id'] + time();
         $productName = $eachitem['productName'];
         $price = $_POST["total"];
@@ -176,9 +167,12 @@ $u_purchased = $_SESSION['user'];
         
         $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, zip)";
         $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$u_purchased','$status','$zip')";
-        if ($conn->query($sql) == TRUE) {
-        echo "";
-        } else {
+        if ($conn->query($sql) == TRUE) 
+        {
+            echo "";
+        } 
+        else 
+        {
         echo "Error: " . $sql . "<br>" . $conn->error;
 }
         $sql = "SELECT product_quantity FROM p5_6.product_table WHERE product_name='$productName'";
@@ -191,33 +185,25 @@ $u_purchased = $_SESSION['user'];
         }
         $sql = "UPDATE p5_6.product_table SET product_quantity='$new_cart_quant' WHERE product_name='$productName'";
         $result = $conn->query($sql);
-        }
-        
+        }       
      }
      unset($_SESSION["cart_array"]);
      unset($row);
-     $conn->close();
-    
-    
-        
+     $conn->close();       
 } 
 else 
 {    
     
-    echo '<section id="payment_fail" name="payment_fail" style="border: 30px;background:white;padding-bottom:15px; opacity: 0.9;margin-top: 22px;;text-align:center;">';
+    echo '<section id="payment_fail" class="payment_fail">';
     echo "<h2>Oops!</h2>";
     echo "<h4>The following input errors were detected:</h4>";    
     echo "<p>" . $errorMsg . "</p>"; 
-    echo '<section id="payment_button">';
-    echo '<button type="button" name="return" class="btn btn-light" style="background-color: wheat;"><a href="payment"/>Return to payment</a></button>';    
+    echo '<section id="payment_button" name="payment_button" >';
+    echo '<button type="button" name="return_payment" class="btn return_payment"><a href="payment">Return to payment</a></button>';    
     echo "</section>";
     echo "</section>";
-    
-
-    
-} 
+ } 
  
-//Helper function that checks input for malicious or unwanted content.
 
 function sanitize_input($data) 
 {   
@@ -235,7 +221,8 @@ if($i<=0)
     $checkoutbtn = '';
 }
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
         <title>Welcome To Guilty Pleasures!</title>
         <meta charset="UTF-8">
@@ -244,19 +231,12 @@ if($i<=0)
         <link rel="stylesheet" href="css/bootstrap.css"/>
         <link rel="stylesheet" href="css/main2.css"/>
         <link rel="stylesheet" href="css/modalcss.css"/>
-        <!--<link rel="stylesheet" href="css/cusineMenu.css"/>-->
-       
-         <link rel="stylesheet" href="css/payment.css"/>
+        <link rel="stylesheet" href="css/process-payment.css"/>       
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-        <script src="js/Cart.js" async></script>
         <script src="js/sideMenu.js"></script>
-
 </head>
-<body>
-    
-   
+<body>  
 </body>
-
 </html>

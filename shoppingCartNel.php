@@ -103,6 +103,7 @@ if($i<=0)
 }
 ?>
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Welcome To Guilty Pleasures!</title>
     <meta charset="UTF-8">
@@ -158,11 +159,9 @@ if($i<=0)
                 <div class="totals-value" id="cart-total"><b><?php echo $carttotal?></b></div>
             </div>
             <?php echo $checkoutbtn ?>
-
             <form  action="cuisinesKQ">
-                <input class="returntomenu"type="submit" value="Return To Menu"/>
+                <input class="returntomenu" type="submit" value="Return To Menu"/>
             </form>
-
         </div>
     </div>
 </body>
