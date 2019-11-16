@@ -44,6 +44,9 @@ if(isset($_POST["pid"]))
             array_push($_SESSION["cart_array"],array("product_id"=>$pid,"productName"=>$productName,"productDesc"=>$productDesc,"price"=>$price,"quantity"=>$qtn));
         }
     }
+    echo '<script>';
+    echo 'alert("Item successfully added")';
+    echo '</script>';
 }
 
 function sanitize_input($data)

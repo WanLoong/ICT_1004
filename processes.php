@@ -62,8 +62,8 @@ if(isset($_GET['reset']))
 
 if(isset($_POST['updateStatus']))
 {
-    $elementId = $_POST['elementId'];
-    $elementValue = $_POST['elementValue'];
+    $elementId = sanitize_input($_POST['elementId']);
+    $elementValue = sanitize_input($_POST['elementValue']);
     $sql = "UPDATE p5_6.product_purchased SET delivery_status='$elementValue' WHERE product_id_purchased ='$elementId' ";
     // Execute the query
     $result = $conn->query($sql);
