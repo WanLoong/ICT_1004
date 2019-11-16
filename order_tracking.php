@@ -13,8 +13,22 @@ else
     }
 }
 
-
-?>
+    if($result->num_rows > 0)
+    {
+        $table = "<h1>Order Tracking</h1>";
+        $table .= "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered from</th><th>Total Price</th><th>Status</th></thead><tbody>";
+        while ($row = $result->fetch_assoc())
+        {
+            $table .= "<tr><td>" . $row['order_id'] . "</td><td>" . $row['product_name_purchased'] . "</td><td>" . $row['product_quantity_purchased'] . "</td><td>" . $row['zip'] . "</td><td>" . $row['product_price_purchased'] . "</td><td>" . $row['delivery_status'] ."</td></tr>"; 
+            $index += 1;
+         }
+        $table .= "</tbody></table>";
+    }
+    else
+    {
+        $table = "<h1>No Existing Orders</h1>";
+    }
+?> 
 <html>
      <head>
         <title>Order Tracking</title>
