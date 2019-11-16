@@ -143,13 +143,13 @@ if(isset($_SESSION['user']))
                             </div>
                             <div class="modal-body mx-3">
                                 <div class="col-lg-12 push-lg-4" id="innerForm">
-                                    <ul class="nav nav-tabs">
+                                    <!--<ul class="nav nav-tabs">
                                         <li class="nav-item">
-                                            <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+                                            <a href="#" data-target="#edit" data-toggle="tab" class="nav-link">Profile</a>
                                         </li>
-                                    </ul>
-                                    <div class="tab-content p-b-3">                                      
-                                        <div class="tab-pane tabContent" id="edit">
+                                    </ul>-->
+                                    
+                             
                                             <h4 class="m-y-2" id="editProfile">Edit Profile</h4>
                                             <form role="form">
 
@@ -194,8 +194,7 @@ if(isset($_SESSION['user']))
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+        
                 </div>
 
                 <!-- Admin profile Modal-->

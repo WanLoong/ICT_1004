@@ -17,7 +17,6 @@ if(!isset($_SESSION['user']))
 }
 ?>
 
-
 <html>
     <head>
         <title>Welcome To Guilty Pleasures!</title>
@@ -42,11 +41,22 @@ if(!isset($_SESSION['user']))
         include 'headerLogin.php';
         
         ?>
+
+
             <div class="center">Got Cravings? Wait No More!</div>
+
+
         <!--MainPage Footer-->
         <?php
         include "footer.php";
         ?>
+
+
+
+
+
+
+
 
 
     </body>
