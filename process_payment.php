@@ -127,7 +127,7 @@ if (empty($_POST["cvv"]))
 else 
 {     
     $cvv = sanitize_input($_POST["cvv"]);
-    $num_length = strlen((string)$num);
+    $num_length = strlen((string)$cvv);
     if($num_length == 3) {
     // Pass
 } else {
@@ -148,7 +148,7 @@ if ($success)
     echo "<h4>Your payment is successful!</h4>";
     echo "<p>Thank you for purchasing, " . $fname;
     echo "<br>";
-    echo $type." ".$cardnum."<P> has be successfully been deducted";
+    echo $type." ".$cardnum."<p> has be successfully been deducted";
     echo "<br><br>";
     echo '<button type="button" class="btn btn-light" ><a href="mainPage"/>Return to Home</a></button>';
             
@@ -160,7 +160,7 @@ $status = "processing";
 $u_purchased = $_SESSION['user'];
     
 if(isset($_SESSION["cart_array"]))
-{        
+{   $order_id = $_SESSION["cart_array"][0]["product_id"] + time();
     foreach($_SESSION["cart_array"] as $eachitem )
     {
 
@@ -171,7 +171,7 @@ if(isset($_SESSION["cart_array"]))
     $quantity = $eachitem['quantity'];
     $zip = $_POST['zip'];
         
-    $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, zip)";
+    $sql = "INSERT INTO p5_6.product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, zip, order_id) VALUES ('$pid','$productName','$price','$quantity','$u_purchased','$status','$zip','$order_id');";
     
     if ($conn->query($sql) == TRUE) {
     echo "";
