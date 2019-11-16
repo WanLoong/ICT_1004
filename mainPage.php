@@ -7,13 +7,10 @@ and open the template in the editor.
 
 
 <?php
-
 session_start();
-if(!isset($_SESSION['user']))
-{
+if (!isset($_SESSION['user'])) {
     unset($_SESSION['user']);
     session_destroy();
-
 }
 ?>
 
@@ -34,23 +31,55 @@ if(!isset($_SESSION['user']))
         <link rel="stylesheet" href="css/modalcss.css"/>
 
     </head>
+
     <body id="mainPagebody">
 
-        <?php
-        //include "header.php";
-        include 'headerLogin.php';
-        
-        ?>
+<?php
+//include "header.php";
+include 'headerLogin.php';
+?>
 
 
-            <div class="center">Got Cravings? Wait No More!</div>
+        <div class="center">Got Cravings? Wait No More!</div>
 
 
         <!--MainPage Footer-->
-        <?php
-        include "footer.php";
-        ?>
+<?php
+include "footer.php";
+?>
 
+
+        <script>
+            $('#loginButton').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'hidden');
+
+            });
+
+            $('#messageSpan').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'hidden');
+            });
+
+            $('#signUpButton').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'hidden');
+                //$("#modalRegisterForm").modal({"backdrop": "static"});
+                console.log('ji');
+
+            });
+
+            $('#closeButton').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'auto');
+            });
+
+            $('.close').click(function (e) {
+                e.preventDefault();
+                $('body').css('overflow-y', 'auto');
+            });
+
+        </script>
 
 
 
