@@ -41,7 +41,7 @@ else
                 include "connectmysql.php";
                 $index = 0;
                 $user_id = $_SESSION['user'];
-                $sql = "SELECT DISTINCT order_id FROM p5_6.product_purchased WHERE user_purchased='$user_id';"; //REPLACE user_id WITH LOGGED IN USER
+                $sql = "SELECT DISTINCT order_id FROM p5_6.product_purchased WHERE user_purchased='" . $user_id . "';"; //REPLACE user_id WITH LOGGED IN USER
                 $result = $conn->query($sql);
                 $table = "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered to (ZIP Code)</th><th>Total Price</th><th>Status</th></thead><tbody>";
                 
