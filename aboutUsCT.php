@@ -30,7 +30,7 @@ if(!isset($_SESSION["user"]))
     <body>
         <?php include 'headerLogin.php';?>
 		<div class="jumbotron">
-			<h1>About us</h1>
+			<h1 id="aboutushead">About us</h1>
 		</div>
 		<br>
 		<div class="container-fluid">

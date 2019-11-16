@@ -35,3 +35,25 @@ body{
 table td{
     padding:20px;
 }
+
+#aboutushead
+{
+    font-size: 70px;
+}
+
+.j1 p{
+    font-size: 20px;
+}
+
+footer{
+    font-size: 15px;
+}
+
+@media screen and (max-width: 1340px) {
+    .j1 p{
+        font-size: 15px;
+    }
+    #aboutushead{
+        font-size: 50px;
+    }
+}
