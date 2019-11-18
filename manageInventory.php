@@ -3,7 +3,7 @@
 #check for admin session cookie
 session_start();
 #
-if(!isset($_SESSION['user']) || $_SESSION["user"]!='kq')
+if(!isset($_SESSION['user']) || $_SESSION["user"]!='administrator')
 {
     header("location: mainPage");
 }
@@ -58,7 +58,7 @@ $conn->close();
 
 <html>
     <head>
-        <title>Manage Inventory</title>
+        <title>Admin</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
@@ -71,9 +71,7 @@ $conn->close();
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
 
-    </head>
-    
-    <body id="inventbody">     
+        <!--TAGS IN HEADER LOGIN -->
         <?php include 'headerLogin.php';?>
 
         
@@ -90,11 +88,11 @@ $conn->close();
             <h2 style="text-align: center;">Add New Products</h2>
             <form method="post" action = "processes?add=1">
                 <label for="productName">Product Name:</label>
-                <input class="form-control" required="required" type="text" name="addpname" placeholder="Product Name...">
+                <input class="form-control" id="productName" required="required" type="text" name="addpname" placeholder="Product Name...">
                 <label for="price">Price:</label>
-                <input class="form-control" required="required" type="text" name="addprice" placeholder="Price...">
+                <input class="form-control" id="price" required="required" type="text" name="addprice" placeholder="Price...">
                 <label for="ptype">Product Type:</label>
-                <select name="addptype" required="required">
+                <select name="addptype" id="ptype" required="required">
                     <option value="chinese">Chinese</option>
                     <option value="muslim">Muslim</option>
                 </select>

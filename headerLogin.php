@@ -3,7 +3,7 @@ if(isset($_SESSION['user']))
 {
     $value = $_SESSION['user'];
     echo "<script type='text/javascript'>";
-    if($_SESSION['user']== "kq")
+    if($_SESSION['user']== "administrator")
     {
     echo "sessionStorage.setItem('admin_display', '".$value."');";
     echo "sessionStorage.setItem('admin_type', 'admin');";
@@ -21,10 +21,8 @@ if(isset($_SESSION['user']))
 }?>
 
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width" initial-scale=1>
+
+        <link rel="stylesheet" href="css/footer.css"/>
         <link rel="stylesheet" href="css/headerLogin.css"/>
         <link href="css/main2.css" rel="stylesheet">
         <script src="js/sideMenu.js"></script>
@@ -46,11 +44,11 @@ if(isset($_SESSION['user']))
                         <a class="nav-link" href="mainPage">Home <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
-                <form id="form1" class="form-inline my-2 my-lg-0">
+                <!--<form id="form1" class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search">
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-
-                </form>
+                </form>-->
+                <a href="cuisinesKQ"><button class="btn btn-outline-primary my-2 my-sm-0 bsbtn">Begin Shopping</button></a>
 
 
                 <div class="dropdown show">
@@ -160,25 +158,25 @@ if(isset($_SESSION['user']))
                                                 <div class="form-group row">
                                                     <label class="col-lg-3 col-form-label form-control-label editLabel">Username:</label>
                                                     <div class="col-lg-9">
-                                                        <input class="form-control" id="up_username" type="text" value="">
+                                                        <input class="form-control" required="required" id="up_username" type="text" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-lg-3 col-form-label form-control-label editLabel">Email:</label>
                                                     <div class="col-lg-9">
-                                                        <input class="form-control" id="up_email" type="text" value="">
+                                                        <input class="form-control" required="required" id="up_email" type="text" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-lg-3 col-form-label form-control-label editLabel">Password:</label>
                                                     <div class="col-lg-9">
-                                                        <input class="form-control" id="up_password" type="password" value="" placeholder="Enter new password">
+                                                        <input class="form-control" required="required" id="up_password" type="password" value="" placeholder="Enter new password">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-lg-3 col-form-label form-control-label editLabel">Confirm Password:</label>
                                                     <div class="col-lg-9">
-                                                        <input class="form-control" type="password" value="" id="up_confPassword" placeholder="Confirm new password">
+                                                        <input class="form-control" required="required" type="password" value="" id="up_confPassword" placeholder="Confirm new password">
                                                     </div>
                                                 </div>
 
@@ -224,25 +222,25 @@ if(isset($_SESSION['user']))
                                                 <div class="form-group row">
                                                     <label class="col-lg-3 col-form-label form-control-label editLabel">Username:</label>
                                                     <div class="col-lg-9">
-                                                        <input class="form-control" id="upA_username" type="text" value="">
+                                                        <input class="form-control" required="required" id="upA_username" type="text" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-lg-3 col-form-label form-control-label editLabel">Email:</label>
                                                     <div class="col-lg-9">
-                                                        <input class="form-control" id="upA_email" type="text" value="">
+                                                        <input class="form-control" required="required" id="upA_email" type="text" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-lg-3 col-form-label form-control-label editLabel">Password:</label>
                                                     <div class="col-lg-9">
-                                                        <input class="form-control" id="upA_password" type="password" value="" placeholder="Enter new password">
+                                                        <input class="form-control" required="required" id="upA_password" type="password" value="" placeholder="Enter new password">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-lg-3 col-form-label form-control-label editLabel">Confirm Password:</label>
                                                     <div class="col-lg-9">
-                                                        <input class="form-control" type="password" value="" id="upA_confPassword" placeholder="Confirm new password">
+                                                        <input class="form-control" required="required" type="password" value="" id="upA_confPassword" placeholder="Confirm new password">
                                                     </div>
                                                 </div>
 
@@ -332,21 +330,22 @@ if(isset($_SESSION['user']))
             
              <div id="mySidepanel" class="sidepanel">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                    <a href="mainPage" class="sidemenu">Home</a>
                     <?php
                     if (isset($_SESSION["user"])) {
-                        if ($_SESSION["user"] == 'kq') {
+                        if ($_SESSION["user"] == 'administrator') {
                             echo'<a href="manageInventory" class="sidemenu" >Inventory</a>';
-                            echo'<a href="aOrderTracking" class="sidemenu" >Orders</a>';
+                            echo'<a href="aOrderTracking" class="sidemenu" >Track Orders</a>';
                         }
                         else
                         {
-                            echo'<a href="order_tracking" class="sidemenu">Orders</a>';
+                            echo'<a href="order_tracking" class="sidemenu">Track Orders</a>';
                         } 
                     }
                     ?>
-                    <a href="aboutUsCT" class="sidemenu" style="font-family: Times, Times New Roman, serif">About Us</a>
-                    <a href="cuisinesKQ" class="sidemenu" style="font-family: Times, Times New Roman, serif">Cuisines</a>
+                    <a href="cuisinesKQ" class="sidemenu">Cuisines</a>
                     <a href="locateUs" class="sidemenu">Locations</a>
+                    <a href="aboutUsCT" class="sidemenu">About Us</a>
                 </div>
         </nav>
         <script src="js/headerLogin.js"></script>

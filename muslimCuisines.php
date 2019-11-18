@@ -44,17 +44,17 @@ if($result->num_rows > 0)
         $dynamicTable .= '              </section>';
         if(isset($_SESSION["user"]))
         {
-            $dynamicTable .= '                  <form id = "addToCart" name = "addToCart" method="post" action="cuisinesKQ">';
-            $dynamicTable .= '                    <input type="number" name="quantity" id="quantity" min="1" max="5" value="1"/>';  
+            $dynamicTable .= '                  <form class="addToCart" name = "addToCart" method="post" action="cuisinesKQ">';
+            $dynamicTable .= '                    <input type="number" name="quantity" class="quantity" min="1" max="5" value="1"/>';  
         }
         $dynamicTable .= '          </div>';
         $dynamicTable .= '          <div class="modal-footer">';
         if(isset($_SESSION["user"]))
         {
-        $dynamicTable .= '                    <input type="hidden" name="pid" id="pid" value="' . $id . '"/>';
-        $dynamicTable .= '                    <input type="hidden" name="pname" id="pname" value="' . $productName . '"/>'; 
-        $dynamicTable .= '                    <input type="hidden" name="pdesc" id="pdesc" value="' . $productDesc . '"/>';
-        $dynamicTable .= '                    <input type="hidden" name="price" id="price" value="' . $price . '"/>'; 
+        $dynamicTable .= '                    <input type="hidden" name="pid" value="' . $id . '"/>';
+        $dynamicTable .= '                    <input type="hidden" name="pname" value="' . $productName . '"/>'; 
+        $dynamicTable .= '                    <input type="hidden" name="pdesc" value="' . $productDesc . '"/>';
+        $dynamicTable .= '                    <input type="hidden" name="price" value="' . $price . '"/>'; 
         $dynamicTable .= '                    <input type="submit" class="btn btn-info btn-default" name="button" value="Add to Shopping Cart"/>';
         $dynamicTable .= '                  </form>';       
         }
@@ -84,7 +84,6 @@ else
 
 
 
-<html>
     <section id="IMfood" style="margin-bottom: 25px;">
         <div class="container">
             <!-- Column for dynamic bootstrap properties-->
@@ -99,6 +98,6 @@ else
             ?>
         </div>
     </section>
-</html>
+
 
 

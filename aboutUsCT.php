@@ -13,7 +13,7 @@ if(!isset($_SESSION["user"]))
 ?>
 <html>
      <head>
-        <title>Welcome To Guilty Pleasures!</title>
+        <title>About Us</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width" initial-scale=1>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
@@ -26,8 +26,8 @@ if(!isset($_SESSION["user"]))
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
         <script src="js/modal.js"></script>
-    </head>
-    <body>
+        
+        <!--TAGS IN HEADER LOGIN -->
         <?php include 'headerLogin.php';?>
 		<div class="jumbotron">
 			<h1 id="aboutushead">About us</h1>

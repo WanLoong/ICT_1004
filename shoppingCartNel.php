@@ -64,7 +64,7 @@ if(isset($_SESSION["cart_array"])){
         $checkoutbtn.=' <div class="check-out">';
         $checkoutbtn.='<form method="post" action="payment">';
         $checkoutbtn.='<input type="submit" class="checkout" name="button" value="Checkout"/>';
-        $checkoutbtn.='                  </form>';  
+        $checkoutbtn.='                  </form></div>';  
         
         
 }
@@ -104,7 +104,7 @@ if($i<=0)
 ?>
 <!DOCTYPE html>
 <head>
-    <title>Welcome To Guilty Pleasures!</title>
+    <title>Shopping Cart</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
@@ -119,8 +119,6 @@ if($i<=0)
     <script src="js/sideMenu.js"></script>
 
 
-</head>
-<body>
 
 <?php 
     include "headerLogin.php";
@@ -165,5 +163,6 @@ if($i<=0)
 
         </div>
     </div>
+    <?php include "footer.php" ?>
 </body>
 </html>
