@@ -78,9 +78,8 @@ and open the template in the editor.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
-    </head>
-    <body>
 
+        <!--TAGS IN HEADER LOGIN -->
         <?php
         include "headerLogin.php";
         ?>
@@ -131,14 +130,6 @@ and open the template in the editor.
         <?php       
             include "footer.php";
         ?>
-        <!--<footer class="page-footer font-small blue" style="background: white;margin-top: 30px">
-
-    <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <a href="https://mdbootstrap.com/education/bootstrap/">Guilty Pleasures!</a>
-    </div>
-
-</footer>-->
-
         <script>
             function textBold(x) {
                 if (x == "0") {

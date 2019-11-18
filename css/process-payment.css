@@ -1,13 +1,27 @@
-.payment_success,.payment_fail{
+#payment_success{
    
 border: 30px;
 background:white;
+padding-top: 15px;
 padding-bottom:15px;
 opacity: 0.9;
 margin-top: 22px;
 text-align:center;
+margin-bottom: 250px;
  
 }
+
+#payment_fail{
+    border: 30px;
+    background:white;
+    padding-top: 15px;
+    padding-bottom:15px;
+    opacity: 0.9;
+    margin-top: 22px;
+    text-align:center;
+    margin-bottom: 250px;
+}
+
 .btn{
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;

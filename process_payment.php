@@ -11,11 +11,8 @@ $i=0;
 $name = $email = $city = $address = $state = $zip = $cardname = $cardnum = $expmonth = $expyear = $cvv = "";
 $errorMsg = "";
 $success = true;
-        
-        
-        
 
-/*-----------------------------first name---------------------------------*/
+/*-----------------------------full name---------------------------------*/
 if (empty($_POST["fullname"])) 
 {     
     $errorMsg .= "Full name is required.<br>";     
@@ -26,17 +23,35 @@ else
     $fname = sanitize_input($_POST["fullname"]); 
 } 
 
-
-
-
+/*--------------------------------zip code------------------------------------*/
+//if (empty($_POST["zip"])) 
+//{
+//    $errorMsg .= "Zip code is required.<br>";     
+//    $success = false; 
+//}
+//else 
+//{     
+//    $zip = sanitize_input($_POST["zip"]); 
+//     $zipleng = strlen((string)$zip);
+//    if($zipleng == 6) 
+//    {
+//    // Pass
+//    }
+//    else {
+//        $errorMsg .= "Zip Code is in wrong format. <br>";
+//        $success = false;
+//    // Fail
+//    } 
+// 
+//} 
 /*--------------------------------credit card ------------------------------------*/
-if (empty($_POST["cardnum"])) 
+if (empty($_POST["cardnum"])|| !is_numeric($_POST['cardnum'])) 
 {
-    $errorMsg .= "Credit Card Number is required.<br>";     
+    $errorMsg .= "Please provide proper credit card details.<br>";     
     $success = false; 
 }
 else 
-{     
+{   
     $cardnum = sanitize_input($_POST["cardnum"]); 
     $cardtype = array(
         "visa"       => "/^4[0-9]{12}(?:[0-9]{3})?$/",
@@ -70,148 +85,123 @@ else
     {
         $errorMsg .= "Invalid Credit Card Number format.<br>";  
         $success = false; 
-    } 
-    
- 
+    }   
 }
-
-
-
- 
-
 /*--------------------------------exp month------------------------------------*/
-//if (empty($_POST["expmonth"])) 
-//{
-//    $errorMsg .= "Expire Month is required.<br>";     
-//    $success = false; 
-//    if (empty($_POST["expyear"])) 
-//    {
-//    $errorMsg .= "Expire year is required.<br>";     
-//    $success = false; 
-//    }
-//}
-//else 
-//{     
-//    $expmonth = sanitize_input($_POST["expmonth"]); 
-//    $expyear = sanitize_input($_POST["expyear"]);
-//    $expires = \DateTime::createFromFormat('my',$expmonth.$expyear);
-//    $now     = new \DateTime();
-//    if ($expires < $now) {
-//        $errorMsg .= "This card is expired. <br>";
-//        $success = false;
-//    // expired
-//}
-// 
-//} 
+if (empty($_POST["expmonth"]) || !is_numeric($_POST["expmonth"])) 
+{
+    $errorMsg .= "Incorrect Month Format.<br>";     
+    $success = false; 
+    if (empty($_POST["expyear"]) && !is_numeric($_POST["expyear"])) 
+    {
+    $errorMsg .= "Incorrect Year Format.<br>";     
+    $success = false; 
+    }
+}
+else 
+{     
+    $expmonth = sanitize_input($_POST["expmonth"]); 
+    $expyear = sanitize_input($_POST["expyear"]);
+    $expires = \DateTime::createFromFormat('my',$expmonth.$expyear);
+    $now     = new \DateTime();
+    if ($expires < $now) 
+    {
+        $errorMsg .= "This card is expired. <br>";
+        $success = false;
+    // expired
+    }
+} 
 
 /*-------------------------------cvv------------------------------------*/
-//if (empty($_POST["cvv"])) 
-//{
-//    $errorMsg .= "cvv is required.<br>";     
-//    $success = false; 
-//}
-//else 
-//{     
-//    $cvv = sanitize_input($_POST["cvv"]);
-//    $num_length = strlen((string)$num);
-//    if($num_length == 3) {
-//    // Pass
-//} else {
-//        $errorMsg .= "CVV is in wrong format. <br>";
-//        $success = false;
-//    // Fail
-//} 
-// 
-//} 
-//    
-/*-----------------------------check deliver address---------------------------------*/
-//if(!isset($_POST["sameadr"]) && empty ($_POST["sameadr"]))
-//{
-//    $errorMsg .= "Please agree the terms and condition!<br>";     
-//    $success = false;
-//}
+if (empty($_POST["cvv"]) || !is_numeric($_POST["cvv"])) 
+{
+    $errorMsg .= "Incorrect CVV format.<br>";     
+    $success = false; 
+}
+else 
+{     
+    $cvv = sanitize_input($_POST["cvv"]);
+    $num_length = strlen((string)$cvv);
+    if($num_length == 3) {
+    // Pass
+} else {
+        $errorMsg .= "CVV is in wrong format. <br>";
+        $success = false;
+    // Fail
+} 
+ 
+}    
 
 /*------------------------------success-----------------------------------*/
  
-include "headerLogin.php";
+
+$pass =""; 
 
 if ($success) 
-{     
-    echo '<section id="payment_success" name="payment_success" style="border: 30px;background:white;padding-bottom:15px; opacity: 0.9;margin-top: 22px;text-align:center;">';
-    echo "<h4>Your payment is successful!</h4>";
-    echo "<p>Thank you for purchasing, " . $fname;
-    echo "<br>";
-    echo $type." ".$cardnum."<P> has be successfully been deducted";
-    echo "<br><br>";
-    echo '<button type="button" name="returnh" class="btn btn-light" style="background-color: wheat;"><a href="mainPage"/>Return to Home</a></button>';
+{  
+   
+    $pass= '<section id="payment_success" >';
+    $pass.= "<h4>Your payment is successful!</h4>";
+    $pass.= "<p>Thank you for purchasing, " . $fname;
+    $pass.= "<br>";
+    $pass.= $type." ".$cardnum."<br> has be successfully been deducted";
+    $pass.= "<br><br>";
+    $pass.= '<button type="button" class="btn btn-light" ><a href="mainPage"/>Return to Home</a></button></section>';
             
 /** Helper function to write the data to the DB*/
 global  $email, $errorMsg, $success, $price, $pid, $productName, $quantity, $name, $status;
 // Create connection
 $status = "processing";
 
-//$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
-//Check connection
-//if ($conn->connect_error)
-//{
- //   $errorMsg = "Connection failed: " . 
- //   $conn->connect_error;
- //   $success = false;
-
-//}
-//else
-//{
 $u_purchased = $_SESSION['user'];
-    if(isset($_SESSION["cart_array"]))
-    {        
-        foreach($_SESSION["cart_array"] as $eachitem )
-        {
+    
+if(isset($_SESSION["cart_array"]) && !empty($_POST['zip']) && is_numeric($_POST['zip']))
+{   $order_id = rand(10000000,99999999) + time();
+    foreach($_SESSION["cart_array"] as $eachitem )
+    {
 
-         $i++;
-        $pid = $eachitem['product_id'] + time();
-        $productName = $eachitem['productName'];
-        $price = $_POST["total"];
-        $quantity = $eachitem['quantity'];
-        $zip = $_POST['zip'];
+     $i++;
+    $productName = $eachitem['productName'];
+    $price = $_POST["total"];
+    $quantity = $eachitem['quantity'];
+    $zip = $_POST['zip'];
         
-        $sql = "INSERT INTO product_purchased (product_id_purchased, product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, zip)";
-        $sql .= " VALUES('$pid', '$productName', '$price', '$quantity', '$u_purchased','$status','$zip')";
-        if ($conn->query($sql) == TRUE) {
-        echo "";
-        } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-}
-        $sql = "SELECT product_quantity FROM p5_6.product_table WHERE product_name='$productName'";
-        $result = $conn->query($sql);
-        if($result -> num_rows > 0)
-        {
-            $row = $result -> fetch_assoc();
-            $cart_quant = $row["product_quantity"];
-            $new_cart_quant = $cart_quant - $quantity;
-        }
-        $sql = "UPDATE p5_6.product_table SET product_quantity='$new_cart_quant' WHERE product_name='$productName'";
-        $result = $conn->query($sql);
-        }
+    $sql = "INSERT INTO p5_6.product_purchased (product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, zip, order_id) VALUES ('$productName','$price','$quantity','$u_purchased','$status','$zip','$order_id');";
+    
+    if ($conn->query($sql) == TRUE) {
+    echo "";
+    } 
+    else 
+    {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $sql = "SELECT product_quantity FROM p5_6.product_table WHERE product_name='$productName'";
+    $result = $conn->query($sql);
+    if($result -> num_rows > 0)
+    {
+        $row = $result -> fetch_assoc();
+        $cart_quant = $row["product_quantity"];
+        $new_cart_quant = $cart_quant - $quantity;
+    }
+    $sql = "UPDATE p5_6.product_table SET product_quantity='$new_cart_quant' WHERE product_name='$productName'";
+    $result = $conn->query($sql);
+    }
         
-     }
+ }
      unset($_SESSION["cart_array"]);
      unset($row);
      $conn->close();
-    
-    
-        
 } 
 else 
-{    
-    
-    echo '<section id="payment_fail" name="payment_fail" style="border: 30px;background:white;padding-bottom:15px; opacity: 0.9;margin-top: 22px;;text-align:center;">';
-    echo "<h2>Oops!</h2>";
-    echo "<h4>The following input errors were detected:</h4>";    
-    echo "<p>" . $errorMsg . "</p>"; 
-    echo '<section id="payment_button">';
-    echo '<button type="button" name="return" class="btn btn-light" style="background-color: wheat;"><a href="payment"/>Return to payment</a></button>';    
-    echo "</section>";
-    echo "</section>";
+{       
+    $pass= '<section id="payment_fail" class="payment_fail">';
+    $pass.= "<h2>Oops!</h2>";
+    $pass.= "<h4>The following input errors were detected:</h4>";    
+    $pass.= "<p>" . $errorMsg . "</p>"; 
+    $pass.= '<section id="payment_button" name="payment_button" >';
+    $pass.= '<button type="button" name="return_payment" class="btn return_payment"><a href="payment">Return to payment</a></button>';    
+    $pass.= "</section>";
+    $pass.= "</section>";  
     
 
     
@@ -223,7 +213,7 @@ function sanitize_input($data)
 {   
     $data = trim($data);   
     $data = stripslashes($data);   
-    $data = htmlspecialchars($data);   
+    $data = htmlspecialchars($data);
     return $data; 
 } 
  
@@ -236,27 +226,27 @@ if($i<=0)
 }
 ?>
 
+<!DOCTYPE html>
 <head>
-        <title>Welcome To Guilty Pleasures!</title>
+        <title>Payment</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap.css"/>
         <link rel="stylesheet" href="css/main2.css"/>
         <link rel="stylesheet" href="css/modalcss.css"/>
-        <!--<link rel="stylesheet" href="css/cusineMenu.css"/>-->
-       
-         <link rel="stylesheet" href="css/payment.css"/>
+        <link rel="stylesheet" href="css/process-payment.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-        <script src="js/Cart.js" async></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="js/sideMenu.js"></script>
+<?php include "headerLogin.php";
+        echo $pass;
+?>
 
-</head>
-<body>
+<?php
+  include "footer.php" 
+?>
     
-   
 </body>
-
 </html>

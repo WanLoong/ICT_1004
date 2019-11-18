@@ -30,9 +30,7 @@ if (!isset($_SESSION['user'])) {
         <!--<link rel="stylesheet" href="css/mainPage.css"/>-->
         <link rel="stylesheet" href="css/modalcss.css"/>
 
-    </head>
 
-    <body id="mainPagebody">
 
 <?php
 //include "header.php";
@@ -80,13 +78,6 @@ include "footer.php";
             });
 
         </script>
-
-
-
-
-
-
-
 
     </body>
 </html>

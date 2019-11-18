@@ -42,6 +42,7 @@ h1 {
 }
 .shopping-cart{
     background: white;
+    margin-bottom: 100px;
 }
 
 /* Apply dollar signs */
@@ -523,4 +524,13 @@ body{
 }
 .returntomenu:hover {
   background-color: #494;
+}
+
+@media screen and (max-width: 980px) {
+    .checkout{
+        font-size: 20px;
+    }
+    .returntomenu{
+        font-size: 20px;
+    }
 }

@@ -9,15 +9,6 @@ and open the template in the editor.
 */
 
 
-#inventbody{
-    background-image: url("../images/foodMain.jpg");
-    background-size: 100%;
-    padding: 0px;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: Snell Roundhand;
-}
-
 
 #manageInventory{
     margin-top: 30px;
