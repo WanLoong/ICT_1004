@@ -24,8 +24,6 @@ if(!isset($_SESSION['user']))
         <script src="js/modal.js"></script>
         <script src="js/require.js"></script> 
         <script src="js/locateUs.js"></script>
-        
-    <body>
         <!--TAGS IN HEADER LOGIN -->
         <?php
             include "headerLogin.php";
