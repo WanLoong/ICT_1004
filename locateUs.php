@@ -25,6 +25,7 @@ if(!isset($_SESSION['user']))
         <script src="js/require.js"></script> 
         <script src="js/locateUs.js"></script>
         
+    <body>
         <!--TAGS IN HEADER LOGIN -->
         <?php
             include "headerLogin.php";
@@ -73,7 +74,6 @@ if(!isset($_SESSION['user']))
 
             echo $markers_script;
         ?>
-        <br>
         <div class='container-fluid locationbody'>
             <h1 id="locationhead"><b>Our Locations</b></h1><hr><br>
             <?php

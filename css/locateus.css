@@ -42,9 +42,12 @@ h2{
 }
 
 .locationbody{
-    margin-bottom: 50px;
+    margin-bottom: 0px;
+    opacity: 0.9;
+    background-color: white;
+    height: 100%;
 }
 
 footer{
-    margin-top: 200px;
+    margin-top: 300px;
 }
