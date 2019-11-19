@@ -15,7 +15,7 @@ $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
     $table = "<h1>Order Tracking</h1>";
-    $table .= "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>User Purchased</th><th>Product</th><th>Quantity</th><th>Delivered To</th><th>Total Price</th><th>Pickup/Delivery</th><th>Status</th></thead><tbody>";
+    $table .= "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>User Purchased</th><th>Product</th><th>Quantity</th><th>Delivered To</th><th>Total Price</th><th>Pickup/Delivery</th><th>Time Purchased</th><th>Status</th></thead><tbody>";
     while ($row = $result->fetch_assoc())
     {
         $sql_order = "SELECT * FROM p5_6.product_purchased where order_id=" . $row["order_id"] . ";";
@@ -31,7 +31,8 @@ if($result->num_rows > 0)
                 . "<td>" . $row_order['product_quantity_purchased'] . "</td>"
                 . "<td>" . $row_order['delivery_address'] . "</td>"
                 . "<td>$" . $row_order['product_price_purchased'] . "</td>"
-                . "<td>" . $row_order['pickup_delivery'] . "</td>"                       
+                . "<td>" . $row_order['pickup_delivery'] . "</td>"
+                . "<td>" . $row_order['time_of_purchased'] . "</td>"
                 . "<td>"
                 . "<select id='".$row_order['order_id']."' onchange='ajaxfunction(this)'>";
                 if($row_order['delivery_status'] == "processing")
@@ -66,6 +67,7 @@ if($result->num_rows > 0)
                             . "<td rowspan=" . mysqli_num_rows($result_order) . ">" . $row_order['delivery_address'] . "</td>"
                             . "<td rowspan=" . mysqli_num_rows($result_order) . ">$" . $row_order['product_price_purchased'] ."</td>"
                             . "<td rowspan=" . mysqli_num_rows($result_order) . ">" . $row_order['pickup_delivery'] ."</td>"
+                            . "<td rowspan=" . mysqli_num_rows($result_order) . ">" . $row_order['time_of_purchased'] ."</td>"
                             . "<td rowspan=" . mysqli_num_rows($result_order) . ">"
                             . "<select id='".$row_order['order_id']."' onchange='ajaxfunction(this)'>";
                             if($row_order['delivery_status'] == "processing")
