@@ -619,7 +619,7 @@ function logoutAfterUpdate() {
     document.getElementById('loginStatusMsg').style.display = 'none';
     state = 'false';
     alert("Updated Successfully. Please re-login.");
-    window.location.assign('mainPage?reset=1');
+    window.location.assign('processes?reset=1');
 }
 
 function menuProfileClicked() {

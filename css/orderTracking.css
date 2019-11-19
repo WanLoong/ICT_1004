@@ -24,10 +24,9 @@ and open the template in the editor.
     padding: 20px;
 }
 
-#orderbody{
-    background-image: url(../images/foodMain.jpg);
-    background-size: 100%;
-    padding: 0px;
-    background-repeat: repeat;
+
+
+#aordertracking{
+    margin-left: 50px;
 }
 

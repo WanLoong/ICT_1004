@@ -139,29 +139,18 @@ and open the template in the editor.
     }
 }
 
-@media screen and (max-width: 950px) {
-
-}
-
-
-@media screen and (max-width: 650px) {
-
-}
-
-@media screen and (max-width: 480px) {
-
-}
 
 
 .mb-5 {
     margin-bottom: 1.5rem;
 }
 
-#mainPagebody{
+body{
     background-image: url("../images/foodMain.jpg");
     background-size: 100%;
     padding: 0px;
     background-repeat: repeat;
+    font-family:Snell Roundhand;
 }
 
 

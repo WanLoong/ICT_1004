@@ -19,7 +19,14 @@ body{
     color:orange;
     font-size:36px;
 }
-
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.homeaddress{
+    display:none;
+}
 
 .row {
   display: -ms-flexbox; /* IE10 */
@@ -29,7 +36,6 @@ body{
   margin: 0 -16px;
   margin-left: 10px;
   margin-top: 10px;
-  margin-bottom: 10px;
   opacity: 0.9;
 }
 
@@ -41,17 +47,14 @@ body{
 .col-50 {
   -ms-flex: 50%; /* IE10 */
   flex: 50%;
+  padding:10px;
+  
 }
 
 .col-75 {
   -ms-flex: 75%; /* IE10 */
   flex: 75%;
-}
-
-.col-15,
-.col-50,
-.col-75 {
-  padding: 0 16px;
+  margin-bottom: 20px;
 }
 
 .container {
@@ -117,4 +120,7 @@ span.product-price {
   .col-25 {
     margin-bottom: 20px;
   }
+/*  #cvv,#expyear,#expmonth{
+      width:50%;
+  }*/
 }

@@ -40,3 +40,19 @@ h2{
         width: 100%; height: 700px;
 }
 }
+
+.locationbody{
+    opacity: 0.9;
+    background-color: white;
+    height: 50%;
+}
+
+footer{
+    margin-top: 300px;
+}
+
+@media screen and (max-width: 1011px) {
+    .locationbody{
+            height: 100%;
+    }
+}
