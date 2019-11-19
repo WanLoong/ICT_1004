@@ -41,9 +41,10 @@ if(isset($_SESSION["cart_array"])){
 
 //        include "connectmysql.php";
 //        
-//        $sql = "SELECT * FROM p5_6.location WHERE location_name = '";
+//        $sql = "SELECT * FROM p5_6.location WHERE ";
 //        $result = $conn->query($sql);
 //        while($row = $result->fetch_assoc()) {
+//            $location=
 //            $optionDisplay = "<li><th><h4 class='locationname'>" . $row["location_name"] . "</h4></th></li>";
 //            $optionDisplay.= "<p>" . $row["address"] . "</p>";
 // }
@@ -109,7 +110,7 @@ if($i<=0)
                                 <input type="text" required="required"  id="fname" name="fullname" pattern="[A-Za-z].{5,}" placeholder="John M. Doe" >
                                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
                                 <?php
-                                    echo '<input type="text" required="required" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="john@example.com" value=' . $_SESSION['email'] . '>';
+                                   // echo '<input type="text" required="required" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="john@example.com" value=' . $_SESSION['email'] . '>';
                                 ?>
                                 <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
                                 <input type="text" required="required"  id="adr" name="address" placeholder="542 W. 15th Street">
