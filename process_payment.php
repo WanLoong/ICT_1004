@@ -154,11 +154,10 @@ if(isset($_SESSION["cart_array"]) && !empty($_POST['zip']) && is_numeric($_POST[
         $deliveryAddress = $_POST["homeaddress"];
     }
 
-    $sql = "INSERT INTO p5_6.product_purchased (product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, order_id, pickup_delivery, delivery_address, time_of_purchased) VALUES ('$productName','$price','$quantity','$u_purchased','$status',$order_id','$pickup_delivery','$deliveryAddress','$date')";
+    $sql = "INSERT INTO p5_6.product_purchased (`product_name_purchased`, `product_price_purchased`, `product_quantity_purchased`, `user_purchased`, `delivery_status`, `order_id`, `pickup_delivery`, `delivery_address`, `time_of_purchased`) VALUES ('$productName','$price','$quantity','$u_purchased','$status',$order_id','$pickup_delivery','$deliveryAddress','$date')";
 
     
     if ($conn->query($sql) == TRUE) {
-    echo "";
     } 
     else 
     {
@@ -229,12 +228,9 @@ if($i<=0)
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="js/sideMenu.js"></script>
-<?php include "headerLogin.php";
+<?php   include "headerLogin.php";
         echo $pass;
-?>
-
-<?php
-  include "footer.php" 
+        include "footer.php";
 ?>
     
 </body>
