@@ -38,6 +38,7 @@ if(isset($_SESSION["cart_array"])){
     }   
 }
 
+
 //        include "connectmysql.php";
 //        
 //        $sql = "SELECT * FROM p5_6.location WHERE location_name = '";
@@ -47,6 +48,7 @@ if(isset($_SESSION["cart_array"])){
 //            $optionDisplay.= "<p>" . $row["address"] . "</p>";
 // }
 //                    echo "</div>";
+
 ?>
 
 <?php
@@ -90,6 +92,7 @@ if($i<=0)
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
         <script src="js/sideMenu.js"></script>
         <script src="js/payment.js"></script>
+
         
         <!--TAGS IN HEADER LOGIN -->
     <?php 

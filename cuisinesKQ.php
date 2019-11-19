@@ -130,14 +130,6 @@ and open the template in the editor.
         <?php       
             include "footer.php";
         ?>
-        <!--<footer class="page-footer font-small blue" style="background: white;margin-top: 30px">
-
-    <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <a href="https://mdbootstrap.com/education/bootstrap/">Guilty Pleasures!</a>
-    </div>
-
-</footer>-->
-
         <script>
             function textBold(x) {
                 if (x == "0") {
