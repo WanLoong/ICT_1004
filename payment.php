@@ -38,17 +38,28 @@ if(isset($_SESSION["cart_array"])){
     }   
 }
 
+        $storeDiplay = "";
+        include "connectmysql.php";
+        $storeDisplay ="";
+        $sql = "SELECT * FROM p5_6.location;";
+        $result = $conn->query($sql);
 
-//        include "connectmysql.php";
-//        
-//        $sql = "SELECT * FROM p5_6.location WHERE ";
-//        $result = $conn->query($sql);
-//        while($row = $result->fetch_assoc()) {
-//            $location=
-//            $optionDisplay = "<li><th><h4 class='locationname'>" . $row["location_name"] . "</h4></th></li>";
-//            $optionDisplay.= "<p>" . $row["address"] . "</p>";
-// }
-//                    echo "</div>";
+         if (mysqli_num_rows($result) > 0)
+        {
+            while($row = $result->fetch_assoc()) {
+               
+                $storelocation = $row['location_name'];
+                
+                $storeDisplay .= "<option value=".$storelocation.">". $storelocation."</option>";
+                
+                
+                
+            }
+        }
+        else{
+            echo "error";
+        }
+                    
 
 ?>
 
@@ -159,14 +170,11 @@ if($i<=0)
                 </div>
                     <div class="store_address">
                     <h1>Preferred delivery method</h1>
-                    <?php echo $optionDisplay ?>
+                    
                     <input type="radio" name="radio1" onclick="showText(0)" checked> Store pick up <br>   
                     
                     <select name="cars" id="storeoption">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
+                    <?php echo $storeDisplay?>
                     </select><br>
                     <input type="radio" name="radio1" onclick="showText(1)"> Home Delivery
                     <input type="text" id="homeaddress" class="homeaddress" >
