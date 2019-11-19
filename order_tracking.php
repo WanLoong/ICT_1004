@@ -22,7 +22,7 @@ else
     if (mysqli_num_rows($result) > 0)
     {
         $table = "<h1>Order Tracking</h1>";
-        $table .= "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered to (ZIP Code)</th><th>Total Price</th><th>Status</th></thead><tbody>";
+        $table .= "<table class='table table-bordered'><thead><tr><th>Order ID</th><th>Product</th><th>Quantity</th><th>Delivered to</th><th>Total Price</th><th>Status</th><th>Pickup/Delivery</th><th>Time Purchased</th></thead><tbody>";
 
         while ($row = $result->fetch_assoc()) {
             $sql_order = "SELECT * FROM p5_6.product_purchased where order_id=" . $row["order_id"] . ";";
@@ -32,13 +32,13 @@ else
             {
                 if (mysqli_num_rows($result_order) == 1)
                 {
-                   $table .= "<tr><td>" . $row_order['order_id'] . "</td><td>" . $row_order["product_name_purchased"] . "</td><td>" . $row_order['product_quantity_purchased'] . "</td><td>" . $row_order['zip'] . "</td><td>" . $row_order['product_price_purchased'] . "</td><td>" . $row_order['delivery_status'] ."</td></tr>";
+                   $table .= "<tr><td>" . $row_order['order_id'] . "</td><td>" . $row_order["product_name_purchased"] . "</td><td>" . $row_order['product_quantity_purchased'] . "</td><td>" . $row_order['delivery_address'] . "</td><td>" . $row_order['product_price_purchased'] . "</td><td>" . $row_order['delivery_status'] . "</td><td>" . $row_order["pickup_delivery"] . "</td><td>" . $row_order["time_of_purchased"] . "</td></tr>";
                 }
                 else //for orders with multiple items ordered
                 {
                     if ($index == 0)
                     {
-                        $table .= "<tr><td rowspan=" . mysqli_num_rows($result_order) .">" . $row_order['order_id'] . "</td><td>" . $row_order["product_name_purchased"] . "</td><td>" . $row_order['product_quantity_purchased'] . "</td><td rowspan=" . mysqli_num_rows($result_order) .">" . $row_order['zip'] . "</td><td rowspan=" . mysqli_num_rows($result_order) . ">$" . $row_order['product_price_purchased'] . "</td><td rowspan=" . mysqli_num_rows($result_order) . ">" . $row_order['delivery_status'] ."</td></tr>"; 
+                        $table .= "<tr><td rowspan=" . mysqli_num_rows($result_order) .">" . $row_order['order_id'] . "</td><td>" . $row_order["product_name_purchased"] . "</td><td>" . $row_order['product_quantity_purchased'] . "</td><td rowspan=" . mysqli_num_rows($result_order) .">" . $row_order['delivery_address'] . "</td><td rowspan=" . mysqli_num_rows($result_order) . ">$" . $row_order['product_price_purchased'] . "</td><td rowspan=" . mysqli_num_rows($result_order) . ">" . $row_order['delivery_status'] . "</td><td rowspan=" . mysqli_num_rows($result_order) . ">" . $row_order['pickup_delivery'] . "</td><td rowspan=" . mysqli_num_rows($result_order) . ">" . $row_order['time_of_purchased'] . "</td></tr>"; 
                     }
                     else
                     {
