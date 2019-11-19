@@ -171,13 +171,13 @@ if($i<=0)
                     <div class="store_address">
                     <h1>Preferred delivery method</h1>
                     
-                    <input type="radio" name="radio1" onclick="showText(0)" checked> Store pick up <br>   
+                    <input type="radio" name="pickup_delivery" onclick="showText(0)" value="Store Pick up" id="storepickup" checked> Store pick up <br>   
                     
-                    <select name="cars" id="storeoption">
+                    <select name="storeaddress" id="storeoption">
                     <?php echo $storeDisplay?>
                     </select><br>
-                    <input type="radio" name="radio1" onclick="showText(1)"> Home Delivery
-                    <input type="text" id="homeaddress" class="homeaddress" >
+                    <input type="radio" name="pickup_delivery" onclick="showText(1)" value="Home Delivery" id="homedelivery"> Home Delivery
+                    <input type="text" id="homeaddress" class="homeaddress" name="homeaddress">
                     </div>
                     <input type="submit" value="Continue to checkout" class="btn1">
                 </form>
