@@ -113,7 +113,7 @@ if($i<=0)
     <div class="row">
         <div class="col-75">
             <div class="container">
-                    <form action="process_payment" method="POST">
+                <form action="process_payment" method="POST">
                     <div class="row">
                         <div class="col-50">
                             <h3>Billing Address</h3>
@@ -121,9 +121,9 @@ if($i<=0)
                                 <input type="text" required="required"  id="fname" name="fullname" pattern="[A-Za-z].{5,}" placeholder="John M. Doe" >
                                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
                                 <?php
-                                   // echo '<input type="text" required="required" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="john@example.com" value=' . $_SESSION['email'] . '>';
+                                   echo '<input type="text" required="required" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="john@example.com" value=' . $_SESSION['email'] . '>';
                                 ?>
-                                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                                <label for="adr"><i class="fa fa-address-card-o"></i>Billing Address</label>
                                 <input type="text" required="required"  id="adr" name="address" placeholder="542 W. 15th Street">
                                 <label for="city"><i class="fa fa-institution"></i> City</label>
                                 <input type="text" required="required"  id="city" name="city" placeholder="New York">
@@ -140,82 +140,82 @@ if($i<=0)
                             </div>
                         </div>
 
-                    <div class="col-50">
-                        <h3>Payment</h3>
-                        <label for="fname">Accepted Cards</label>
-                        <div class="icon-container">
-                            <i class="fab fa-cc-visa" ></i>
-                            <i class="fab fa-cc-amex" ></i>
-                            <i class="fab fa-cc-mastercard"></i>
-                            <i class="fab fa-cc-discover"></i>
-                        </div>
-                        <label for="cname">Name on Card</label>
-                        <input type="text" required="required"  id="cname" name="cardname" placeholder="John More Doe">
-                        <label for="ccnum">Credit card number</label>
-                        <input type="text" required="required"  id="ccnum" name="cardnum" placeholder="1111222233334444">
-                        <label for="expmonth">Exp Month</label>
-                        <input type="text" required="required"  id="expmonth" name="expmonth" placeholder="08" maxlength="2">
-                        <div class="row">
-                            <div class="col-50">
-                                <label for="expyear">Exp Year</label>
-                                <input type="text" required="required"  id="expyear" name="expyear" placeholder="19" maxlength="2">
+                        <div class="col-50">
+                            <h3>Payment</h3>
+                            <label for="fname">Accepted Cards</label>
+                            <div class="icon-container">
+                                <i class="fab fa-cc-visa" ></i>
+                                <i class="fab fa-cc-amex" ></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fab fa-cc-discover"></i>
                             </div>
-                            <div class="col-50">
-                                <label for="cvv">CVV</label>
-                                <input type="text" required="required"  id="cvv" name="cvv" placeholder="352" maxlength="3">
+                            <label for="cname">Name on Card</label>
+                            <input type="text" required="required"  id="cname" name="cardname" placeholder="John More Doe">
+                            <label for="ccnum">Credit card number</label>
+                            <input type="text" required="required"  id="ccnum" name="cardnum" placeholder="1111222233334444">
+                            <label for="expmonth">Exp Month</label>
+                            <input type="text" required="required"  id="expmonth" name="expmonth" placeholder="08" maxlength="2">
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="expyear">Exp Year</label>
+                                    <input type="text" required="required"  id="expyear" name="expyear" placeholder="19" maxlength="2">
+                                </div>
+                                <div class="col-50">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" required="required"  id="cvv" name="cvv" placeholder="352" maxlength="3">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-                    <div class="store_address">
-                    <h1>Preferred delivery method</h1>
-                    
-                    <input type="radio" name="pickup_delivery" onclick="showText(0)" value="Store Pick up" id="storepickup" checked> Store pick up <br>   
-                    
-                    <select name="storeaddress" id="storeoption">
-                    <?php echo $storeDisplay?>
-                    </select><br>
-                    <input type="radio" name="pickup_delivery" onclick="showText(1)" value="Home Delivery" id="homedelivery"> Home Delivery
-                    <input type="text" id="homeaddress" class="homeaddress" name="homeaddress">
+                            <div class="store_address">
+                                <h1>Preferred delivery method</h1> 
+                                <div class="leftside">
+                                <input type="radio" name="pickup_delivery" onclick="showText(0)" value="Store Pick up" id="storepickup" checked> Store pick up <p>
+                                <input type="radio" name="pickup_delivery" onclick="showText(1)" value="Home Delivery" id="homedelivery"> Home Delivery<br></div>
+                                <div class="rightside">
+                                <select name="storeaddress" id="storeoption">
+                                <?php echo $storeDisplay?>
+                                </select><br>
+                                <input type="text" id="homeaddress" class="homeaddress" name="homeaddress" placeholder="Blk 22 Boon Keng "></div>
+                            </div>    
+                        <input type="submit" value="Continue to checkout" class="btn1">
                     </div>
-                    <input type="submit" value="Continue to checkout" class="btn1">
                 </form>
                 </div>
             </div>
         
-        <div class="col-15">
-            <div class="container">
-                <h4>Shopping Cart
-                    <span class="price" >
-                        <i class="fa fa-shopping-cart"></i>
-                    </span>
-                </h4>
-                <?php echo $productDisplay ?>
-                
-                <hr>
-                
-                <div class="totals">
-                    <div class="totals-item" >
-                        <label>Subtotal</label>
-                        <div class="totals-value" id="cart-subtotal"><?php echo $cartOutput?></div>
+            <div class="col-15">
+                <div class="container">
+                    <h4>Shopping Cart
+                        <span class="price" >
+                            <i class="fa fa-shopping-cart"></i>
+                        </span>
+                    </h4>
+                    <?php echo $productDisplay ?>
+
+                    <hr>
+
+                    <div class="totals">
+                        <div class="totals-item" >
+                            <label>Subtotal</label>
+                            <div class="totals-value" id="cart-subtotal"><?php echo $cartOutput?></div>
+                        </div>
+                        <div class="totals-item">
+                            <label>Tax (5%)</label>
+                            <div class="totals-value" id="cart-tax"><?php echo $tax?></div>
+                        </div>
+                        <div class="totals-item">
+                            <label>Delivery</label>
+                            <div class="totals-value" id="cart-delivery"><?php echo $delivery?></div>
+                        </div>
+                        <div class="totals-item totals-item-total" >
+                            <label>Grand Total</label>
+                            <div class="totals-value" id="cart-total"><?php echo $carttotal?></div>
+                        </div>
                     </div>
-                    <div class="totals-item">
-                        <label>Tax (5%)</label>
-                        <div class="totals-value" id="cart-tax"><?php echo $tax?></div>
-                    </div>
-                    <div class="totals-item">
-                        <label>Delivery</label>
-                        <div class="totals-value" id="cart-delivery"><?php echo $delivery?></div>
-                    </div>
-                    <div class="totals-item totals-item-total" >
-                        <label>Grand Total</label>
-                        <div class="totals-value" id="cart-total"><?php echo $carttotal?></div>
-                    </div>
+
                 </div>
-                     
             </div>
-        </div>
     </div>
 <?php include "footer.php" ?>
 </body>
