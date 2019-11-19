@@ -23,27 +23,7 @@ else
     $fname = sanitize_input($_POST["fullname"]); 
 } 
 
-/*--------------------------------zip code------------------------------------*/
-//if (empty($_POST["zip"])) 
-//{
-//    $errorMsg .= "Zip code is required.<br>";     
-//    $success = false; 
-//}
-//else 
-//{     
-//    $zip = sanitize_input($_POST["zip"]); 
-//     $zipleng = strlen((string)$zip);
-//    if($zipleng == 6) 
-//    {
-//    // Pass
-//    }
-//    else {
-//        $errorMsg .= "Zip Code is in wrong format. <br>";
-//        $success = false;
-//    // Fail
-//    } 
-// 
-//} 
+
 /*--------------------------------credit card ------------------------------------*/
 if (empty($_POST["cardnum"])|| !is_numeric($_POST['cardnum'])) 
 {
@@ -175,7 +155,7 @@ if(isset($_SESSION["cart_array"]) && !empty($_POST['zip']) && is_numeric($_POST[
         $deliveryAddress = $_POST["homeaddress"];
     }
 
-    $sql = "INSERT INTO p5_6.product_purchased (product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, order_id, pickup_delivery, delivery_address, time_of_purchased) VALUES ('$productName','$price','$quantity','$u_purchased','$status',$order_id','$pickup_delivery','$deliveryAddress','$date');";
+    $sql = "INSERT INTO p5_6.product_purchased (product_name_purchased, product_price_purchased, product_quantity_purchased, user_purchased, delivery_status, order_id, pickup_delivery, delivery_address, time_of_purchased) VALUES ('$productName','$price','$quantity','$u_purchased','$status',$order_id',`$pickup_delivery`,`$deliveryAddress`,`$date`);";
 
     
     if ($conn->query($sql) == TRUE) {
