@@ -135,7 +135,7 @@ $status = "processing";
 
 $u_purchased = $_SESSION['user'];
     
-if(isset($_SESSION["cart_array"]) && !empty($_POST['zip']) && is_numeric($_POST['zip']))
+if(isset($_SESSION["cart_array"]) && !empty($_POST['delivery_address']) && is_numeric($_POST['zip']))
 {   $order_id = rand(10000000,99999999) + time();
     foreach($_SESSION["cart_array"] as $eachitem )
     {
@@ -153,6 +153,7 @@ if(isset($_SESSION["cart_array"]) && !empty($_POST['zip']) && is_numeric($_POST[
     else{
         $deliveryAddress = $_POST["homeaddress"];
     }
+
 
     $sql = "INSERT INTO p5_6.product_purchased (`product_name_purchased`, `product_price_purchased`, `product_quantity_purchased`, `user_purchased`, `delivery_status`, `order_id`, `pickup_delivery`, `delivery_address`, `time_of_purchased`) VALUES ('$productName','$price','$quantity','$u_purchased','$status',$order_id','$pickup_delivery','$deliveryAddress','$date')";
 
